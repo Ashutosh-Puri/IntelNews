@@ -23,8 +23,8 @@ class UsersTableSeeder extends Seeder
                 // Admin
                 'name'          => 'Admin',
                 'username'      => 'admin',
-                'email'         => 'admin@gmail.com',
-                'password'      => Hash::make('111'),
+                'email'         => 'cmdsofts@gmail.com',
+                'password'      => Hash::make('123456789'),
                 'role'          => 'admin',
                 'status'        => 'active',
 
@@ -33,8 +33,8 @@ class UsersTableSeeder extends Seeder
             [
 
                 // User
-                'name'          => 'User',
-                'username'      => 'user',
+                'name'          => 'Ashutosh',
+                'username'      => 'Ashutosh Puri',
                 'email'         => 'user@gmail.com',
                 'password'      => Hash::make('111'),
                 'role'          => 'user',
