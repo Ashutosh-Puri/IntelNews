@@ -31,39 +31,24 @@
 
                     <div class="card-body">
 
-                        <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                        <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail" alt="profile-image">
 
                         <h4 class="mb-0">{{ $adminData->name }}</h4>
 
-                        <p class="text-muted">@ {{ $adminData->username }}</p>
-
-                        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Follow</button>
-
-                        <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Message</button>
+                        {{-- <p class="text-muted">@ {{ $adminData->username }}</p> --}}
 
                         <div class="text-start mt-3">
+
+                            <p class="text-muted mb-2 font-13"><strong>Username :</strong> <span class="ms-2">{{ $adminData->username }}</span></p>
+
                             <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ms-2">{{ $adminData->name }}</span></p>
 
                             <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ms-2">{{ $adminData->phone }}</span></p>
 
                             <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2">{{ $adminData->email }}</span></p>
 
+                            <p class="text-muted mb-2 font-13"><strong>Role :</strong> <span class="ms-2">{{ $adminData->role }}</span></p>
                         </div>
-
-                        <ul class="social-list list-inline mt-3 mb-0">
-                            <li class="list-inline-item">
-                                <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div> <!-- end card -->
 

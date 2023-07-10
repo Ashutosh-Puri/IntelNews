@@ -89,7 +89,7 @@
 
                         <a href="#subcategory" data-bs-toggle="collapse">
 
-                            <i class="mdi mdi-cart-outline"></i>
+                            <i class="fas fa-sitemap"></i>
 
                             <span> Sub Category </span>
 
@@ -123,7 +123,7 @@
 
                         <a href="#newspost" data-bs-toggle="collapse">
 
-                            <i class="mdi mdi-cart-outline"></i>
+                            <i class="fa fa-newspaper"></i>
 
                             <span> News Post Setting </span>
 
@@ -157,7 +157,7 @@
 
                         <a href="#banner" data-bs-toggle="collapse">
 
-                            <i class="mdi mdi-cart-outline"></i>
+                            <i class="fa fa-bullhorn"></i>
 
                             <span> Banner Setting </span>
 
@@ -183,7 +183,7 @@
 
                     <li>
                         <a href="#photoSetting" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fa fa-camera-retro"></i>
                             <span> Photo Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -198,7 +198,7 @@
 
                     <li>
                         <a href="#videoSetting" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fa fa-video-camera"></i>
                             <span> Video Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -213,7 +213,7 @@
 
                     <li>
                         <a href="#livetvsetting" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fa fa-bullseye"></i>
                             <span> Live Tv Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -229,7 +229,7 @@
                     <li>
 
                         <a href="#reviewcomment" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fa fa-file-text"></i>
                             <span> Review Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -255,7 +255,7 @@
                     <li>
 
                         <a href="#seosetting" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fas fa-stream"></i>
                             <span> SEO Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -277,7 +277,7 @@
                     <li>
 
                         <a href="#seosetting" data-bs-toggle="collapse">
-                            <i class="mdi mdi-email-multiple-outline"></i>
+                            <i class="fe-settings"></i>
                             <span> Site Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -302,7 +302,7 @@
 
                         <a href="#sidebarAuth" data-bs-toggle="collapse">
 
-                            <i class="mdi mdi-account-circle-outline"></i>
+                            <i class="fas fa-user-circle"></i>
 
                             <span> Setting Admin User </span>
 
@@ -334,7 +334,7 @@
 
                     <li>
                         <a href="#roles" data-bs-toggle="collapse">
-                            <i class="mdi mdi-text-box-multiple-outline"></i>
+                            <i class="fas fa-user-lock"></i>
                             <span> Roles And Permission </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -356,7 +356,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-title mt-2">Components</li>
+                   {{--  <li class="menu-title mt-2">Components</li>
 
                     <li>
 
@@ -444,7 +444,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @else
 

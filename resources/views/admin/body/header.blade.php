@@ -17,7 +17,7 @@ $adminData =  App\Models\User::find($id);
 
             <li class="d-none d-lg-block">
 
-                <form class="app-search">
+                {{-- <form class="app-search">
 
                     <div class="app-search-box dropdown">
 
@@ -69,7 +69,7 @@ $adminData =  App\Models\User::find($id);
 
                     </div>
 
-                </form>
+                </form> --}}
 
             </li>
 
@@ -109,7 +109,7 @@ $adminData =  App\Models\User::find($id);
 
             @endphp
 
-            <li class="dropdown notification-list topbar-dropdown">
+            {{-- <li class="dropdown notification-list topbar-dropdown">
 
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 
@@ -184,7 +184,7 @@ $adminData =  App\Models\User::find($id);
                     </a>
 
                 </div>
-            </li>
+            </li> --}}
 
             <li class="dropdown notification-list topbar-dropdown">
 
@@ -214,27 +214,18 @@ $adminData =  App\Models\User::find($id);
 
                     <a href="{{ route('admin.profile') }}" class="dropdown-item notify-item">
 
-                        <i class="fe-user"></i>
+                        <i class="fa fa-user-circle"></i>
 
                         <span>My Account</span>
 
                     </a>
 
-                    <!-- item-->
-
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-
-                        <i class="fe-settings"></i>
-
-                        <span>Settings</span>
-
-                    </a>
 
                     <!-- item-->
 
                     <a href="{{ route('admin.change.password') }}" class="dropdown-item notify-item">
 
-                        <i class="fe-lock"></i>
+                        <i class="fa fa-lock"></i>
 
                         <span>Change Password</span>
 
@@ -246,7 +237,7 @@ $adminData =  App\Models\User::find($id);
 
                     <a href="{{ route('admin.logout') }}" class="dropdown-item notify-item">
 
-                        <i class="fe-log-out"></i>
+                        <i class="fa fa-sign-out"></i>
 
                         <span>Logout</span>
 
@@ -262,21 +253,21 @@ $adminData =  App\Models\User::find($id);
 
         <div class="logo-box">
 
-            <a href="index.html" class="logo logo-dark text-center">
+            <a href="{{ url('/') }}" class="logo logo-dark text-center">
 
                 <span class="logo-sm">
 
-                    <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="" height="22">
+                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
 
-                    <!-- <span class="logo-lg-text-light">UBold</span> -->
+                   <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
 
                 </span>
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="" height="20">
+                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
 
-                    <!-- <span class="logo-lg-text-light">U</span> -->
+             <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
 
                 </span>
 
@@ -287,13 +278,13 @@ $adminData =  App\Models\User::find($id);
 
                 <span class="logo-sm">
 
-                    <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="" height="22">
+                    <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="50">
 
                 </span>
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="" height="20">
+                    <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="50">
 
                 </span>
 

@@ -45,7 +45,7 @@
 
                                             <span class="logo-lg">
 
-                                                <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="" height="22">
+                                                <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="100" width="100">
 
                                             </span>
 
@@ -54,7 +54,7 @@
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
 
-                                                <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="" height="22">
+                                                <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="100" width="100">
 
                                             </span>
 
@@ -100,7 +100,7 @@
 
 
         <footer class="footer footer-alt">
-            2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="" class="text-white-50">Coderthemes</a>
+            <script>document.write(new Date().getFullYear())</script> &copy;  Theme By <a href="http://cmdsofts.rf.gd" class="text-white-50">CmdSofts</a>
         </footer>
 
         <!-- Vendor js -->

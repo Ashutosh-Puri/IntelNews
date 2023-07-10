@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <script>document.write(new Date().getFullYear())</script> &copy; Adrian News by <a href="">Adriansyah Ravindra</a>
+                <script>document.write(new Date().getFullYear())</script> &copy; Intel News by <a href="">Ashutosh Puri</a>
             </div>
             <div class="col-md-6">
                 <div class="text-md-end footer-links d-none d-sm-block">
