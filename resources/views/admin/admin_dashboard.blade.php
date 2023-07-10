@@ -5,7 +5,7 @@
 
         <meta charset="utf-8" />
 
-        <title>Dashboard | Adrian News</title>
+        <title>Dashboard |  {{ env('APP_NAME') }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

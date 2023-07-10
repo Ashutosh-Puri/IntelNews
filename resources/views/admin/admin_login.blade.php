@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8" />
 
-        <title>Login Page | Intel News</title>
+        <title>Login Page | {{ env('APP_NAME') }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

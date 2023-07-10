@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Add News Post</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
+                        {{-- <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p> --}}
 
                         <form method="post" action="{{ route('news.post.store') }}" id="myForm" enctype="multipart/form-data">
 
@@ -147,7 +147,8 @@
 
                                 <label for="news_details" class="form-label">News Details</label>
 
-                                <textarea name="news_details" id="mytextarea" cols="30" rows="10"></textarea>
+                                <textarea name="news_details"  class="form-control" cols="30" rows="10"></textarea>
+                                {{-- <textarea name="news_details" id="mytextarea" cols="30" rows="10"></textarea> --}}
 
                             </div>
 

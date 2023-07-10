@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Edit Admin</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
+                       
 
                         <form method="post" action="{{ route('admin.update') }}" id="myForm">
 

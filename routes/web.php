@@ -165,7 +165,7 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::controller(BannerController::class)->group(function () {
 
         Route::get('/all/banners', 'AllBanners')->name('all.banners');
-        Route::get('/delete/news/post/{id}', 'DeleteNewsPost')->name('delete.news.post');
+        // Route::get('/delete/news/post/{id}', 'DeleteNewsPost')->name('delete.news.post');
         Route::post('/update/banners', 'UpdateBanners')->name('banners.update');
 
     });

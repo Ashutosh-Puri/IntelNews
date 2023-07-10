@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Sub Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('add.roles') }}" class="btn btn-success waves-effect waves-light">
+                            Add Role<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Add Roles</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
+
 
                         <form method="post" action="{{ route('store.roles') }}" id="myForm">
 
