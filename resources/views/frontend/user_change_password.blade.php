@@ -25,10 +25,7 @@
 
                 <ul>
                   <li>
-                    <a href=""><b>🟢 Your Profile </b></a>
-                  </li>
-                  <li>
-                    <a href=""> <b>🟠 Read Later List </b> </a>
+                    <a href="{{ route('user.dashboard') }}"><b>🟢 Your Profile </b></a>
                   </li>
                   <li>
                     <a href="{{ route('user.logout') }}"> <b>🟠 Logout </b> </a>

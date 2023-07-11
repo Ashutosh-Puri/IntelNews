@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Admin<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.video.gallery') }}" class="btn btn-success waves-effect waves-light">
+                          Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -33,7 +33,6 @@
 
                         <h4 class="header-title">Edit Video</h4>
 
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
 
                         <form method="post" action="{{ route('update.video.gallery') }}" id="myForm" enctype="multipart/form-data">
 

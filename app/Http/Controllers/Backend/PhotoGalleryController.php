@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Image;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
@@ -11,6 +10,7 @@ use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Models\PhotoGalleries;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class PhotoGalleryController extends Controller{
 

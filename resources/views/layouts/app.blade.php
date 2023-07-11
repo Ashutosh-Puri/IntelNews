@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+      
+      @vite(['resources/css/app.css', 'resources/js/app.js']) 
 
        
     </head>
@@ -35,4 +35,4 @@
             </main>
         </div>
     </body>
-</html>
+</html> --}}

@@ -24,15 +24,15 @@
                 <h6 class="authorPage-name">{{ $userData->email }}</h6>
 
                 <ul>
-                  <li>
+                  {{-- <li>
                     <a href=""><b>🟢 Your Profile </b></a>
-                  </li>
+                  </li> --}}
                   <li>
                     <a href="{{ route('user.change.password') }}"> <b>🔵 Change Password </b> </a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a href=""> <b>🟠 Read Later List </b> </a>
-                  </li>
+                  </li> --}}
                   <li>
                     <a href="{{ route('user.logout') }}"> <b>🟠 Logout </b> </a>
                   </li>

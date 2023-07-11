@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add News Post<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.news.post') }}" class="btn btn-success waves-effect waves-light">
+                            Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -27,7 +27,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Edit News Post</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
 
                         <form method="post" action="{{ route('news.post.update') }}" id="myForm" enctype="multipart/form-data">
 
@@ -163,7 +162,9 @@
 
                                 <label for="news_details" class="form-label">News Details</label>
 
-                                <textarea name="news_details" id="mytextarea" cols="30" rows="10">{!! $newspost->news_details !!}</textarea>
+                                {{-- <textarea name="news_details" id="mytextarea" cols="30" rows="10">{!! $newspost->news_details !!}</textarea> --}}
+                                <textarea name="news_details" class="form-control" cols="30" rows="10">{!! $newspost->news_details !!}</textarea>
+
 
                             </div>
 

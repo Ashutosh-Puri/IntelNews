@@ -12,7 +12,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <a href="{{ route('add.sub.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                            Add Sub Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -30,13 +30,6 @@
                     <div class="card-body">
 
                         <h4 class="header-title">Data Sub Category</h4>
-
-                        <p class="text-muted font-13 mb-4">
-
-                            The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
-                            that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-
-                        </p>
 
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
 

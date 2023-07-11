@@ -13,20 +13,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="title" content="{{ $seo->meta_title }}">
-
-    <meta name="author" content="{{ $seo->meta_author }}">
+     @if (isset($seo->meta_title))
+         <meta name="title" content="{{ $seo->meta_title }}">
+     @endif
+    
+    @if (isset( $seo->meta_author))
+         <meta name="author" content="{{ $seo->meta_author }}">
+     @endif
+    
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> @yield('title') </title>
 
     <link rel="shortcut icon" href="assets/images/favicon.gif" type="image/x-icon">
-
-    <meta name="keywords" content="{{ $seo->meta_keyword }}">
-
-    <meta name="description" content="{{ $seo->meta_description }}">
+    @if (isset($seo->meta_keyword))
+          <meta name="keywords" content="{{ $seo->meta_keyword }}">
+     @endif
+   
+    @if (isset($seo->meta_description))
+          <meta name="description" content="{{ $seo->meta_description }}">
+     @endif
+   
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/line-awesome.min.css') }}" />
 

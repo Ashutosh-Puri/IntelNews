@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Image;
 use Carbon\Carbon;
 use App\Models\Banners;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class BannerController extends Controller{
 
     public function AllBanners(){
 
-        $banner = Banners::findOrFail(1);
+        $banner = Banners::find(1);
+
+
+        // dd($banner);
 
         return view('backend.banner.banner_update',compact('banner'));
 

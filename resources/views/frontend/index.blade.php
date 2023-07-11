@@ -36,7 +36,7 @@
 
                                     <div class="owl-stage" style="transform: translate3d(-1578px, 0px, 0px); transition: all 1s ease 0s; width: 3684px;">
 
-                                        @foreach ($news_slider as $slider)
+                                        @forelse ($news_slider as $slider)
 
                                             <div class="owl-item" style="width: 506.25px; margin-right: 20px;">
 
@@ -71,8 +71,10 @@
                                                 </div>
 
                                             </div>
+                                        @empty
 
-                                        @endforeach
+                                            Sliders Not Available...!
+                                        @endforelse
 
                                     </div>
 
@@ -101,7 +103,7 @@
 
                             @endphp
 
-                            @foreach ($section_three as $three)
+                            @forelse ($section_three as $three)
 
                             <div class="secOne-smallItem">
                                 <div class="secOne-smallImg">
@@ -111,8 +113,9 @@
                                     </h5>
                                 </div>
                             </div>
-
-                            @endforeach
+                            @empty
+                                Section Three News Not Avilable..!
+                            @endforelse
 
                         </div>
 
@@ -128,7 +131,7 @@
 
                             @endphp
 
-                            @foreach ($section_nine as $nine)
+                            @forelse ($section_nine as $nine)
 
                                 <div class="themesBazar-3 themesBazar-m2">
                                     <div class="sec-one-wrpp2">
@@ -147,8 +150,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            @endforeach
+                            @empty
+                                Section Nine News Not Avilable..!
+                            @endforelse
 
                         </div>
 
@@ -170,29 +174,33 @@
 
                             @endphp
 
-                            <div class="live_image">
-                                <img width="700" height="400" src="{{ asset($live_tv->live_image) }}"
-                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                    alt="" loading="lazy">
-                                <div data-mfp-src="#mymodal" class="live-icon modal-live"> <i
-                                        class="las la-play"></i> </div>
-                            </div>
+                            @if (isset($live_tv))
+                                <div class="live_image">
+                                    <img width="700" height="400" src="{{ asset($live_tv->live_image) }}"
+                                        class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                                        alt="" loading="lazy">
+                                    <div data-mfp-src="#mymodal" class="live-icon modal-live"> <i class="las la-play"></i> </div>
+                                </div>
 
-                            <div class="live-popup">
-                                <div id="mymodal" class="mfp-hide" role="dialog"
-                                    aria-labelledby="modal-titles" aria-describedby="modal-contents">
-                                    <div id="modal-contents">
-                                        <div
-                                            class="embed-responsive embed-responsive-16by9 embed-responsive-item">
-                                            <iframe width="560" height="315" src="{{ $live_tv->live_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <div class="live-popup">
+                                    <div id="mymodal" class="mfp-hide" role="dialog"
+                                        aria-labelledby="modal-titles" aria-describedby="modal-contents">
+                                        <div id="modal-contents">
+                                            <div
+                                                class="embed-responsive embed-responsive-16by9 embed-responsive-item">
+                                                <iframe width="560" height="315" src="{{ $live_tv->live_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                
+                            @endif
+                            
 
                         </div>
                     </div>
-                    <div class="themesBazar_widget">
+                    {{-- <div class="themesBazar_widget">
                         <h3 style="margin-top:5px"> OLD NEWS </h3>
                     </div>
 
@@ -379,7 +387,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="themesBazar_widget">
                         <h3 style="margin-top:5px"> Our Like Page </h3>
                     </div>
@@ -407,34 +415,40 @@
     </section>
 
     @php
-
         $banner =  App\Models\Banners::find(1);
-
     @endphp
-
+   
     <div class="container">
 
         <div class="row">
-
-            <div class="col-lg-6 col-md-6">
-                <div class="themesBazar_widget">
-                    <div class="textwidget">
-                        <p><img loading="lazy" class="aligncenter size-full wp-image-74"
-                                src="{{ asset($banner->home_one) }}" alt="" width="100%"
-                                height="auto"></p>
+            @if (isset($banner->home_one))
+                <div class="col-lg-6 col-md-6">
+                    <div class="themesBazar_widget">
+                        <div class="textwidget">
+                            <p><img loading="lazy" class="aligncenter size-full wp-image-74"
+                                    src="{{ asset($banner->home_one) }}" alt="" width="100%"
+                                    height="auto"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6">
-                <div class="themesBazar_widget">
-                    <div class="textwidget">
-                        <p><img loading="lazy" class="aligncenter size-full wp-image-74"
-                                src="{{ asset($banner->home_two) }}" alt="" width="100%"
-                                height="auto"></p>
+            @else
+                Home One Banner Not Set Yet..!
+            @endif
+            
+            @if (isset($banner->home_two))
+                <div class="col-lg-6 col-md-6">
+                    <div class="themesBazar_widget">
+                        <div class="textwidget">
+                            <p><img loading="lazy" class="aligncenter size-full wp-image-74"
+                                    src="{{ asset($banner->home_two) }}" alt="" width="100%"
+                                    height="auto"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                 Home Tow Banner Not Set Yet..!
+            @endif
+            
 
         </div>
 
@@ -523,7 +537,7 @@
 
                                         @endphp
 
-                                        @foreach($catwiseNews as $item)
+                                        @forelse($catwiseNews as $item)
 
                                             <div class="themesBazar-4 themesBazar-m2">
                                                 <div class="sec-two-wrpp">
@@ -536,8 +550,9 @@
                                                     </h5>
                                                 </div>
                                             </div>
-
-                                        @endforeach
+                                        @empty
+                                            News Not Available..!
+                                        @endforelse
 
                                     </div>
                                 </div>
@@ -553,24 +568,33 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="themesBazar_widget">
-                    <div class="textwidget">
-                        <p><img loading="lazy" class="aligncenter size-full wp-image-74"
-                                src="{{ asset($banner->home_three) }}" alt="" width="100%"
-                                height="auto"></p>
+
+            @if (isset($banner->home_three))
+                <div class="col-lg-6 col-md-6">
+                    <div class="themesBazar_widget">
+                        <div class="textwidget">
+                            <p><img loading="lazy" class="aligncenter size-full wp-image-74"
+                                    src="{{ asset($banner->home_three) }}" alt="" width="100%"
+                                    height="auto"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="themesBazar_widget">
-                    <div class="textwidget">
-                        <p><img loading="lazy" class="aligncenter size-full wp-image-74"
-                                src="{{ asset($banner->home_four) }}" alt="" width="100%"
-                                height="auto"></p>
+            @else
+                Home Banner Three Not Set Yet..!
+            @endif
+            @if (isset($banner->home_four))
+                <div class="col-lg-6 col-md-6">
+                    <div class="themesBazar_widget">
+                        <div class="textwidget">
+                            <p><img loading="lazy" class="aligncenter size-full wp-image-74"
+                                    src="{{ asset($banner->home_four) }}" alt="" width="100%"
+                                    height="auto"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+             @else
+                Home Banner Four Not Set Yet..!
+            @endif
         </div>
     </div>
 
@@ -579,53 +603,28 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8">
 
-                    <h2 class="themesBazar_cat07"> <a href="{{ url('news/category/'.$skip_cat_0->id.'/'.$skip_cat_0->category_slug) }}"> <i class="las la-align-justify"></i>
+                    @if (isset($skip_cat_0))
+                        <h2 class="themesBazar_cat07"> <a href="{{ url('news/category/'.$skip_cat_0->id.'/'.$skip_cat_0->category_slug) }}"> <i class="las la-align-justify"></i>
                             {{ $skip_cat_0->category_name }} </a> </h2>
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="col-lg-6 col-md-6">
-
-                            @foreach ($skip_news_0 as $item)
-
-                                @if($loop->index < 1)
-
-                                    <div class="secThree-bg">
-
-                                        <div class="sec-theee-image">
-                                            <a href=" "><img class="lazyload"
-                                                    src="{{ asset($item->image) }}"></a>
-                                        </div>
-                                        <h4 class="secThree-title">
-                                            <a href=" ">{{ $item->news_title }} </a>
-                                        </h4>
-
-                                    </div>
-
-                                @endif
-
-                            @endforeach
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-
-                            <div class="bg2">
+                            <div class="col-lg-6 col-md-6">
 
                                 @foreach ($skip_news_0 as $item)
 
-                                    @if($loop->index > 0)
+                                    @if($loop->index < 1)
 
-                                        <div class="secThree-smallItem">
-                                            <div class="secThree-smallImg">
+                                        <div class="secThree-bg">
+
+                                            <div class="sec-theee-image">
                                                 <a href=" "><img class="lazyload"
                                                         src="{{ asset($item->image) }}"></a>
-                                                <a href=" " class="small-icon3"><i
-                                                        class="la la-play"></i></a>
-                                                <h5 class="secOne_smallTitle">
-                                                    <a href=" ">{{ $item->news_title }} </a>
-                                                </h5>
                                             </div>
+                                            <h4 class="secThree-title">
+                                                <a href=" ">{{ $item->news_title }} </a>
+                                            </h4>
+
                                         </div>
 
                                     @endif
@@ -634,13 +633,41 @@
 
                             </div>
 
-                        </div>
+                            <div class="col-lg-6 col-md-6">
 
-                    </div>
+                                <div class="bg2">
+
+                                    @foreach ($skip_news_0 as $item)
+
+                                        @if($loop->index > 0)
+
+                                            <div class="secThree-smallItem">
+                                                <div class="secThree-smallImg">
+                                                    <a href=" "><img class="lazyload"
+                                                            src="{{ asset($item->image) }}"></a>
+                                                    <a href=" " class="small-icon3"><i
+                                                            class="la la-play"></i></a>
+                                                    <h5 class="secOne_smallTitle">
+                                                        <a href=" ">{{ $item->news_title }} </a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+
+                                        @endif
+
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    @endif
+                    
 
                 </div>
 
-                <div class="col-lg-4 col-md-4">
+                {{-- <div class="col-lg-4 col-md-4">
 
                     <h2 class="themesBazar_cat07"> <a href=" "> <i
                                 class="las la-map-marker"></i>POLITICS </a> </h2>
@@ -653,11 +680,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
     </section>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="themesBazar_widget">
@@ -687,53 +714,56 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <section class="section-four">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-
-                    <h2 class="themesBazar_cat04"> <a href=" "> <i class="las la-align-justify"></i>
+                    @if (isset($skip_cat_2))
+                         <h2 class="themesBazar_cat04"> <a href=" "> <i class="las la-align-justify"></i>
                             {{ $skip_cat_2->category_name }} </a> </h2>
 
-                    <div class="secFour-slider owl-carousel owl-loaded owl-drag">
+                        <div class="secFour-slider owl-carousel owl-loaded owl-drag">
 
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage"
-                                style="transform: translate3d(-3294px, 0px, 0px); transition: all 1s ease 0s; width: 4792px;">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage"
+                                    style="transform: translate3d(-3294px, 0px, 0px); transition: all 1s ease 0s; width: 4792px;">
 
-                                @foreach ($skip_news_2 as $item)
+                                    @foreach ($skip_news_2 as $item)
 
-                                    <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
-                                        <div class="secFour-wrpp ">
-                                            <div class="secFour-image">
-                                                <a href=" "><img class="lazyload" src="{{ asset($item->image) }}"></a>
-                                                <h5 class="secFour-title">
-                                                    <a href=" ">{{ $item->news_title }}</a>
-                                                </h5>
+                                        <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
+                                            <div class="secFour-wrpp ">
+                                                <div class="secFour-image">
+                                                    <a href=" "><img class="lazyload" src="{{ asset($item->image) }}"></a>
+                                                    <h5 class="secFour-title">
+                                                        <a href=" ">{{ $item->news_title }}</a>
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                @endforeach
+                                    @endforeach
 
+                                </div>
                             </div>
+                            <div class="owl-nav disabled"><button type="button" role="presentation"
+                                    class="owl-prev"><i class="las la-angle-left"></i></button><button
+                                    type="button" role="presentation" class="owl-next"><i
+                                        class="las la-angle-right"></i></button></div>
+                            <div class="owl-dots"><button role="button"
+                                    class="owl-dot"><span></span></button><button role="button"
+                                    class="owl-dot active"><span></span></button></div>
                         </div>
-                        <div class="owl-nav disabled"><button type="button" role="presentation"
-                                class="owl-prev"><i class="las la-angle-left"></i></button><button
-                                type="button" role="presentation" class="owl-next"><i
-                                    class="las la-angle-right"></i></button></div>
-                        <div class="owl-dots"><button role="button"
-                                class="owl-dot"><span></span></button><button role="button"
-                                class="owl-dot active"><span></span></button></div>
-                    </div>
+                    @endif
+                   
+
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="themesBazar_widget">
@@ -754,9 +784,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <section class="section-five">
+    {{-- <section class="section-five">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -856,9 +886,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="themesBazar_widget">
@@ -879,11 +909,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 
-    <section class="section-five">
+    {{-- <section class="section-five">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -1006,13 +1036,13 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 
 
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="themesBazar_widget">
@@ -1033,9 +1063,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <section class="section-seven">
+    {{-- <section class="section-seven">
         <div class="container">
 
             <h2 class="themesBazar_cat01"> <a href=" "> SPORTS </a> <span> <a href=" "> More
@@ -1114,9 +1144,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="themesBazar_widget">
@@ -1137,9 +1167,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <section class="section-five">
+    {{-- <section class="section-five">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -1262,14 +1292,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 
 
 
 
-    <section class="section-ten">
+    {{-- <section class="section-ten">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
@@ -1414,7 +1444,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 </div>
 
 @endsection

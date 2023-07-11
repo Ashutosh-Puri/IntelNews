@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.banners') }}" class="btn btn-success waves-effect waves-light">
+                           Banners <span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Update Banner</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
+
 
                         <form method="post" action="{{ route('banners.update') }}" id="myForm" enctype="multipart/form-data">
 
@@ -45,7 +45,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage" src="{{ (!empty($banner->home_one)) ? url($banner->home_one) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage" src="{{ (!empty($banner->home_one)) ? url($banner->home_one) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 
@@ -59,7 +59,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage2" src="{{ (!empty($banner->home_two)) ? url($banner->home_two) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage2" src="{{ (!empty($banner->home_two)) ? url($banner->home_two) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 
@@ -73,7 +73,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage3" src="{{ (!empty($banner->home_three)) ? url($banner->home_three) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage3" src="{{ (!empty($banner->home_three)) ? url($banner->home_three) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 
@@ -87,7 +87,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage4" src="{{ (!empty($banner->home_four)) ? url($banner->home_four) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage4" src="{{ (!empty($banner->home_four)) ? url($banner->home_four) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 
@@ -101,7 +101,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage5" src="{{ (!empty($banner->news_category_one)) ? url($banner->news_category_one) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage5" src="{{ (!empty($banner->news_category_one)) ? url($banner->news_category_one) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 
@@ -115,7 +115,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <img id="showImage6" src="{{ (!empty($banner->news_details_one)) ?  url($banner->news_details_one) : url('upload/no_image.jpg') }}" class="img-fluid rounded" width="200" alt="profile-image">
+                                <img id="showImage6" src="{{ (!empty($banner->news_details_one)) ?  url($banner->news_details_one) : url('upload/no_image.jpg') }}" class="rounded img-fluid" width="200" alt="profile-image">
 
                             </div>
 

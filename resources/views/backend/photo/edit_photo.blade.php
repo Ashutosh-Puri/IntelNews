@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.photo.gallery') }}" class="btn btn-success waves-effect waves-light">
+                            Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -27,9 +27,9 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="header-title">Edit Multi Photo</h4>
+                        <h4 class="header-title">Edit Photo Gallery</h4>
 
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
+                      
 
                         <form method="post" action="{{ route('update.photo.gallery') }}" id="myForm" enctype="multipart/form-data">
 
@@ -39,7 +39,7 @@
 
                             <div class="mb-3 form-group">
 
-                                <label for="multi_image" class="form-label">Multi Photo Gallery</label>
+                                <label for="multi_image" class="form-label">Edit Photo</label>
 
                                 <input id="multiImg" type="file" class="form-control" name="multi_image" id="multi_image" placeholder="1234 Main St">
 

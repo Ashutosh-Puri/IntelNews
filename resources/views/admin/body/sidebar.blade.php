@@ -39,13 +39,13 @@
 
                     {{-- can() adalah fungsi dari laravel spattie --}}
 
-                    @if (Auth::user()->can('category.menu'))
+                    {{-- @if (Auth::user()->can('category.menu')) --}}
 
                         <li>
 
                             <a href="#sidebarEcommerce" data-bs-toggle="collapse">
 
-                                <i class="mdi mdi-cart-outline"></i>
+                                <i class="fa fa-th-list"></i>
 
                                 <span> Category </span>
 
@@ -57,7 +57,7 @@
 
                                 <ul class="nav-second-level">
 
-                                    @if (Auth::user()->can('category.list'))
+                                    {{-- @if (Auth::user()->can('category.list')) --}}
 
                                         <li>
 
@@ -65,9 +65,9 @@
 
                                         </li>
 
-                                    @endif
+                                    {{-- @endif --}}
 
-                                    @if (Auth::user()->can('category.add'))
+                                    {{-- @if (Auth::user()->can('category.add')) --}}
 
                                         <li>
 
@@ -75,7 +75,7 @@
 
                                         </li>
 
-                                    @endif
+                                    {{-- @endif --}}
 
                                 </ul>
 
@@ -83,7 +83,7 @@
 
                         </li>
 
-                    @endif
+                    {{-- @endif --}}
 
                     <li>
 

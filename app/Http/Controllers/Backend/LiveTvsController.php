@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\LiveTvs;
-use Image;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\LiveTvs;
 use App\Models\Category;
 use App\Models\NewsPost;
 use App\Models\Subcategory;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreLiveTvsRequest;
 use App\Http\Requests\UpdateLiveTvsRequest;
 
