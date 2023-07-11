@@ -220,7 +220,10 @@
                         <div class="collapse" id="livetvsetting">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('edit.live.tv') }}">Live TV</a>
+                                    <a href="{{ route('all.live.tv') }}">All Live TV</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('add.live.tv') }}"> Add Live TV</a>
                                 </li>
                             </ul>
                         </div>

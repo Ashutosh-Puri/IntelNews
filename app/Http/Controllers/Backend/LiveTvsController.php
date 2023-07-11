@@ -16,18 +16,36 @@ use App\Http\Requests\UpdateLiveTvsRequest;
 
 class LiveTvsController extends Controller{
 
-    public function LiveTvsGallery(){
+    
 
-        $livetv = LiveTvs::findOrfail(1);
+    public function AllLiveTv(){
 
-        return view('backend.livetv.live_tv',compact('livetv'));
+        $livetv = LiveTvs::all();
+        return view('backend.livetv.live_tv_all',compact('livetv'));
 
     }
 
+    public function AddLiveTv(){
 
-    public function UpdateLiveTvsGallery(Request $request){
+        return view('backend.livetv.live_tv_add');
 
-        $live_id = $request->id;
+    }
+
+    public function StoreLiveTv(Request $request){
+
+        if(LiveTvs::count()>=1)
+        {
+            $notification = array(
+
+                'message' => 'Only One Record Is Allowd..!',
+
+                'alert-type' => 'success'
+
+            );
+
+            return redirect()->route('all.live.tv')->with($notification);
+        }
+        
 
         if ($request->file('live_image')) {
 
@@ -41,7 +59,75 @@ class LiveTvsController extends Controller{
 
             $save_url = 'upload/video/'.$name_gen;
 
-            LiveTvs::findOrFail($live_id)->update([
+            LiveTvs::create([
+
+                'live_url'                  => $request->live_url,
+                'post_date'                 => Carbon::now()->format('d F Y'),
+                'live_image'                => $save_url,
+                'created_at'                => Carbon::now(),
+            ]);
+
+            $notification = array(
+
+                'message' => 'Live TV Created With Image Successfuly',
+
+                'alert-type' => 'success'
+
+            );
+
+            return redirect()->route('all.live.tv')->with($notification);
+
+        } else{
+
+            LiveTvs::create([
+
+                'live_url'                  => $request->live_url,
+                'post_date'                 => Carbon::now()->format('d F Y'),
+                'created_at'                => Carbon::now(),
+
+            ]);
+
+            $notification = array(
+
+                'message' => 'Live TV Created Without Image Successfuly',
+
+                'alert-type' => 'success'
+
+            );
+
+            return redirect()->route('all.live.tv')->with($notification);
+
+        }
+
+    }
+
+  
+    public function EditLiveTv($id){
+
+        $livetv = LiveTvs::findOrfail($id);
+
+        return view('backend.livetv.live_tv_edit',compact('livetv'));
+
+    }
+
+    
+
+    public function UpdateLiveTv(Request $request ,$id){
+
+
+        if ($request->file('live_image')) {
+
+            $image      = $request->file('live_image');
+
+            $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+
+            // resize() dikarenakan sudah memakai package Image Intervention.
+
+            Image::make($image)->resize(784,436)->save('upload/video/'.$name_gen);
+
+            $save_url = 'upload/video/'.$name_gen;
+
+            LiveTvs::findOrFail($id)->update([
 
                 'live_url'                  => $request->live_url,
                 'post_date'                 => Carbon::now()->format('d F Y'),
@@ -58,11 +144,11 @@ class LiveTvsController extends Controller{
 
             );
 
-            return redirect()->route('edit.live.tv')->with($notification);
+            return redirect()->route('all.live.tv')->with($notification);
 
         } else{
 
-            LiveTvs::findOrFail($live_id)->update([
+            LiveTvs::findOrFail($id)->update([
 
                 'live_url'                  => $request->live_url,
                 'post_date'                 => Carbon::now()->format('d F Y'),
@@ -78,9 +164,26 @@ class LiveTvsController extends Controller{
 
             );
 
-            return redirect()->route('edit.live.tv')->with($notification);
+            return redirect()->route('all.live.tv')->with($notification);
 
         }
+
+    }
+
+
+    public function DeleteLiveTv($id){
+
+        LiveTvs::findOrFail($id)->delete();
+
+        $notification = array(
+
+            'message' => 'Category Deleted Successfuly',
+
+            'alert-type' => 'success'
+
+        );
+
+        return redirect()->back()->with($notification);
 
     }
 

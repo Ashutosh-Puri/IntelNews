@@ -200,8 +200,12 @@ Route::middleware('auth','role:admin')->group(function () {
 
     Route::controller(LiveTvsController::class)->group(function () {
 
-        Route::get('/edit/live/tv', 'LiveTvsGallery')->name('edit.live.tv');
-        Route::post('/update/live/tv', 'UpdateLiveTvsGallery')->name('update.live.tv');
+        Route::get('/all/live/tv', 'AllLiveTv')->name('all.live.tv');
+        Route::get('/add/live/tv', 'AddLiveTv')->name('add.live.tv');
+        Route::post('/store/live/tv', 'StoreLiveTv')->name('store.live.tv');
+        Route::get('/edit/live/tv/{id}', 'EditLiveTv')->name('edit.live.tv');
+        Route::post('/update/live/tv/{id}', 'UpdateLiveTv')->name('update.live.tv');
+        Route::get('/delete/live/tv/{id}', 'DeleteLiveTv')->name('delete.live.tv');
 
     });
 

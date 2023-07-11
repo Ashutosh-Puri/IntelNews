@@ -83,7 +83,7 @@ class CategoryController extends Controller{
 
         $notification = array(
 
-            'pesanNotif' => 'Category Deleted Successfuly',
+            'message' => 'Category Deleted Successfuly',
 
             'alert-type' => 'success'
 
