@@ -36,7 +36,7 @@ class VideoGalleriesController extends Controller{
 
         $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-         // resize() dikarenakan sudah memakai package Image Intervention.
+          
 
         Image::make($image)->resize(784,436)->save('upload/video/'.$name_gen);
 
@@ -82,7 +82,7 @@ class VideoGalleriesController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            // resize() dikarenakan sudah memakai package Image Intervention.
+             
 
             Image::make($image)->resize(784,436)->save('upload/video/'.$name_gen);
 

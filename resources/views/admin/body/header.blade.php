@@ -16,8 +16,7 @@ $adminData =  App\Models\User::find($id);
         <ul class="list-unstyled topnav-menu float-end mb-0">
 
             <li class="d-none d-lg-block">
-
-                {{-- <form class="app-search">
+                 <form class="app-search">
 
                     <div class="app-search-box dropdown">
 
@@ -69,7 +68,7 @@ $adminData =  App\Models\User::find($id);
 
                     </div>
 
-                </form> --}}
+                </form> 
 
             </li>
 
@@ -109,7 +108,7 @@ $adminData =  App\Models\User::find($id);
 
             @endphp
 
-            {{-- <li class="dropdown notification-list topbar-dropdown">
+            <li class="dropdown notification-list topbar-dropdown">
 
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 
@@ -184,7 +183,7 @@ $adminData =  App\Models\User::find($id);
                     </a>
 
                 </div>
-            </li> --}}
+            </li>
 
             <li class="dropdown notification-list topbar-dropdown">
 
@@ -253,7 +252,7 @@ $adminData =  App\Models\User::find($id);
 
         <div class="logo-box">
 
-            <a href="{{ url('/') }}" class="logo logo-dark text-center">
+            <a href="{{ route('admin.dashboard') }}" class="logo logo-dark text-center">
 
                 <span class="logo-sm">
 
@@ -265,7 +264,7 @@ $adminData =  App\Models\User::find($id);
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
+                    <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="" height="50">
 
              <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
 
@@ -274,17 +273,17 @@ $adminData =  App\Models\User::find($id);
             </a>
 
 
-            <a href="index.html" class="logo logo-light text-center">
+            <a href="{{ route('admin.dashboard') }}" class="logo logo-light text-center">
 
                 <span class="logo-sm">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="50">
+                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
 
                 </span>
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogo.png') }}" alt="" height="50">
+                    <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="" height="50">
 
                 </span>
 

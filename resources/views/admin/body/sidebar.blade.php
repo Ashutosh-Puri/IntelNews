@@ -1,14 +1,4 @@
 
-@php
-
-    $id = Auth::user()->id;
-
-    $userid = App\Models\User::find($id);
-
-    $status = $userid->status;
-
-@endphp
-
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
@@ -33,7 +23,7 @@
 
                 </li>
 
-                @if ($status == 'active')
+                @if (Auth::user()->status== 'active')
 
                     <li class="menu-title mt-2">Menu</li>
 
@@ -171,7 +161,12 @@
 
                                 <li>
 
-                                    <a href="{{ route('all.banners') }}">All Banner </a>
+                                    <a href="{{ route('all.banner') }}">All Banner </a>
+
+                                </li>
+                                <li>
+
+                                    <a href="{{ route('add.banner') }}">Add Banner </a>
 
                                 </li>
 

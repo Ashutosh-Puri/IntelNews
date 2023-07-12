@@ -17,16 +17,6 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
 use App\Http\Controllers\Backend\VideoGalleriesController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 // FRONTEND PAGE ROUTE
@@ -40,6 +30,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/lang/change', 'ChangeLang')->name('changeLang');
     Route::post('/search', 'SearchByDate')->name('search-by-date');
     Route::post('/search/news', 'SearchNews')->name('news.search');
+    
     Route::get('/reporter/all/news/{id}', 'RepporterAllNews')->name('reporter.all.news');
 
 });
@@ -164,9 +155,14 @@ Route::middleware('auth','role:admin')->group(function () {
 
     Route::controller(BannerController::class)->group(function () {
 
-        Route::get('/all/banners', 'AllBanners')->name('all.banners');
-        // Route::get('/delete/news/post/{id}', 'DeleteNewsPost')->name('delete.news.post');
-        Route::post('/update/banners', 'UpdateBanners')->name('banners.update');
+        Route::get('/all/banner', 'AllBanner')->name('all.banner');
+        Route::get('/add/banner', 'AddBanner')->name('add.banner');
+        Route::post('/store/banner', 'StoreBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
+        Route::post('/update/banner/{id}', 'UpdateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+        Route::get('/delete/banner/image/{bid}/{id}', 'DeleteBannerImage')->name('delete.banner.image');
+        
 
     });
 

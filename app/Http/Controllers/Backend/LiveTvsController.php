@@ -10,6 +10,7 @@ use App\Models\NewsPost;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreLiveTvsRequest;
 use App\Http\Requests\UpdateLiveTvsRequest;
@@ -53,7 +54,7 @@ class LiveTvsController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            // resize() dikarenakan sudah memakai package Image Intervention.
+             
 
             Image::make($image)->resize(784,436)->save('upload/video/'.$name_gen);
 
@@ -121,7 +122,7 @@ class LiveTvsController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            // resize() dikarenakan sudah memakai package Image Intervention.
+             
 
             Image::make($image)->resize(784,436)->save('upload/video/'.$name_gen);
 
@@ -173,11 +174,16 @@ class LiveTvsController extends Controller{
 
     public function DeleteLiveTv($id){
 
-        LiveTvs::findOrFail($id)->delete();
+        $liveimage=LiveTvs::find($id);
+        if(File::exists($liveimage->live_image )) {
+            File::delete($liveimage->live_image);
+        }
+        
+        $liveimage->delete();
 
         $notification = array(
 
-            'message' => 'Category Deleted Successfuly',
+            'message' => 'Live Tv Deleted Successfuly',
 
             'alert-type' => 'success'
 

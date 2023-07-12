@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.admin') }}" class="btn btn-success waves-effect waves-light">
-                            Add Admin<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('approve.review') }}" class="btn btn-success waves-effect waves-light">
+                            Approve Review<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -30,13 +30,6 @@
                     <div class="card-body">
 
                         <h4 class="header-title">Pending Review <span class="btn btn-danger">{{ count($review) }}</span> </h4>
-
-                        <p class="text-muted font-13 mb-4">
-
-                            The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
-                            that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-
-                        </p>
 
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
 

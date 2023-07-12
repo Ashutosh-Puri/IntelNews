@@ -36,7 +36,7 @@ class PhotoGalleryController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
 
-            // resize() dikarenakan sudah memakai package Image Intervention.
+             
 
             Image::make($multi_image)->resize(700,400)->save('upload/multi/'.$name_gen);
 
@@ -81,7 +81,7 @@ class PhotoGalleryController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            // resize() dikarenakan sudah memakai package Image Intervention.
+             
 
             Image::make($image)->resize(700,400)->save('upload/multi/'.$name_gen);
 

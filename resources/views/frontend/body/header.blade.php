@@ -32,9 +32,9 @@
 
                             <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }} >English</option>
 
-                            <option value="id" {{ session()->get('locale') == 'id' ? 'selected' : '' }} >Indonesia</option>
+                            <option value="hi" {{ session()->get('locale') == 'hi' ? 'selected' : '' }} >Hindi</option>
 
-                            <option value="nl" {{ session()->get('locale') == 'nl' ? 'selected' : '' }} >Belanda</option>
+                            <option value="mr" {{ session()->get('locale') == 'mr' ? 'selected' : '' }} >Marathi</option>
 
                         </select>
 
@@ -91,12 +91,11 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="logo">
-                        <a href=" " title="NewsFlash">
+                        <a href="{{ url('/') }}" title="{{ env('APP_NAME') }}">
 
-                            <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="NewsFlash" title="NewsFlash">
+                            <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
                         </a>
-                    </div>
-                </div>
+                    </div>      </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="banner">
                         <a href=" " target="_blank">
@@ -115,19 +114,19 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="mobileLogo">
-                    <a href=" " title="NewsFlash">
-                        <img src="{{ asset('frontend/assets/images/footer_logo.gif') }}" alt="Logo"
-                            title="Logo">
-                    </a>
+                    <a href="{{ url('/') }}" title="{{ env('APP_NAME') }}">
+
+                            <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
+                        </a>
                 </div>
-                <div class="stellarnav dark desktop"><a href="https://newssitedesign.com/newsflash/#"
+                <div class="stellarnav dark desktop"><a href="{{ url('/') }}"
                         class="menu-toggle full"><span
                             class="bars"><span></span><span></span><span></span></span> </a>
                     <ul id="menu-main-menu" class="menu">
 
                         <li id="menu-item-89"
                             class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-89">
-                            <a href="https://newssitedesign.com/newsflash" aria-current="page"> <i
+                            <a href="{{ url('/') }}" aria-current="page"> <i
                                     class="fa-solid fa-house-user"></i> Home</a>
                         </li>
 
