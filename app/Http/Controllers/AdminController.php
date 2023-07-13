@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\Backend\AdminFormRequest;
+
 
 class AdminController extends Controller{
 
@@ -52,16 +56,19 @@ class AdminController extends Controller{
 
         // file('photo') = file() mengambil type input file
 
-        if ($request->file('photo')) {
+       
 
-            $file = $request->file('photo');
-            @unlink(public_path('upload/admin_images/'.$data->photo));
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filename);
-            $data['photo'] = $filename;
 
-        }
+            if($request->hasFile('photo')){
+                $photo = $request->file('photo');
+                $filename = time() . '.' . $photo->getClientOriginalExtension();
+                Image::make($photo)->resize(300, 300)->save(public_path('upload/admin_images/'.$filename));
+                $photoPath = 'upload/admin_images/'.$filename;
 
+                $data->photo= $photoPath;
+            }
+
+          
         $data->save();
 
         $notification = array(
@@ -152,7 +159,7 @@ class AdminController extends Controller{
 
     }
 
-    public function StoreAdmin(Request $request){
+    public function StoreAdmin(AdminFormRequest $request){
 
         $user = new User();
 
@@ -196,11 +203,12 @@ class AdminController extends Controller{
 
     }
 
-    public function UpdateAdmin(Request $request){
+    public function UpdateAdmin(AdminFormRequest $request ,$id){
 
-        $admin_id = $request->id;
+        dd($request ,$id);
+        
 
-        $user = User::findOrFail($admin_id);
+        $user = User::findOrFail($id);
 
         $user->username = $request->username;
         $user->name = $request->name;
@@ -237,11 +245,15 @@ class AdminController extends Controller{
 
         $user = User::findOrFail($id);
 
-        if (!is_null($user)) {
 
-            $user->delete();
-
+       
+        if(File::exists($user->photo )) {
+            File::delete($user->photo);
         }
+        
+         $user->delete();
+
+     
 
         $notification = array(
 

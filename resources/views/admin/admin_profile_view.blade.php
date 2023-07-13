@@ -31,7 +31,7 @@
 
                     <div class="card-body">
 
-                        <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail" alt="profile-image">
+                        <img src="{{ (!empty($adminData->photo)) ? url($adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail" alt="profile-image">
 
                         <h4 class="mb-0">{{ $adminData->name }}</h4>
 

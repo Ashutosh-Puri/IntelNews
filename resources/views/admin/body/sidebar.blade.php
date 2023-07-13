@@ -185,7 +185,10 @@
                         <div class="collapse" id="photoSetting">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('all.photo.gallery') }}">Photo Gallery</a>
+                                    <a href="{{ route('all.photo.gallery') }}">All Photo Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('add.photo.gallery') }}">Add Photo Gallery</a>
                                 </li>
                             </ul>
                         </div>
@@ -200,7 +203,10 @@
                         <div class="collapse" id="videoSetting">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('all.video.gallery') }}">Video Gallery</a>
+                                    <a href="{{ route('all.video.gallery') }}">All Video Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('add.video.gallery') }}">Add Video Gallery</a>
                                 </li>
                             </ul>
                         </div>
@@ -218,7 +224,7 @@
                                     <a href="{{ route('all.live.tv') }}">All Live TV</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('add.live.tv') }}"> Add Live TV</a>
+                                    <a href="{{ route('add.live.tv') }}">Add Live TV</a>
                                 </li>
                             </ul>
                         </div>
@@ -263,9 +269,11 @@
                             <ul class="nav-second-level">
 
                                 <li>
-                                    <a href="{{ route('seo.setting') }}">Update SEO</a>
+                                    <a href="{{ route('all.seo') }}">All SEO</a>
                                 </li>
-
+                                <li>
+                                    <a href="{{ route('add.seo') }}">Add SEO</a>
+                                </li>
                             </ul>
 
                         </div>
@@ -285,7 +293,10 @@
                             <ul class="nav-second-level">
 
                                 <li>
-                                    <a href="{{ route('seo.setting') }}">Update SEO</a>
+                                    <a href="">Update SEO</a>
+                                </li>
+                                <li>
+                                    <a href="">Update SEO</a>
                                 </li>
 
                             </ul>

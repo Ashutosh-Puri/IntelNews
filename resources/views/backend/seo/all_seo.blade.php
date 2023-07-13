@@ -10,124 +10,91 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Admin<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
-                        </a>
-                    </div>
+                    @if ($seo->count()<1)
+                        <div class="page-title-right">
+                            <a href="{{ route('add.seo') }}" class="btn btn-success waves-effect waves-light">
+                                Add SEO<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                            </a>
+                        </div>
+                    @else
+                        <div class="page-title-right">
+                            <a href="{{ route('all.seo') }}" class="btn btn-danger waves-effect waves-light">
+                               Only One Record Is Allowed !<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                            </a>
+                        </div>
+                    @endif
+                   
                     <h4 class="page-title">Datatables</h4>
                 </div>
             </div>
         </div>
         <!-- end page title -->
 
-        <!-- Form row -->
         <div class="row">
+
             <div class="col-12">
+
                 <div class="card">
+
                     <div class="card-body">
-                        <h4 class="header-title">Update SEO</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
 
-                        <form method="post" action="{{ route('seo.update') }}" id="myForm">
+                        <h4 class="header-title">Data SEO</h4>
 
-                            @csrf
+                        <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
 
-                            <input type="hidden" name="id" value="{{ $seo->id }}">
+                            <thead>
 
-                            <div class="mb-3 form-group">
-                                <label for="meta_title" class="form-label">Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="1234 Main St" value="{{ $seo->meta_title }}">
-                            </div>
+                                <tr>
 
-                            <div class="mb-3 form-group">
-                                <label for="meta_author" class="form-label">Meta Author</label>
-                                <input type="text" class="form-control" name="meta_author" id="meta_author" placeholder="1234 Main St" value="{{ $seo->meta_author }}">
-                            </div>
+                                    <th>No</th>
+                                    <th>Meta Title</th>
+                                    <th>Meta Author</th>
+                                    <th>Meta Keyword</th>
+                                    <th>Meta Description</th>
+                                    <th>Action</th>
 
-                            <div class="mb-3 form-group">
+                                </tr>
 
-                                <label class="form-label">Meta Keyword</label>
+                            </thead>
 
-                                <input type="text" class="selectize-close-btn" name="meta_keyword" value="{{ $seo->meta_keyword }}"">
 
-                            </div>
+                            <tbody>
 
-                            <div class="mb-3 form-group">
+                                @foreach ($seo as $key => $item)
 
-                                <label for="meta_description" class="form-label">Meta Description</label>
+                                <tr>
 
-                                <input type="text" class="form-control" name="meta_description" id="meta_description" placeholder="1234 Main St" value="{{ $seo->meta_description }}">
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $item->meta_title }}</td>
+                                    <td>{{ $item->meta_author }}</td>
+                                    <td>{{ $item->meta_keyword }}</td>
+                                    <td>{{ $item->meta_description}}</td>                               
+                                    <td>
 
-                            </div>
+                                        <a href="{{ route('edit.seo',$item->id) }}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-lead-pencil"></i></a>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                                        <a id="delete" href="{{ route('delete.seo',$item->id) }}" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-delete"></i></a>
 
-                        </form>
+                                    </td>
 
-                    </div> <!-- end card-body -->
-                </div> <!-- end card-->
-            </div> <!-- end col -->
+                                </tr>
+
+                                @endforeach
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-        <!-- end row -->
-
 
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
-<script type="text/javascript">
-
-    // Code untuk mengganti foto sesuai dengan input type file dengan change event jquery.
-
-    $(document).ready(function() {
-
-        $('#image').change(function(e) {
-
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-
-                $('#showImage').attr('src',e.target.result);
-
-            }
-
-            reader.readAsDataURL(e.target.files['0']);
-
-        });
-
-    });
-
-</script>
 
 @endsection

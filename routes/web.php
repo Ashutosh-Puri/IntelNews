@@ -129,8 +129,9 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/add/admin', 'AddAdmin')->name('add.admin');
         Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
         Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
-        Route::post('/store/admin', 'StoreAdmin')->name('admin.store');
-        Route::post('/update/admin', 'UpdateAdmin')->name('admin.update');
+        Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
+        // Route::post('/update/admin/{id}', 'UpdateAdmin')->name('update.admin');
+        Route::put('/upadte/admin/{id}','UpdateAdmin')->name('update.admin');
         Route::get('/inactive/admin/{id}', 'InactiveAdminUser')->name('inactive.admin.user');
         Route::get('/active/admin/{id}', 'ActiveAdminUser')->name('active.admin.user');
 
@@ -220,8 +221,13 @@ Route::middleware('auth','role:admin')->group(function () {
 
     Route::controller(SeoSettingController::class)->group(function () {
 
-        Route::get('/seo/setting/update', 'SeoSettingUpdate')->name('seo.setting');
-        Route::post('/seo/update', 'SeoUpdate')->name('seo.update');
+        Route::get('/all/seo', 'AllSeo')->name('all.seo');
+        Route::get('/add/seo', 'AddSeo')->name('add.seo');
+        Route::post('/store/seo/', 'StoreSeo')->name('store.seo');
+        Route::get('/edit/seo/{id}', 'EditSeo')->name('edit.seo');
+        Route::post('/update/seo/{id}', 'UpdateSeo')->name('update.seo');
+        Route::get('/delete/seo/{id}', 'DeleteSeo')->name('delete.seo');
+
 
     });
 

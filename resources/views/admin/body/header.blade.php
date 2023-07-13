@@ -189,7 +189,7 @@ $adminData =  App\Models\User::find($id);
 
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 
-                    <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.jpg') }}" alt="user-image" class="rounded-circle">
+                    <img src="{{ (!empty($adminData->photo)) ? url($adminData->photo) : url('upload/no_image.jpg') }}" alt="user-image" class="rounded-circle">
 
                     <span class="pro-user-name ms-1">
 

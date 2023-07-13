@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Admin<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.admin') }}" class="btn btn-success waves-effect waves-light">
+                            Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -28,38 +28,58 @@
                     <div class="card-body">
                         <h4 class="header-title">Edit Admin</h4>
                        
-
-                        <form method="post" action="{{ route('admin.update') }}" id="myForm">
+                       
+                        <form method="post" action="{{ route('update.admin',$adminuser->id) }}" id="myForm">
 
                             @csrf
+                            @method('put')
 
-                            <input type="hidden" name="id" value="{{ $adminuser->id }}">
-
+                    
                             <div class="mb-3 form-group">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="1234 Main St" value="{{ $adminuser->name }}">
+                                <input type="text" class="form-control @error('name') is-invalid  @enderror" name="name" id="name" placeholder="Enter Name" value="{{ $adminuser->name }}">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="1234 Main St" value="{{ $adminuser->username }}">
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="username" placeholder="Enter Username" value="{{ $adminuser->username }}">
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="1234 Main St" value="{{ $adminuser->email }}">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Enter Email" value="{{ $adminuser->email }}">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="1234 Main St" value="{{ $adminuser->phone }}">
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Enter Phone" value="{{ $adminuser->phone }}">
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
 
                                 <label for="role" class="form-label">Select Roles</label>
 
-                                <select class="form-select" id="role" name="role">
+                                <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
 
                                     <option>Select One Roles</option>
 
@@ -70,10 +90,15 @@
                                     @endforeach
 
                                 </select>
+                                @error('role')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 
@@ -87,59 +112,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
-<script type="text/javascript">
-
-    // Code untuk mengganti foto sesuai dengan input type file dengan change event jquery.
-
-    $(document).ready(function() {
-
-        $('#image').change(function(e) {
-
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-
-                $('#showImage').attr('src',e.target.result);
-
-            }
-
-            reader.readAsDataURL(e.target.files['0']);
-
-        });
-
-    });
-
-</script>
-
 @endsection
