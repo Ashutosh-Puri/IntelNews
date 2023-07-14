@@ -28,19 +28,16 @@
                     <div class="card-body">
                         <h4 class="header-title">Edit Sub Category</h4>
 
-                        <form method="post" action="{{ route('sub.category.update') }}" id="myForm">
+                        <form method="post" action="{{ route('sub.category.update',$subcategory->id) }}" id="myForm">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $subcategory->id }}">
-
                             <div class="mb-3 form-group">
 
                                 <label for="category_name" class="form-label">Select One Category</label>
 
-                                <select class="form-select" id="category_name" name="category_name">
+                                <select class="form-select @error('category_name') is-invalid @enderror" id="category_name" name="category_name">
 
-                                    <option>Select One Category</option>
+                                    <option hidden value="">Select One Category</option>
 
                                     @foreach ($categories as $category)
 
@@ -49,17 +46,27 @@
                                     @endforeach
 
                                 </select>
+                                @error('category_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
 
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="subcategory_name" class="form-label">Sub Category Name</label>
-                                <input type="text" class="form-control" name="subcategory_name" id="subcategory_name" placeholder="1234 Main St" value="{{ $subcategory->subcategory_name }}">
+                                <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" name="subcategory_name" id="subcategory_name" placeholder="Enter Sub Category Name" value="{{ $subcategory->subcategory_name }}">
+                                @error('subcategory_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
 
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 
@@ -73,35 +80,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 @endsection

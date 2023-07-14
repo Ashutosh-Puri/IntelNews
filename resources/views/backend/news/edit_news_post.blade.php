@@ -28,19 +28,16 @@
                     <div class="card-body">
                         <h4 class="header-title">Edit News Post</h4>
 
-                        <form method="post" action="{{ route('news.post.update') }}" id="myForm" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('news.post.update',$newspost->id) }}" id="myForm" enctype="multipart/form-data">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $newspost->id }}">
-
                             <div class="mb-3">
 
                                 <label for="category_id" class="form-label">Category</label>
 
-                                <select class="form-select" id="category_id" name="category_id">
+                                <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
 
-                                    <option>Select Category</option>
+                                    <option hidden value="">Select Category</option>
 
                                     @foreach ($categories as $category)
 
@@ -49,22 +46,23 @@
                                     @endforeach
 
                                 </select>
+                                @error('category_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
                             <div class="mb-3">
 
-                                @if ($newspost->subcategory_id == NULL)
-
-                                    There is no sub category in this category.
-
-                                @else
+                            
 
                                     <label for="subcategory_id" class="form-label">Sub Category</label>
 
-                                    <select class="form-select" id="subcategory_id" name="subcategory_id">
+                                    <select class="form-select @error('subcategory_id') is-invalid @enderror" id="subcategory_id" name="subcategory_id">
 
-                                        <option>Select Sub Category</option>
+                                        <option hidden value="">Select Sub Category</option>
 
                                         @foreach ($subcategory as $subcategories)
 
@@ -73,8 +71,13 @@
                                         @endforeach
 
                                     </select>
+                                    @error('subcategory_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                     @enderror
 
-                                @endif
+                           
 
                             </div>
 
@@ -82,9 +85,9 @@
 
                                 <label for="user_id" class="form-label">Writter</label>
 
-                                <select class="form-select" id="user_id" name="user_id">
+                                <select class="form-select @error('user_id') is-invalid @enderror" id="user_id" name="user_id">
 
-                                    <option>Select Category</option>
+                                    <option value="" hidden>Select Writter</option>
 
                                     @foreach ($adminuser as $user)
 
@@ -93,6 +96,11 @@
                                     @endforeach
 
                                 </select>
+                                @error('user_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
@@ -100,56 +108,84 @@
 
                                 <label for="news_title" class="form-label">News Title</label>
 
-                                <input type="text" class="form-control" name="news_title" id="news_title" placeholder="1234 Main St" value="{{ $newspost->news_title }}">
-
+                                <input type="text" class="form-control @error('news_title') is-invalid @enderror" name="news_title" id="news_title" placeholder="Enter News Title" value="{{ $newspost->news_title }}">
+                                @error('news_title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
 
                                 <label class="form-label">Tags</label>
 
-                                <input type="text" class="selectize-close-btn" name="tags" value="{{ $newspost->tags }}">
-
+                                <input type="text" class="selectize-close-btn @error('tags') is-invalid @enderror" name="tags" value="{{ $newspost->tags }}" placeholder="Enter Tags Seprate With Semicolan ( , )">
+                                @error('tags')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group form-check-primary form-check">
 
-                                <input class="form-check-input" type="checkbox" value="1" id="breaking_news" name="breaking_news" {{ $newspost->breaking_news == 1 ? 'checked' : '' }} >
-
+                                <input class="form-check-input @error('breaking_news') is-invalid @enderror" type="checkbox" value="1" id="breaking_news" name="breaking_news" {{ $newspost->breaking_news == 1 ? 'checked' : '' }} >
+                                
                                 <label class="form-check-label" for="breaking_news">Breaking News</label>
-
+                                @error('breaking_news')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group form-check-success form-check">
 
-                                <input class="form-check-input" type="checkbox" value="1" id="top_slide" name="top_slider" {{ $newspost->top_slider == 1 ? 'checked' : '' }} >
+                                <input class="form-check-input @error('top_slider') is-invalid @enderror" type="checkbox" value="1" id="top_slider" name="top_slider" {{ $newspost->top_slider == 1 ? 'checked' : '' }} >
 
                                 <label class="form-check-label" for="top_slider">Top Slider</label>
-
+                                @error('top_slider')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group form-check-danger form-check">
 
-                                <input class="form-check-input" type="checkbox" value="1" id="first_section_three" name="first_section_three" {{ $newspost->first_section_three == 1 ? 'checked' : '' }} >
+                                <input class="form-check-input @error('first_section_three') is-invalid @enderror" type="checkbox" value="1" id="first_section_three" name="first_section_three" {{ $newspost->first_section_three == 1 ? 'checked' : '' }} >
 
                                 <label class="form-check-label" for="first_section_three">First Section Three</label>
-
+                                @error('first_section_three')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group form-check-warning form-check">
 
-                                <input class="form-check-input" type="checkbox" value="1" id="first_section_nine" name="first_section_nine" {{ $newspost->first_section_nine == 1 ? 'checked' : '' }} >
+                                <input class="form-check-input @error('first_section_nine') is-invalid @enderror" type="checkbox" value="1" id="first_section_nine" name="first_section_nine" {{ $newspost->first_section_nine == 1 ? 'checked' : '' }} >
 
                                 <label class="form-check-label" for="first_section_nine">First Section Nine</label>
-
+                                @error('first_section_nine')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
 
                                 <label for="image" class="form-label">News Post Picture</label>
 
-                                <input type="file" id="image" name="image" class="form-control">
-
+                                <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -163,12 +199,16 @@
                                 <label for="news_details" class="form-label">News Details</label>
 
                                 {{-- <textarea name="news_details" id="mytextarea" cols="30" rows="10">{!! $newspost->news_details !!}</textarea> --}}
-                                <textarea name="news_details" class="form-control" cols="30" rows="10">{!! $newspost->news_details !!}</textarea>
-
+                                <textarea name="news_details" class="form-control @error('news_details') is-invalid @enderror" cols="30" rows="10" placeholder="Enter News Details">{!! $newspost->news_details !!}</textarea>
+                                @error('news_details')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 
@@ -182,37 +222,6 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 <script type="text/javascript">
 
     // Code untuk mengganti foto sesuai dengan input type file dengan change event jquery.

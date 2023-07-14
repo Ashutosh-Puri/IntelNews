@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreLiveTvsRequest;
 use App\Http\Requests\UpdateLiveTvsRequest;
+use App\Http\Requests\Backend\LiveTvFormRequest;
 
 class LiveTvsController extends Controller{
 
@@ -32,7 +33,7 @@ class LiveTvsController extends Controller{
 
     }
 
-    public function StoreLiveTv(Request $request){
+    public function StoreLiveTv(LiveTvFormRequest $request){
 
         if(LiveTvs::count()>=1)
         {
@@ -113,7 +114,7 @@ class LiveTvsController extends Controller{
 
     
 
-    public function UpdateLiveTv(Request $request ,$id){
+    public function UpdateLiveTv(LiveTvFormRequest $request ,$id){
 
 
         if ($request->file('live_image')) {

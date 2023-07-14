@@ -30,7 +30,7 @@ class AdminFormRequest extends FormRequest
             'username'=>['nullable','string','max:255'],
             'email'=>['required','email',Rule::unique('users')->ignore($this->id)],
             'password'=>['sometimes','required',Password::defaults()],
-            'photo'=>['nullable','image','mimes:png,jpg,jpeg'],
+            'photo'=>['nullable','image','mimes:png,jpg,jpeg,svg,gif','max:2024'],
             'phone'=>['nullable','numeric','digits:10'],
             'role'=>['required','string'],
         ];

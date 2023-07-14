@@ -34,7 +34,12 @@
 
                             <div class="mb-3 form-group">
                                 <label for="category_name" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" name="category_name" id="category_name" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" id="category_name" value="{{ old('category_name') }}" placeholder="Enter Category Name">
+                                @error('category_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
@@ -51,35 +56,5 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
 
 @endsection

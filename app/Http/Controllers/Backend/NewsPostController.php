@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Image;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
@@ -9,7 +10,7 @@ use App\Models\NewsPost;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Image;
+use App\Http\Requests\Backend\NewsPostFormRequest;
 
 class NewsPostController extends Controller{
 
@@ -33,7 +34,7 @@ class NewsPostController extends Controller{
 
     }
 
-    public function StoreNewsPost(Request $request){
+    public function StoreNewsPost(NewsPostFormRequest $request){
 
         $image      = $request->file('image');
 
@@ -54,12 +55,10 @@ class NewsPostController extends Controller{
             'news_title_slug'           => strtolower(str_replace(' ','-',$request->news_title)),
             'news_details'              => $request->news_details,
             'tags'                      => $request->tags,
-
             'breaking_news'             => $request->breaking_news,
             'top_slider'                => $request->top_slider,
             'first_section_three'       => $request->first_section_three,
             'first_section_nine'        => $request->first_section_nine,
-
             'post_date'                => date('d-m-Y'),
             'post_month'               => date('F'),
             'image'                    => $save_url,
@@ -95,13 +94,13 @@ class NewsPostController extends Controller{
 
     }
 
-    public function UpdateNewsPost(Request $request){
+    public function UpdateNewsPost(NewsPostFormRequest $request ,$id){
 
-        $newspost_id = $request->id;
+        
 
         // file('image') = file() mengambil type input file.
 
-        if ($request->file('image')) {
+        if ($request->hasfile('image')) {
 
             $image      = $request->file('image');
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -112,7 +111,7 @@ class NewsPostController extends Controller{
 
             $save_url = 'upload/news/'.$name_gen;
 
-            NewsPost::findOrFail($newspost_id)->update([
+            NewsPost::findOrFail($id)->update([
 
                 'category_id'               => $request->category_id,
                 'subcategory_id'            => $request->subcategory_id,
@@ -146,9 +145,9 @@ class NewsPostController extends Controller{
 
         } else{
 
-            // Without/tanpa Image
+            // Without/Image
 
-            NewsPost::findOrFail($newspost_id)->update([
+            NewsPost::findOrFail($id)->update([
 
                 'category_id'               => $request->category_id,
                 'subcategory_id'            => $request->subcategory_id,

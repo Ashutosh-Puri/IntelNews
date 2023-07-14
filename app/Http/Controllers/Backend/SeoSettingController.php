@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\SeoSetting;
-use App\Http\Requests\StoreSeoSettingRequest;
-use App\Http\Requests\UpdateSeoSettingRequest;
+use Image;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\NewsPost;
+use App\Models\SeoSetting;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Image;
+use App\Http\Requests\Backend\SEOFormRequest;
+use App\Http\Requests\StoreSeoSettingRequest;
+use App\Http\Requests\UpdateSeoSettingRequest;
 
 class SeoSettingController extends Controller{
 
@@ -38,7 +39,7 @@ class SeoSettingController extends Controller{
 
     }
 
-    public function StoreSeo(Request $request){
+    public function StoreSeo(SEOFormRequest $request){
 
         if(SeoSetting::count()>=1)
         {
@@ -74,7 +75,7 @@ class SeoSettingController extends Controller{
 
     }
 
-    public function UpdateSeo(Request $request ,$id){
+    public function UpdateSeo(SEOFormRequest $request ,$id){
 
         SeoSetting::findOrFail($id)->update([
 

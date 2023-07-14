@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
+use App\Http\Requests\Backend\SubCategoryFormRequest;
 
 class SubcategoryController extends Controller{
 
@@ -30,7 +31,7 @@ class SubcategoryController extends Controller{
 
     }
 
-    public function StoreSubCategory(Request $request){
+    public function StoreSubCategory(SubCategoryFormRequest $request){
 
         Subcategory::insert([
 
@@ -67,11 +68,9 @@ class SubcategoryController extends Controller{
     }
 
 
-    public function UpdateSubCategory(Request $request){
+    public function UpdateSubCategory(SubCategoryFormRequest $request,$id){
 
-        $sub_cat_id = $request->id;
-
-        Subcategory::findOrFail($sub_cat_id)->update([
+        Subcategory::findOrFail($id)->update([
 
             'category_id' => $request->category_name,
 
@@ -99,7 +98,7 @@ class SubcategoryController extends Controller{
 
         $notification = array(
 
-            'pesanNotif' => 'Sub Category Deleted Successful',
+            'message' => 'Sub Category Deleted Successful',
 
             'alert-type' => 'success'
 

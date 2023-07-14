@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\CategoryFormRequest;
 
 class CategoryController extends Controller{
 
@@ -23,8 +24,9 @@ class CategoryController extends Controller{
 
     }
 
-    public function StoreCategory(Request $request){
+    public function StoreCategory(CategoryFormRequest $request){
 
+        
         Category::insert([
 
             'category_name' => $request->category_name,
@@ -53,11 +55,11 @@ class CategoryController extends Controller{
 
     }
 
-    public function UpdateCategory(Request $request){
+    public function UpdateCategory(CategoryFormRequest $request,$id){
 
-        $cat_id = $request->id;
+       
 
-        Category::findOrFail($cat_id)->update([
+        Category::findOrFail($id)->update([
 
             'category_name' => $request->category_name,
 

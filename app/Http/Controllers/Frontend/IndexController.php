@@ -26,26 +26,28 @@ class IndexController extends Controller{
         }
         else
         {
-            $skip_news_0=null;
+            $skip_cat_0 = $skip_news_0=null;
         }
+
         $skip_cat_1 = Category::skip(1)->first();
-        if ($skip_cat_1) 
+        
+        if (isset($skip_cat_1)) 
         {
             $skip_news_1 = NewsPost::where('status',1)->where('category_id',$skip_cat_2->id)->orderBy('id','DESC')->limit(6)->get();
         } 
         else 
         {
-                $skip_news_1=null;
+            $skip_cat_1=   $skip_news_1=null;
         }
 
         $skip_cat_2 = Category::skip(2)->first();
-        if ($skip_cat_2) 
+        if (isset($skip_cat_2) )
         {
                 $skip_news_2 = NewsPost::where('status',1)->where('category_id',$skip_cat_2->id)->orderBy('id','DESC')->limit(6)->get();
         } 
         else 
         {
-                $skip_news_2=null;
+            $skip_cat_2=  $skip_news_2=null;
         }
        
         return view('frontend.index',compact('skip_cat_0','skip_news_0','skip_cat_2','skip_news_2','skip_cat_1','skip_news_1'));

@@ -29,18 +29,20 @@
                         <h4 class="header-title">Edit Category</h4>
 
 
-                        <form method="post" action="{{ route('category.update') }}" id="myForm">
+                        <form method="post" action="{{ route('category.update',$category->id) }}" id="myForm">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $category->id }}">
-
                             <div class="mb-3 form-group">
                                 <label for="category_name" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" name="category_name" id="category_name" value="{{ $category->category_name }}" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" id="category_name" value="{{ $category->category_name }}" placeholder="Enter Category Name">
+                                @error('category_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Edit Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 
@@ -55,35 +57,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 @endsection

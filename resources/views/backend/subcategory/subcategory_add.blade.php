@@ -35,23 +35,33 @@
 
                                 <label for="category_name" class="form-label">Select One Category</label>
 
-                                <select class="form-select" id="category_name" name="category_name">
+                                <select class="form-select @error('category_name') is-invalid @enderror"  id="category_name" name="category_name">
 
-                                    <option>Select One Category</option>
+                                    <option value="" hidden>Select One Category</option>
 
                                     @foreach ($categories as $category)
 
-                                        <option value="{{ $category->id }}"> {{ $category->category_name }} </option>
+                                        <option {{ $category->id==old('category_name')? 'selected':'';  }} value="{{ $category->id }}"> {{ $category->category_name }} </option>
 
                                     @endforeach
 
                                 </select>
+                                @error('category_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="subcategory_name" class="form-label">Sub Category Name</label>
-                                <input type="text" class="form-control" name="subcategory_name" id="subcategory_name" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" name="subcategory_name" id="subcategory_name"  value="{{ old('subcategory_name') }}"placeholder="Enter Sub Category Name">
+                                @error('subcategory_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
 
@@ -70,35 +80,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 @endsection

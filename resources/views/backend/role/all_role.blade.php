@@ -12,7 +12,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <a href="{{ route('add.roles') }}" class="btn btn-success waves-effect waves-light">
-                            Add Roles<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                            Add Role<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>

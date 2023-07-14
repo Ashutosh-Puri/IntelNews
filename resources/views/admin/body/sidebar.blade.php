@@ -1,4 +1,3 @@
-
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
@@ -23,55 +22,54 @@
 
                 </li>
 
-                @if (Auth::user()->status== 'active')
-
+                @if (Auth::user()->status == 'active')
                     <li class="menu-title mt-2">Menu</li>
 
                     {{-- can() adalah fungsi dari laravel spattie --}}
 
                     {{-- @if (Auth::user()->can('category.menu')) --}}
 
-                        <li>
+                    <li>
 
-                            <a href="#sidebarEcommerce" data-bs-toggle="collapse">
+                        <a href="#sidebarEcommerce" data-bs-toggle="collapse">
 
-                                <i class="fa fa-th-list"></i>
+                            <i class="fa fa-th-list"></i>
 
-                                <span> Category </span>
+                            <span> Category </span>
 
-                                <span class="menu-arrow"></span>
+                            <span class="menu-arrow"></span>
 
-                            </a>
+                        </a>
 
-                            <div class="collapse" id="sidebarEcommerce">
+                        <div class="collapse" id="sidebarEcommerce">
 
-                                <ul class="nav-second-level">
+                            <ul class="nav-second-level">
 
-                                    {{-- @if (Auth::user()->can('category.list')) --}}
+                                {{-- @if (Auth::user()->can('category.list')) --}}
 
-                                        <li>
+                                <li>
 
-                                            <a href="{{ route('all.category') }}">All Category </a>
+                                    <a href="{{ route('all.category') }}">All Category </a>
 
-                                        </li>
+                                </li>
 
-                                    {{-- @endif --}}
+                                {{-- @endif --}}
 
-                                    {{-- @if (Auth::user()->can('category.add')) --}}
+                                {{-- @if (Auth::user()->can('category.add')) --}}
 
-                                        <li>
+                                <li>
 
-                                            <a href="{{ route('add.category') }}">Add Category </a>
+                                    <a href="{{ route('add.category') }}">Add Category </a>
 
-                                        </li>
+                                </li>
 
-                                    {{-- @endif --}}
+                                {{-- @endif --}}
 
-                                </ul>
+                            </ul>
 
-                            </div>
+                        </div>
 
-                        </li>
+                    </li>
 
                     {{-- @endif --}}
 
@@ -280,15 +278,15 @@
 
                     </li>
 
-                    <li>
+                    {{-- <li>
 
-                        <a href="#seosetting" data-bs-toggle="collapse">
+                        <a href="#sitesetting" data-bs-toggle="collapse">
                             <i class="fe-settings"></i>
                             <span> Site Setting </span>
                             <span class="menu-arrow"></span>
                         </a>
 
-                        <div class="collapse" id="seosetting">
+                        <div class="collapse" id="sitesetting">
 
                             <ul class="nav-second-level">
 
@@ -303,23 +301,23 @@
 
                         </div>
 
-                    </li>
+                    </li> --}}
 
                     <li class="menu-title mt-2">Setting</li>
 
                     <li>
 
-                        <a href="#sidebarAuth" data-bs-toggle="collapse">
+                        <a href="#adminsetting" data-bs-toggle="collapse">
 
-                            <i class="fas fa-user-circle"></i>
+                            <i class="fas fa-user-shield"></i>
 
-                            <span> Setting Admin User </span>
+                            <span> Setting Admin </span>
 
                             <span class="menu-arrow"></span>
 
                         </a>
 
-                        <div class="collapse" id="sidebarAuth">
+                        <div class="collapse" id="adminsetting">
 
                             <ul class="nav-second-level">
 
@@ -332,6 +330,39 @@
                                 <li>
 
                                     <a href="{{ route('add.admin') }}">Add Admin</a>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <a href="#usersetting" data-bs-toggle="collapse">
+
+                            <i class="fas fa-user-circle"></i>
+
+                            <span> Setting User </span>
+
+                            <span class="menu-arrow"></span>
+
+                        </a>
+
+                        <div class="collapse" id="usersetting">
+
+                            <ul class="nav-second-level">
+
+                                <li>
+
+                                    <a href="{{ route('all.user') }}">All User</a>
+
+                                </li>
+
+                                <li>
+
+                                    <a href="{{ route('add.user') }}">Add User</a>
 
                                 </li>
 
@@ -356,107 +387,102 @@
                                     <a href="{{ route('all.roles') }}">All Roles</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('add.roles.permission') }}">Roles In Permission</a>
-                                </li>
-                                <li>
                                     <a href="{{ route('all.roles.permission') }}">All Roles In Permission</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
 
-                   {{--  <li class="menu-title mt-2">Components</li>
+                    {{-- <li class="menu-title mt-2">Components</li>
 
-                    <li>
+                <li>
 
-                        <a href="#sidebarIcons" data-bs-toggle="collapse">
+                    <a href="#sidebarIcons" data-bs-toggle="collapse">
 
-                            <i class="mdi mdi-bullseye"></i>
+                        <i class="mdi mdi-bullseye"></i>
 
-                            <span> Icons </span>
+                        <span> Icons </span>
 
-                            <span class="menu-arrow"></span>
+                        <span class="menu-arrow"></span>
 
-                        </a>
+                    </a>
 
-                        <div class="collapse" id="sidebarIcons">
+                    <div class="collapse" id="sidebarIcons">
 
-                            <ul class="nav-second-level">
-                                <li>
-                                    <a href="icons-material-symbols.html">Material Symbols Icons</a>
-                                </li>
-                                <li>
-                                    <a href="icons-two-tone.html">Two Tone Icons</a>
-                                </li>
-                                <li>
-                                    <a href="icons-feather.html">Feather Icons</a>
-                                </li>
-                                <li>
-                                    <a href="icons-mdi.html">Material Design Icons</a>
-                                </li>
-                                <li>
-                                    <a href="icons-dripicons.html">Dripicons</a>
-                                </li>
-                                <li>
-                                    <a href="icons-font-awesome.html">Font Awesome 5</a>
-                                </li>
-                                <li>
-                                    <a href="icons-themify.html">Themify</a>
-                                </li>
-                                <li>
-                                    <a href="icons-simple-line.html">Simple Line</a>
-                                </li>
-                                <li>
-                                    <a href="icons-weather.html">Weather</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="icons-material-symbols.html">Material Symbols Icons</a>
+                            </li>
+                            <li>
+                                <a href="icons-two-tone.html">Two Tone Icons</a>
+                            </li>
+                            <li>
+                                <a href="icons-feather.html">Feather Icons</a>
+                            </li>
+                            <li>
+                                <a href="icons-mdi.html">Material Design Icons</a>
+                            </li>
+                            <li>
+                                <a href="icons-dripicons.html">Dripicons</a>
+                            </li>
+                            <li>
+                                <a href="icons-font-awesome.html">Font Awesome 5</a>
+                            </li>
+                            <li>
+                                <a href="icons-themify.html">Themify</a>
+                            </li>
+                            <li>
+                                <a href="icons-simple-line.html">Simple Line</a>
+                            </li>
+                            <li>
+                                <a href="icons-weather.html">Weather</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
-                    <li>
-                        <a href="#sidebarForms" data-bs-toggle="collapse">
-                            <i class="mdi mdi-bookmark-multiple-outline"></i>
-                            <span> Forms </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarForms">
-                            <ul class="nav-second-level">
-                                <li>
-                                    <a href="forms-elements.html">General Elements</a>
-                                </li>
-                                <li>
-                                    <a href="forms-advanced.html">Advanced</a>
-                                </li>
-                                <li>
-                                    <a href="forms-validation.html">Validation</a>
-                                </li>
-                                <li>
-                                    <a href="forms-pickers.html">Pickers</a>
-                                </li>
-                                <li>
-                                    <a href="forms-wizard.html">Wizard</a>
-                                </li>
-                                <li>
-                                    <a href="forms-masks.html">Masks</a>
-                                </li>
-                                <li>
-                                    <a href="forms-quilljs.html">Quilljs Editor</a>
-                                </li>
-                                <li>
-                                    <a href="forms-file-uploads.html">File Uploads</a>
-                                </li>
-                                <li>
-                                    <a href="forms-x-editable.html">X Editable</a>
-                                </li>
-                                <li>
-                                    <a href="forms-image-crop.html">Image Crop</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> --}}
-
+                <li>
+                    <a href="#sidebarForms" data-bs-toggle="collapse">
+                        <i class="mdi mdi-bookmark-multiple-outline"></i>
+                        <span> Forms </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarForms">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="forms-elements.html">General Elements</a>
+                            </li>
+                            <li>
+                                <a href="forms-advanced.html">Advanced</a>
+                            </li>
+                            <li>
+                                <a href="forms-validation.html">Validation</a>
+                            </li>
+                            <li>
+                                <a href="forms-pickers.html">Pickers</a>
+                            </li>
+                            <li>
+                                <a href="forms-wizard.html">Wizard</a>
+                            </li>
+                            <li>
+                                <a href="forms-masks.html">Masks</a>
+                            </li>
+                            <li>
+                                <a href="forms-quilljs.html">Quilljs Editor</a>
+                            </li>
+                            <li>
+                                <a href="forms-file-uploads.html">File Uploads</a>
+                            </li>
+                            <li>
+                                <a href="forms-x-editable.html">X Editable</a>
+                            </li>
+                            <li>
+                                <a href="forms-image-crop.html">Image Crop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> --}}
                 @else
-
                 @endif
 
             </ul>

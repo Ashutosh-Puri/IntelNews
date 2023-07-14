@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\VideoGalleries;
 use Image;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\NewsPost;
 use App\Models\Subcategory;
+use Illuminate\Http\Request;
+use App\Models\VideoGalleries;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVideoGalleriesRequest;
 use App\Http\Requests\UpdateVideoGalleriesRequest;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Backend\VideoGalleryFormRequest;
 
 class VideoGalleriesController extends Controller{
 
@@ -30,7 +31,7 @@ class VideoGalleriesController extends Controller{
 
     }
 
-    public function StoreVideoGallery(Request $request){
+    public function StoreVideoGallery(VideoGalleryFormRequest $request){
 
         $image      = $request->file('video_image');
 
@@ -72,9 +73,7 @@ class VideoGalleriesController extends Controller{
 
     }
 
-    public function UpdateVideoGallery(Request $request){
-
-        $video_id = $request->id;
+    public function UpdateVideoGallery(VideoGalleryFormRequest $request,$id){
 
         if ($request->file('video_image')) {
 
@@ -88,7 +87,7 @@ class VideoGalleriesController extends Controller{
 
             $save_url = 'upload/video/'.$name_gen;
 
-            VideoGalleries::findOrFail($video_id)->update([
+            VideoGalleries::findOrFail($id)->update([
 
                 'video_title'               => $request->video_title,
                 'video_url'                 => $request->video_url,
@@ -110,7 +109,7 @@ class VideoGalleriesController extends Controller{
 
         } else{
 
-            VideoGalleries::findOrFail($video_id)->update([
+            VideoGalleries::findOrFail($id)->update([
 
                 'video_title'               => $request->video_title,
                 'video_url'                 => $request->video_url,

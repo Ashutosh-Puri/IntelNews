@@ -35,28 +35,46 @@
 
                             <div class="mb-3 form-group">
                                 <label for="meta_title" class="form-label">Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="1234 Main St" value="{{ $seo->meta_title }}">
+                                <input type="text" class="form-control @error('meta_title') is-invalid @enderror" name="meta_title" id="meta_title" placeholder="Enter Meta Title" value="{{ $seo->meta_title }}">
+                                @error('meta_title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror 
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="meta_author" class="form-label">Meta Author</label>
-                                <input type="text" class="form-control" name="meta_author" id="meta_author" placeholder="1234 Main St" value="{{ $seo->meta_author }}">
+                                <input type="text" class="form-control @error('meta_author') is-invalid @enderror" name="meta_author" id="meta_author" placeholder="Enter Meta Author" value="{{ $seo->meta_author }}">
+                                @error('meta_author')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror  
                             </div>
 
                             <div class="mb-3 form-group">
 
                                 <label class="form-label">Meta Keyword</label>
 
-                                <input type="text" class="selectize-close-btn" name="meta_keyword" value="{{ $seo->meta_keyword }}"">
-
+                                <input type="text" class="selectize-close-btn @error('meta_keyword') is-invalid @enderror" name="meta_keyword" value="{{ $seo->meta_keyword }}" placeholder="Enter Meta Keyword">
+                                @error('meta_keyword')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror 
                             </div>
 
                             <div class="mb-3 form-group">
 
                                 <label for="meta_description" class="form-label">Meta Description</label>
 
-                                <input type="text" class="form-control" name="meta_description" id="meta_description" placeholder="1234 Main St" value="{{ $seo->meta_description }}">
-
+                                <input type="text" class="form-control @error('meta_description') is-invalid @enderror" name="meta_description" id="meta_description" placeholder="Enter Meta Description" value="{{ $seo->meta_description }}">
+                                @error('meta_description')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror 
                             </div>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>

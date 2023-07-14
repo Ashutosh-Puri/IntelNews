@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -12,10 +12,12 @@ use App\Http\Controllers\Backend\LiveTvsController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\NewsPostController;
 use App\Http\Controllers\Frontend\ReviewsController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SeoSettingController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
 use App\Http\Controllers\Backend\VideoGalleriesController;
+use App\Http\Controllers\Backend\RoleInPermissionController;
 
 
 
@@ -80,6 +82,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth','role:admin')->group(function () {
 
+
     // Admin Controller
 
     Route::controller(AdminController::class)->group(function () {
@@ -92,18 +95,16 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::post('/admin/profile/store', 'AdminProfileStore')->name('admin.store.profile');
 
     });
-
     // Category Controller
 
     Route::controller(CategoryController::class)->group(function () {
 
         Route::get('/all/category', 'AllCategory')->name('all.category');
         Route::get('/add/category', 'AddCategory')->name('add.category');
-        Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
-        Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
         Route::post('/category/store', 'StoreCategory')->name('category.store');
-        Route::post('/category/update', 'UpdateCategory')->name('category.update');
-
+        Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
+        Route::post('/category/updat/{id}', 'UpdateCategory')->name('category.update');
+        Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
         Route::get('/subcategory/ajax/{category_id}','GetSubCategory');
 
     });
@@ -114,27 +115,42 @@ Route::middleware('auth','role:admin')->group(function () {
 
         Route::get('/all/sub/category', 'AllSubCategory')->name('all.sub.category');
         Route::get('/add/sub/category', 'AddSubCategory')->name('add.sub.category');
-        Route::get('/edit/sub/category/{id}', 'EditSubCategory')->name('edit.sub.category');
-        Route::get('/delete/sub/category/{id}', 'DeleteSubCategory')->name('delete.sub.category');
         Route::post('/sub/category/store', 'StoreSubCategory')->name('sub.category.store');
-        Route::post('/sub/category/update', 'UpdateSubCategory')->name('sub.category.update');
+        Route::get('/edit/sub/category/{id}', 'EditSubCategory')->name('edit.sub.category');
+        Route::post('/sub/category/update/{id}', 'UpdateSubCategory')->name('sub.category.update');
+        Route::get('/delete/sub/category/{id}', 'DeleteSubCategory')->name('delete.sub.category');
 
     });
 
-    // Admin User Controller
+    // Backend Admin User Controller
 
     Route::controller(AdminController::class)->group(function () {
 
         Route::get('/all/admin', 'AllAdmin')->name('all.admin');
         Route::get('/add/admin', 'AddAdmin')->name('add.admin');
-        Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
-        Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
         Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
-        // Route::post('/update/admin/{id}', 'UpdateAdmin')->name('update.admin');
+        Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
         Route::put('/upadte/admin/{id}','UpdateAdmin')->name('update.admin');
-        Route::get('/inactive/admin/{id}', 'InactiveAdminUser')->name('inactive.admin.user');
+        Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
         Route::get('/active/admin/{id}', 'ActiveAdminUser')->name('active.admin.user');
+        Route::get('/inactive/admin/{id}', 'InactiveAdminUser')->name('inactive.admin.user');
+        
 
+    });
+
+    // Backend User Controller
+
+    Route::controller(UserController::class)->group(function () {
+
+        Route::get('/all/user', 'AllUser')->name('all.user');
+        Route::get('/add/user', 'AddUser')->name('add.user');
+        Route::post('/store/user', 'StoreUser')->name('store.user');
+        Route::get('/edit/user/{id}', 'EditUser')->name('edit.user');
+        Route::put('/upadte/user/{id}','UpdateUser')->name('update.user');
+        Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
+        Route::get('/active/user/{id}', 'ActiveUser')->name('active.user');
+        Route::get('/inactive/user/{id}', 'InactiveUser')->name('inactive.user');
+        
     });
 
     // News Post Controller
@@ -143,13 +159,13 @@ Route::middleware('auth','role:admin')->group(function () {
 
         Route::get('/all/news/post', 'AllNewsPost')->name('all.news.post');
         Route::get('/add/news/post', 'AddNewsPost')->name('add.news.post');
-        Route::get('/edit/news/post/{id}', 'EditNewsPost')->name('edit.news.post');
-        Route::get('/delete/news/post/{id}', 'DeleteNewsPost')->name('delete.news.post');
         Route::post('/store/news/post', 'StoreNewsPost')->name('news.post.store');
-        Route::post('/update/news/post', 'UpdateNewsPost')->name('news.post.update');
+        Route::get('/edit/news/post/{id}', 'EditNewsPost')->name('edit.news.post');
+        Route::post('/update/news/post/{id}', 'UpdateNewsPost')->name('news.post.update');
+        Route::get('/delete/news/post/{id}', 'DeleteNewsPost')->name('delete.news.post'); 
+        Route::get('/active/news/post/{id}', 'ActiveNewsPost')->name('active.news.post');    
         Route::get('/inactive/news/post/{id}', 'InactiveNewsPost')->name('inactive.news.post');
-        Route::get('/active/news/post/{id}', 'ActiveNewsPost')->name('active.news.post');
-
+        
     });
 
     // Banner Controller
@@ -164,7 +180,6 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
         Route::get('/delete/banner/image/{bid}/{id}', 'DeleteBannerImage')->name('delete.banner.image');
         
-
     });
 
     // Photo Gallery Controller
@@ -173,11 +188,11 @@ Route::middleware('auth','role:admin')->group(function () {
 
         Route::get('/all/photo/gallery', 'AllPhotoGallery')->name('all.photo.gallery');
         Route::get('/add/photo/gallery', 'AddPhotoGallery')->name('add.photo.gallery');
-        Route::get('/edit/photo/gallery/{id}', 'EditPhotoGallery')->name('edit.photo.gallery');
-        Route::get('/delete/photo/gallery/{id}', 'DeletePhotoGallery')->name('delete.photo.gallery');
         Route::post('/store/photo/gallery', 'StorePhotoGallery')->name('store.photo.gallery');
-        Route::post('/update/photo/gallery', 'UpdatePhotoGallery')->name('update.photo.gallery');
-
+        Route::get('/edit/photo/gallery/{id}', 'EditPhotoGallery')->name('edit.photo.gallery');
+        Route::post('/update/photo/gallery/{id}', 'UpdatePhotoGallery')->name('update.photo.gallery');
+        Route::get('/delete/photo/gallery/{id}', 'DeletePhotoGallery')->name('delete.photo.gallery');
+        
     });
 
     // Video Gallery Controller
@@ -186,10 +201,10 @@ Route::middleware('auth','role:admin')->group(function () {
 
         Route::get('/all/video/gallery', 'AllVideoGallery')->name('all.video.gallery');
         Route::get('/add/video/gallery', 'AddVideoGallery')->name('add.video.gallery');
-        Route::get('/edit/video/gallery/{id}', 'EditVideoGallery')->name('edit.video.gallery');
-        Route::get('/delete/video/gallery/{id}', 'DeleteVideoGallery')->name('delete.video.gallery');
         Route::post('/store/video/gallery', 'StoreVideoGallery')->name('store.video.gallery');
-        Route::post('/update/video/gallery', 'UpdateVideoGallery')->name('update.video.gallery');
+        Route::get('/edit/video/gallery/{id}', 'EditVideoGallery')->name('edit.video.gallery');
+        Route::post('/update/video/gallery/{id}', 'UpdateVideoGallery')->name('update.video.gallery');
+        Route::get('/delete/video/gallery/{id}', 'DeleteVideoGallery')->name('delete.video.gallery');
 
     });
 
@@ -228,19 +243,18 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::post('/update/seo/{id}', 'UpdateSeo')->name('update.seo');
         Route::get('/delete/seo/{id}', 'DeleteSeo')->name('delete.seo');
 
-
     });
 
     // Permission Controller
 
-    Route::controller(RoleController::class)->group(function () {
+    Route::controller(PermissionController::class)->group(function () {
 
         Route::get('/all/permission', 'AllPermission')->name('all.permission');
         Route::get('/add/permission', 'AddPermission')->name('add.permission');
+        Route::post('/store/permission', 'StorePermission')->name('store.permission');
         Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+        Route::post('/update/permission/{id}', 'UpdatePermission')->name('update.permission');
         Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
-        Route::post('/store/permission', 'StoreVPermission')->name('store.permission');
-        Route::post('/update/permission', 'UpdateVPermission')->name('update.permission');
 
     });
 
@@ -249,16 +263,30 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::controller(RoleController::class)->group(function () {
 
         Route::get('/all/roles', 'AllRoles')->name('all.roles');
-        Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
         Route::get('/add/roles', 'AddRoles')->name('add.roles');
-        Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
-        Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
-        Route::get('/edit/roles/permission/{id}', 'EditRolesPermission')->name('edit.roles.permission');
-        Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
-        Route::get('/delete/roles/permission/{id}', 'DeleteRolesPermission')->name('delete.roles.permission');
         Route::post('/store/roles', 'StoreRoles')->name('store.roles');
+        Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
+        Route::post('/update/roles/{id}', 'UpdateRoles')->name('update.roles');
+        Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
+
+        Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
+        Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
+        Route::get('/edit/roles/permission/{id}', 'EditRolesPermission')->name('edit.roles.permission');
+        Route::get('/delete/roles/permission/{id}', 'DeleteRolesPermission')->name('delete.roles.permission'); 
         Route::post('/store/roles/permission', 'StoreRolesPermission')->name('store.roles.permission');
-        Route::post('/update/roles', 'UpdateRoles')->name('update.roles');
+        Route::post('/update/roles/permission/{id}', 'UpdateRolesPermission')->name('update.roles.permission');
+
+    });
+
+    // Roles In Permission Controller
+
+    Route::controller(RoleInPermissionController::class)->group(function () {
+
+        Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
+        Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
+        Route::get('/edit/roles/permission/{id}', 'EditRolesPermission')->name('edit.roles.permission');
+        Route::get('/delete/roles/permission/{id}', 'DeleteRolesPermission')->name('delete.roles.permission'); 
+        Route::post('/store/roles/permission', 'StoreRolesPermission')->name('store.roles.permission');
         Route::post('/update/roles/permission/{id}', 'UpdateRolesPermission')->name('update.roles.permission');
 
     });

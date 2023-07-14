@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.roles') }}" class="btn btn-success waves-effect waves-light">
-                            Add Role<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.roles') }}" class="btn btn-success waves-effect waves-light">
+                            Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -36,7 +36,12 @@
 
                             <div class="mb-3 form-group">
                                 <label for="name" class="form-label">Roles Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Enter Role Name">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>

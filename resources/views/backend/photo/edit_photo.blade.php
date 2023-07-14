@@ -31,12 +31,9 @@
 
                       
 
-                        <form method="post" action="{{ route('update.photo.gallery') }}" id="myForm" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('update.photo.gallery',$photogallery->id) }}" id="myForm" enctype="multipart/form-data">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $photogallery->id }}">
-
                             <div class="mb-3 form-group">
 
                                 <label for="multi_image" class="form-label">Edit Photo</label>

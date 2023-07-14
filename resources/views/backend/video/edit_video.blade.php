@@ -34,25 +34,37 @@
                         <h4 class="header-title">Edit Video</h4>
 
 
-                        <form method="post" action="{{ route('update.video.gallery') }}" id="myForm" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('update.video.gallery',$video->id) }}" id="myForm" enctype="multipart/form-data">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $video->id }}">
-
                             <div class="mb-3 form-group">
                                 <label for="video_title" class="form-label">Video Title</label>
-                                <input type="text" class="form-control" name="video_title" id="video_title" placeholder="1234 Main St" value="{{ $video->video_title }}">
+                                <input type="text" class="form-control @error('video_title') is-invalid @enderror" name="video_title" id="video_title" placeholder="Video Title" value="{{ $video->video_title }}">
+                                @error('video_title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
-                                <label for="video_url" class="form-label">Video URL</label>
-                                <input type="text" class="form-control" name="video_url" id="video_url" placeholder="1234 Main St" value="{{ $video->video_url }}">
+                                <label for="video_url" class="form-label @error('video_url') is-invalid @enderror">Video URL</label>
+                                <input type="text" class="form-control" name="video_url" id="video_url" placeholder="Video URL" value="{{ $video->video_url }}">
+                                @error('video_url')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="video_image" class="form-label">Video Image</label>
-                                <input type="file" class="form-control" name="video_image" id="video_image" placeholder="1234 Main St">
+                                <input type="file" class="form-control @error('video_image') is-invalid @enderror" name="video_image" id="video_image">
+                                @error('video_image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -60,7 +72,7 @@
                                 <img id="showImage" src="{{ asset($video->video_image)  }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 

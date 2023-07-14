@@ -42,17 +42,27 @@
 
                             <div class="mb-3 form-group">
                                 <label for="live_url" class="form-label">Live URL</label>
-                                <input type="text" class="form-control" name="live_url" id="live_url" placeholder="1234 Main St" value="{{ old('live_url') }}">
+                                <input type="text" class="form-control @error('live_url') is-invalid @enderror" name="live_url" id="live_url" placeholder="Enter Live URL" value="{{ old('live_url') }}">
+                                @error('live_url')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="live_image" class="form-label">Live Image</label>
-                                <input type="file" class="form-control" name="live_image" id="live_image" placeholder="1234 Main St"  >
+                                <input type="file" class="form-control  @error('live_image') is-invalid @enderror" name="live_image" id="live_image"   >
+                                @error('live_image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="live_image" class="form-label"></label>
-                                <img id="showImage" src="" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                <img id="showImage" src="{{ asset('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                             </div>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>

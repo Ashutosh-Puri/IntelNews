@@ -12,9 +12,9 @@
 
         <div class="row">
 
-            <div class="col-lg-12">
+            <div class="col-lg-12 mx-auto my-auto " style="background: black">
 
-                <h1>404 PAGE NOT FOUND</h1>
+                <h1 class="text-center mx-5 my-5 text-danger fw-bold">404 PAGE NOT FOUND</h1>
 
             </div>
 

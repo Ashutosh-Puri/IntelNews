@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\Backend\BannerFormRequest;
 
 class BannerController extends Controller{
 
@@ -23,102 +24,118 @@ class BannerController extends Controller{
         return view('backend.banner.add_banner');
 
     }
-    public function StoreBanner(Banners $banner,Request $request){
+    public function StoreBanner(Banners $banner,BannerFormRequest $request){
 
-        if ($request->file('home_one')) {
-
-            $image1      = $request->file('home_one');
-
-            $name_gen1   = hexdec(uniqid()).'.'.$image1->getClientOriginalExtension();
-
-            Image::make($image1)->resize(725,100)->save('upload/banner/'.$name_gen1);
-
-            $save_url1 = 'upload/banner/'.$name_gen1;
-            $banner->home_one = $save_url1;  
+        if($banner->count()>=1)
+        {
+            $notification = array(
+    
+                'message' => 'Only One Record Is Allowd!',
+    
+                'alert-type' => 'error'
+    
+            ); 
+    
+            return redirect()->route('all.banner')->with($notification);
         }
-        
-        if($request->file('home_two')){
+        else
+        {
+            if ($request->file('home_one')) {
 
-            $image2      = $request->file('home_two');
-
-            $name_gen2   = hexdec(uniqid()).'.'.$image2->getClientOriginalExtension();
-
-            Image::make($image2)->resize(725,100)->save('upload/banner/'.$name_gen2);
-
-            $save_url2 = 'upload/banner/'.$name_gen2;
-
-            $banner->home_two = $save_url2;
-
-        } 
-        
-        if($request->file('home_three')){
-
-            $image3      = $request->file('home_three');
-
-            $name_gen3   = hexdec(uniqid()).'.'.$image3->getClientOriginalExtension();
-
-            Image::make($image3)->resize(725,100)->save('upload/banner/'.$name_gen3);
-
-            $save_url3 = 'upload/banner/'.$name_gen3;
+                $image1      = $request->file('home_one');
+    
+                $name_gen1   = hexdec(uniqid()).'.'.$image1->getClientOriginalExtension();
+    
+                Image::make($image1)->resize(725,100)->save('upload/banner/'.$name_gen1);
+    
+                $save_url1 = 'upload/banner/'.$name_gen1;
+                $banner->home_one = $save_url1;  
+            }
             
-            $banner->home_three = $save_url3;
-
-
-        } 
-        
-        if($request->file('home_four')){
-
-            $image4      = $request->file('home_four');
-
-            $name_gen4   = hexdec(uniqid()).'.'.$image4->getClientOriginalExtension();
-
-            Image::make($image4)->resize(725,100)->save('upload/banner/'.$name_gen4);
-
-            $save_url4 = 'upload/banner/'.$name_gen4;
-
-            $banner->home_four = $save_url4;
+            if($request->file('home_two')){
+    
+                $image2      = $request->file('home_two');
+    
+                $name_gen2   = hexdec(uniqid()).'.'.$image2->getClientOriginalExtension();
+    
+                Image::make($image2)->resize(725,100)->save('upload/banner/'.$name_gen2);
+    
+                $save_url2 = 'upload/banner/'.$name_gen2;
+    
+                $banner->home_two = $save_url2;
+    
+            } 
             
-
+            if($request->file('home_three')){
+    
+                $image3      = $request->file('home_three');
+    
+                $name_gen3   = hexdec(uniqid()).'.'.$image3->getClientOriginalExtension();
+    
+                Image::make($image3)->resize(725,100)->save('upload/banner/'.$name_gen3);
+    
+                $save_url3 = 'upload/banner/'.$name_gen3;
+                
+                $banner->home_three = $save_url3;
+    
+    
+            } 
+            
+            if($request->file('home_four')){
+    
+                $image4      = $request->file('home_four');
+    
+                $name_gen4   = hexdec(uniqid()).'.'.$image4->getClientOriginalExtension();
+    
+                Image::make($image4)->resize(725,100)->save('upload/banner/'.$name_gen4);
+    
+                $save_url4 = 'upload/banner/'.$name_gen4;
+    
+                $banner->home_four = $save_url4;
+                
+    
+            }
+            
+            if($request->file('news_category_one')){
+    
+                $image5      = $request->file('news_category_one');
+    
+                $name_gen5   = hexdec(uniqid()).'.'.$image5->getClientOriginalExtension();
+    
+                Image::make($image5)->resize(725,100)->save('upload/banner/'.$name_gen5);
+    
+                $save_url5 = 'upload/banner/'.$name_gen5;
+    
+                $banner->news_category_one = $save_url5;
+    
+            } 
+            if($request->file('news_details_one')){
+    
+                $image6      = $request->file('news_details_one');
+    
+                $name_gen6   = hexdec(uniqid()).'.'.$image6->getClientOriginalExtension();
+    
+                Image::make($image6)->resize(725,100)->save('upload/banner/'.$name_gen6);
+    
+                $save_url6 = 'upload/banner/'.$name_gen6;
+    
+                $banner->news_details_one = $save_url6;
+               
+            }
+            $banner->save();
+    
+            $notification = array(
+    
+                'message' => 'News Banners Created Successfuly',
+    
+                'alert-type' => 'success'
+    
+            ); 
+    
+            return redirect()->route('all.banner')->with($notification);
+    
         }
         
-        if($request->file('news_category_one')){
-
-            $image5      = $request->file('news_category_one');
-
-            $name_gen5   = hexdec(uniqid()).'.'.$image5->getClientOriginalExtension();
-
-            Image::make($image5)->resize(725,100)->save('upload/banner/'.$name_gen5);
-
-            $save_url5 = 'upload/banner/'.$name_gen5;
-
-            $banner->news_category_one = $save_url5;
-
-        } 
-        if($request->file('news_details_one')){
-
-            $image6      = $request->file('news_details_one');
-
-            $name_gen6   = hexdec(uniqid()).'.'.$image6->getClientOriginalExtension();
-
-            Image::make($image6)->resize(725,100)->save('upload/banner/'.$name_gen6);
-
-            $save_url6 = 'upload/banner/'.$name_gen6;
-
-            $banner->news_details_one = $save_url6;
-           
-        }
-        $banner->save();
-
-        $notification = array(
-
-            'message' => 'News Banners Created Successfuly',
-
-            'alert-type' => 'success'
-
-        ); 
-
-        return redirect()->route('all.banner')->with($notification);
-
     }
 
     public function EditBanner($id){
@@ -129,7 +146,7 @@ class BannerController extends Controller{
 
     }
 
-    public function UpdateBanner(Request $request ,$id){
+    public function UpdateBanner(BannerFormRequest $request ,$id){
 
       
         if ($request->file('home_one')) {

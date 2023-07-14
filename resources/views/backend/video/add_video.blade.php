@@ -39,17 +39,32 @@
 
                             <div class="mb-3 form-group">
                                 <label for="video_title" class="form-label">Video Title</label>
-                                <input type="text" class="form-control" name="video_title" id="video_title" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('video_title') is-invalid @enderror" name="video_title" id="video_title" placeholder="Video Title">
+                                @error('video_title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="video_url" class="form-label">Video URL</label>
-                                <input type="text" class="form-control" name="video_url" id="video_url" placeholder="1234 Main St">
+                                <input type="text" class="form-control @error('video_url') is-invalid @enderror" name="video_url" id="video_url" placeholder="Enter Video URL">
+                                @error('video_url')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="video_image" class="form-label">Video Image</label>
-                                <input type="file" class="form-control" name="video_image" id="video_image" placeholder="1234 Main St">
+                                <input type="file" class="form-control @error('video_image') is-invalid @enderror" name="video_image" id="video_image" >
+                                @error('video_image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">

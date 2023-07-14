@@ -71,9 +71,7 @@ class PhotoGalleryController extends Controller{
 
     }
 
-    public function UpdatePhotoGallery(Request $request){
-
-        $photo_id = $request->id;
+    public function UpdatePhotoGallery(Request $request,$id){
 
         if ($request->file('multi_image')) {
 
@@ -81,13 +79,11 @@ class PhotoGalleryController extends Controller{
 
             $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-             
-
             Image::make($image)->resize(700,400)->save('upload/multi/'.$name_gen);
 
             $save_url = 'upload/multi/'.$name_gen;
 
-            PhotoGalleries::findOrFail($photo_id)->update([
+            PhotoGalleries::findOrFail($id)->update([
 
                 'photo_gallery' => $save_url,
                 'post_date'     => Carbon::now()->format('d F Y'),

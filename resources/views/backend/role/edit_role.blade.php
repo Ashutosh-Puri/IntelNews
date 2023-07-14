@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('add.category') }}" class="btn btn-success waves-effect waves-light">
-                            Add Sub Category<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                        <a href="{{ route('all.roles') }}" class="btn btn-success waves-effect waves-light">
+                            Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
                     <h4 class="page-title">Datatables</h4>
@@ -27,20 +27,20 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Edit Roles</h4>
-                        <p class="text-muted font-13">More complex layouts can also be created with the grid system.</p>
-
-                        <form method="post" action="{{ route('update.roles') }}" id="myForm">
+                        <form method="post" action="{{ route('update.roles',$roles->id) }}" id="myForm">
 
                             @csrf
-
-                            <input type="hidden" name="id" value="{{ $roles->id }}">
-
                             <div class="mb-3 form-group">
                                 <label for="name" class="form-label">Roles Name</label>
-                                <input type="text" value="{{ $roles->name }}" class="form-control" name="name" id="name" placeholder="1234 Main St">
+                                <input type="text" value="{{ $roles->name }}" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Enter Role">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Data</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update Data</button>
 
                         </form>
 
@@ -54,35 +54,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                category_name: {
-                    required : true,
-                },
-            },
-            messages :{
-                category_name: {
-                    required : 'Please Enter Category Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 @endsection

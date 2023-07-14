@@ -32,15 +32,16 @@
                         <form method="post" action="{{ route('store.banner') }}" id="myForm" enctype="multipart/form-data">
 
                             @csrf
-
-                            
-
                             <div class="mb-3 form-group">
 
                                 <label for="image" class="form-label">Home Banner One</label>
 
-                                <input type="file" id="image1" name="home_one" class="form-control">
-
+                                <input type="file" id="image1" name="home_one" class="form-control @error('home_one') is-invalid @enderror">
+                                @error('home_one')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -53,8 +54,12 @@
 
                                 <label for="image" class="form-label">Home Banner Two</label>
 
-                                <input type="file" id="image2" name="home_two" class="form-control">
-
+                                <input type="file" id="image2" name="home_two" class="form-control @error('home_two') is-invalid @enderror">
+                                @error('home_two')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -67,8 +72,12 @@
 
                                 <label for="image" class="form-label">Home Banner Three</label>
 
-                                <input type="file" id="image3" name="home_three" class="form-control">
-
+                                <input type="file" id="image3" name="home_three" class="form-control @error('home_three') is-invalid @enderror">
+                                @error('home_three')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -81,8 +90,12 @@
 
                                 <label for="image" class="form-label">Home Banner Four</label>
 
-                                <input type="file" id="image4" name="home_four" class="form-control">
-
+                                <input type="file" id="image4" name="home_four" class="form-control @error('home_four') is-invalid @enderror">
+                                @error('home_four')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -95,8 +108,12 @@
 
                                 <label for="image" class="form-label">News Category Banner</label>
 
-                                <input type="file" id="image5" name="news_category_one" class="form-control">
-
+                                <input type="file" id="image5" name="news_category_one" class="form-control @error('news_category_one') is-invalid @enderror">
+                                @error('news_category_one')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
@@ -109,8 +126,12 @@
 
                                 <label for="image" class="form-label">News Detail Banner</label>
 
-                                <input type="file" id="image6" name="news_details_one" class="form-control">
-
+                                <input type="file" id="image6" name="news_details_one" class="form-control @error('news_details_one') is-invalid @enderror">
+                                @error('news_details_one')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-group">
