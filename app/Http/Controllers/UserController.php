@@ -24,7 +24,7 @@ class UserController extends Controller{
 
         $id = Auth::user()->id;
 
-        // Mengambil dari model user.
+        //  model user.
 
         $data =  User::find($id);
 
@@ -34,7 +34,7 @@ class UserController extends Controller{
         $data->phone        = $request->phone;
 
 
-        // file('photo') = file() mengambil type input file
+        // file('photo') = file()  type input file
 
         if ($request->file('photo')) {
 

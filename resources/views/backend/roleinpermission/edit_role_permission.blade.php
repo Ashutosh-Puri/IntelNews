@@ -28,7 +28,8 @@
                                 @csrf
                                 <div class="mb-3 form-group">
                                     <label for="role" class="form-label">All Roles</label>
-                                    <h4>{{ $role->name }}</h4>
+                                    <span class="form-control fw-bold">{{ $role->name }} </span>
+                                    
                                 </div>
                                 <br>
                                 <div class="form-group form-check mb-3 form-check-primary">
@@ -39,7 +40,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Roles Name</th>
+                                            <th>Group Name</th>
                                             <th>Permissions Name</th>
                                         </tr>
                                     </thead>
@@ -50,17 +51,19 @@
                                                 $permission = App\Models\User::getpermissionByGroupName($group->group_name);
                                             @endphp
                                             <td>{{ $key+1 }}</td>
-                                            <td>
-                                                <div class="form-group form-check mb-3 form-check-primary">
-                                                    <input class="form-check-input" type="checkbox" value="" id="customckeck1" {{ App\Models\User::roleHasPermissions($role, $permission) ?  'checked' : '' }} >
-                                                    <label class="form-check-label" for="customckeck1">{{ $group->group_name }}</label>
-                                                </div>
+                                            <td>                                          
+                                                    <label class="form-check-label form-check " for="customckeck1">{{ $group->group_name }}</label>
                                             </td>
                                             <td>
                                                 @foreach ($permission as $permissionitem)
                                                     <div class="form-group form-check mb-3 form-check-primary">
-                                                        <input class="form-check-input" name="permission[]" type="checkbox" value="{{ $permissionitem->id }}" id="customckeck{{ $permissionitem->id }}" {{ $role->hasPermissionTo($permissionitem->name) ? 'checked' : '' }}>
+                                                        <input class="form-check-input @error('permission') is-invalid @enderror" name="permission[]" type="checkbox" value="{{ $permissionitem->id }}" id="customckeck{{ $permissionitem->id }}" {{ $role->hasPermissionTo($permissionitem->name) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="customckeck{{ $permissionitem->id }}">{{ $permissionitem->name }}</label>
+                                                        @error('permission')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                  @endforeach
                                             </td>

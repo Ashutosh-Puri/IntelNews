@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         );
 
-        // $request->user()->role maksudnya adalah user() itu table user dan role adalah field yang dimaksud
+        // $request->user()->role  user() itu table user dan role 
 
         if ($request->user()->role === 'admin' ) {
 

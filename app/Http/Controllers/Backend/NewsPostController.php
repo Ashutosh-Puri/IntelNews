@@ -98,7 +98,7 @@ class NewsPostController extends Controller{
 
         
 
-        // file('image') = file() mengambil type input file.
+        // file('image') = file() type input file.
 
         if ($request->hasfile('image')) {
 

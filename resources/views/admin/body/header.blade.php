@@ -3,7 +3,7 @@
 
 $id = Auth::user()->id;
 
-// Mengambil dari model user.
+
 
 $adminData =  App\Models\User::find($id);
 

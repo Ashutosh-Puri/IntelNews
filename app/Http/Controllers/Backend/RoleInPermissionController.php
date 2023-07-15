@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\Backend\RoleInPermissionFormRequest;
 
 class RoleInPermissionController extends Controller
 {
@@ -25,7 +26,7 @@ class RoleInPermissionController extends Controller
 
         $permission = Permission::all();
 
-        // getpermissionGroups diambil dari model User.php
+        // getpermissionGroups  model User.php
 
         $permission_groups = User::getpermissionGroups();
 
@@ -33,7 +34,7 @@ class RoleInPermissionController extends Controller
 
     }
 
-    public function StoreRolesPermission(Request $request){
+    public function StoreRolesPermission(RoleInPermissionFormRequest $request){
 
         $data = array();
 
@@ -61,31 +62,29 @@ class RoleInPermissionController extends Controller
     }
 
     public function EditRolesPermission($id){
-
+        $roles = Role::all();
         $role           = Role::findOrFail($id);
 
         $permission     = Permission::all();
 
-        // getpermissionGroups diambil dari model User.php
+        // getpermissionGroups model User.php
 
         $permission_groups = User::getpermissionGroups();
 
-        return view('backend.roleinpermission.edit_role_permission',compact('role','permission','permission_groups'));
+        return view('backend.roleinpermission.edit_role_permission',compact('roles','role','permission','permission_groups'));
 
     }
 
-    public function UpdateRolesPermission(Request $request,$id){
-
+    public function UpdateRolesPermission(RoleInPermissionFormRequest $request,$id){
+      
         $role       = Role::findOrFail($id);
 
         $permission = $request->permission;
-
         if (!empty($permission)) {
 
-            // syncPermissions() adalah fungsi dari laravel spattie.
+            // syncPermissions()  laravel spattie.
 
             $role->syncPermissions($permission);
-
         }
 
 

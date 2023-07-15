@@ -13,11 +13,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item active">Profile</li>
-                        </ol>
-                    </div>
                     <h4 class="page-title">Profile</h4>
                 </div>
             </div>
@@ -32,10 +27,9 @@
                     <div class="card-body">
 
                         <img src="{{ (!empty($adminData->photo)) ? url($adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail" alt="profile-image">
-
+                        <br>
+                        <a  id="delete" href="{{ route('admin.delete.profile.photo',$adminData->id) }}" class="align-top btn btn-sm btn-danger">Remove</a>
                         <h4 class="mb-0">{{ $adminData->name }}</h4>
-
-                        {{-- <p class="text-muted">@ {{ $adminData->username }}</p> --}}
 
                         <div class="text-start mt-3">
 
@@ -74,8 +68,12 @@
 
                                         <label for="name" class="form-label">Name</label>
 
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="{{ $adminData->name }}">
-
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your name" value="{{ $adminData->name }}">
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -86,8 +84,12 @@
 
                                         <label for="username" class="form-label">Username</label>
 
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="{{ $adminData->username }}">
-
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="username" placeholder="Enter your username" value="{{ $adminData->username }}">
+                                        @error('username')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -98,8 +100,12 @@
 
                                         <label for="email" class="form-label">Email</label>
 
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{ $adminData->email }}">
-
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter your email" value="{{ $adminData->email }}">
+                                        @error('email')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -110,8 +116,12 @@
 
                                         <label for="phone" class="form-label">Phone Number</label>
 
-                                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone" value="{{ $adminData->phone }}">
-
+                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Enter your phone" value="{{ $adminData->phone }}">
+                                        @error('phone')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -122,8 +132,12 @@
 
                                         <label for="image" class="form-label">Admin Profile Picture</label>
 
-                                        <input type="file" id="image" name="photo" class="form-control">
-
+                                        <input type="file" id="image" name="photo" class="form-control @error('photo') is-invalid @enderror">
+                                        @error('photo')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -132,7 +146,7 @@
 
                                     <div class="mb-3">
 
-                                        <img id="showImage" src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                        <img id="showImage" src="{{ (!empty($adminData->photo)) ? asset($adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                                     </div>
 
@@ -142,7 +156,7 @@
 
                             <div class="text-end">
 
-                                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Update</button>
 
                             </div>
 

@@ -47,7 +47,7 @@ class User extends Authenticatable
 
         foreach ($permission as $perm) {
 
-            // hasPermissionTo() merupakan fungsi dari laravel spattie
+            // hasPermissionTo()  laravel spattie
 
             if (!$role->hasPermissionTo($perm->name)) {
 

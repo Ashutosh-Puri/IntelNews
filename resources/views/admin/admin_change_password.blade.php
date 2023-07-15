@@ -13,11 +13,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item active">Profile</li>
-                        </ol>
-                    </div>
                     <h4 class="page-title">Admin Change Password</h4>
                 </div>
             </div>
@@ -67,7 +62,7 @@
 
                                         @error('old_password')
 
-                                            <span class="text-danger">
+                                            <span class="invalid-feedback">
 
                                                 {{ $message }}
 
@@ -89,7 +84,7 @@
 
                                         @error('new_password')
 
-                                            <span class="text-danger">
+                                            <span class="invalid-feedback">
 
                                                 {{ $message }}
 
@@ -111,7 +106,7 @@
 
                                         @error('confirm_password')
 
-                                            <span class="text-danger">
+                                            <span class="invalid-feedback">
 
                                                 {{ $message }}
 
@@ -127,7 +122,7 @@
 
                             <div class="text-end">
 
-                                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Change Password</button>
+                                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i>  Change Password</button>
 
                             </div>
 
@@ -144,29 +139,4 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-    // Code untuk mengganti foto sesuai dengan input type file dengan change event jquery.
-
-    $(document).ready(function() {
-
-        $('#image').change(function(e) {
-
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-
-                $('#showImage').attr('src',e.target.result);
-
-            }
-
-            reader.readAsDataURL(e.target.files['0']);
-
-        });
-
-    });
-
-</script>
-
 @endsection

@@ -16,7 +16,7 @@ class Role
      */
     public function handle(Request $request, Closure $next,$role){
 
-        // $request->user()->role maksudnya adalah user() itu table user dan role adalah field yang dimaksud
+        // $request->user()->role   user() itu table user dan role  field yang dimaksud
 
         if ($request->user()->role !== $role ) {
 

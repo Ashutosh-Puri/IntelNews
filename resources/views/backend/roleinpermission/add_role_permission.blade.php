@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div class="page-title-box">
                         <div class="page-title-right">
-                            <a href="{{ route('add.roles.permission') }}" class="btn btn-success waves-effect waves-light">
+                            <a href="{{ route('all.roles.permission') }}" class="btn btn-success waves-effect waves-light">
                                 Back<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                             </a>
                         </div>
@@ -59,11 +59,8 @@
                                             <td>
                                                 {{ $key+1; }}
                                             </td>
-                                            <td>
-                                                <div class="form-group form-check mb-3 form-check-primary">
-                                                    <input class="form-check-input" type="checkbox" value="" id="customckeck1">
-                                                    <label class="form-check-label" for="customckeck1">{{ $group->group_name }}</label>
-                                                </div>
+                                            <td>                                                
+                                                <label class="form-check-label form-check" for="customckeck1">{{ $group->group_name }}</label>
                                             </td>
                                             <td>
                                                 @php
@@ -71,8 +68,13 @@
                                                 @endphp
                                                 @foreach ($permission as $permissionitem)
                                                 <div class="form-group form-check mb-3 form-check-primary">
-                                                    <input class="form-check-input" name="permission[]" type="checkbox" value="{{ $permissionitem->id }}" id="customckeck{{ $permissionitem->id }}">
+                                                    <input class="form-check-input @error('permission') is-invalid @enderror" name="permission[]" type="checkbox" value="{{ $permissionitem->id }}" id="customckeck{{ $permissionitem->id }}">
                                                     <label class="form-check-label" for="customckeck{{ $permissionitem->id }}">{{ $permissionitem->name }}</label>
+                                                    @error('permission')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             @endforeach
                                             </td>

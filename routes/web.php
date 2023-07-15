@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\LiveTvsController;
@@ -18,8 +18,6 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
 use App\Http\Controllers\Backend\VideoGalleriesController;
 use App\Http\Controllers\Backend\RoleInPermissionController;
-
-
 
 // FRONTEND PAGE ROUTE
 
@@ -40,16 +38,6 @@ Route::controller(IndexController::class)->group(function () {
 Route::controller(ReviewsController::class)->group(function () {
 
     Route::post('/reviews', 'StoreReview')->name('store.review');
-
-});
-
-
-// AUTH PAGE ROUTE
-
-Route::controller(AdminController::class)->group(function () {
-
-    Route::get('/admin/login', 'AdminLogin')->middleware(RedirectIfAuthenticated::class)->name('admin.login');
-    Route::get('/admin/logout/page', 'AdminLogoutPage')->name('admin.logout.page');
 
 });
 
@@ -80,21 +68,55 @@ Route::middleware('auth')->group(function () {
 // ============================================
 // ============================================
 
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/login', 'AdminLogin')->middleware(RedirectIfAuthenticated::class)->name('admin.login');
+    Route::get('/admin/dashboard', 'AdminDashboard')->name('admin.dashboard');
+    Route::get('/admin/logout', 'AdminLogout')->name('admin.logout');
+    Route::get('/admin/logout/page', 'AdminLogoutPage')->name('admin.logout.page');
+});
 Route::middleware('auth','role:admin')->group(function () {
 
+        // Backend Admin User Controller
 
-    // Admin Controller
+        Route::controller(AdminController::class)->group(function () {
+            
+            Route::get('/admin/profile', 'AdminProfile')->name('admin.profile');
+            Route::get('/admin/change/password', 'AdminChangePassword')->name('admin.change.password');
+            Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
+            Route::post('/admin/profile/store', 'AdminProfileStore')->name('admin.store.profile');
+            Route::get('/admin/delete/profile/photo/{id}', 'AdminDeleteProfilePhoto')->name('admin.delete.profile.photo');
 
-    Route::controller(AdminController::class)->group(function () {
+            Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+            Route::get('/add/admin', 'AddAdmin')->name('add.admin');
+            Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
+            Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
+            Route::put('/upadte/admin/{id}','UpdateAdmin')->name('update.admin');
+            Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
+            Route::get('/active/admin/{id}', 'ActiveAdminUser')->name('active.admin.user');
+            Route::get('/inactive/admin/{id}', 'InactiveAdminUser')->name('inactive.admin.user');
+            
+    
+        });
+    
+        // Backend User Controller
+    
+        Route::controller(UserController::class)->group(function () {
+    
+            Route::get('/all/user', 'AllUser')->name('all.user');
+            Route::get('/add/user', 'AddUser')->name('add.user');
+            Route::post('/store/user', 'StoreUser')->name('store.user');
+            Route::get('/edit/user/{id}', 'EditUser')->name('edit.user');
+            Route::put('/upadte/user/{id}','UpdateUser')->name('update.user');
+            Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
+            Route::get('/active/user/{id}', 'ActiveUser')->name('active.user');
+            Route::get('/inactive/user/{id}', 'InactiveUser')->name('inactive.user');
 
-        Route::get('/admin/dashboard', 'AdminDashboard')->name('admin.dashboard');
-        Route::get('/admin/logout', 'AdminLogout')->name('admin.logout');
-        Route::get('/admin/profile', 'AdminProfile')->name('admin.profile');
-        Route::get('/admin/change/password', 'AdminChangePassword')->name('admin.change.password');
-        Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
-        Route::post('/admin/profile/store', 'AdminProfileStore')->name('admin.store.profile');
-
-    });
+            // Route::get('/admin/profile', 'AdminProfile')->name('admin.profile');
+            // Route::get('/admin/change/password', 'AdminChangePassword')->name('admin.change.password');
+            // Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
+            // Route::post('/admin/profile/store', 'AdminProfileStore')->name('admin.store.profile');
+            
+        });
     // Category Controller
 
     Route::controller(CategoryController::class)->group(function () {
@@ -122,36 +144,7 @@ Route::middleware('auth','role:admin')->group(function () {
 
     });
 
-    // Backend Admin User Controller
 
-    Route::controller(AdminController::class)->group(function () {
-
-        Route::get('/all/admin', 'AllAdmin')->name('all.admin');
-        Route::get('/add/admin', 'AddAdmin')->name('add.admin');
-        Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
-        Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
-        Route::put('/upadte/admin/{id}','UpdateAdmin')->name('update.admin');
-        Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
-        Route::get('/active/admin/{id}', 'ActiveAdminUser')->name('active.admin.user');
-        Route::get('/inactive/admin/{id}', 'InactiveAdminUser')->name('inactive.admin.user');
-        
-
-    });
-
-    // Backend User Controller
-
-    Route::controller(UserController::class)->group(function () {
-
-        Route::get('/all/user', 'AllUser')->name('all.user');
-        Route::get('/add/user', 'AddUser')->name('add.user');
-        Route::post('/store/user', 'StoreUser')->name('store.user');
-        Route::get('/edit/user/{id}', 'EditUser')->name('edit.user');
-        Route::put('/upadte/user/{id}','UpdateUser')->name('update.user');
-        Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
-        Route::get('/active/user/{id}', 'ActiveUser')->name('active.user');
-        Route::get('/inactive/user/{id}', 'InactiveUser')->name('inactive.user');
-        
-    });
 
     // News Post Controller
 

@@ -25,7 +25,7 @@
                 @if (Auth::user()->status == 'active')
                     <li class="menu-title mt-2">Menu</li>
 
-                    {{-- can() adalah fungsi dari laravel spattie --}}
+                    {{-- can()  laravel spattie --}}
 
                     {{-- @if (Auth::user()->can('category.menu')) --}}
 

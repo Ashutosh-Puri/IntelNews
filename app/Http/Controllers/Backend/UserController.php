@@ -25,7 +25,7 @@ class UserController extends Controller
 
     //     $id = Auth::user()->id;
 
-    //     // Mengambil dari model user.
+    //     // model user.
 
     //     $data =  User::find($id);
 
@@ -35,7 +35,7 @@ class UserController extends Controller
     //     $data->phone        = $request->phone;
 
 
-    //     // file('photo') = file() mengambil type input file
+    //     // file('photo') = file()  type input file
 
        
 
@@ -156,7 +156,7 @@ class UserController extends Controller
 
         if ($request->role) {
 
-            // assignRole() adalah fungsi dari laravel spattie
+            // assignRole()  laravel spattie
 
             $user->assignRole($request->role);
 
@@ -201,7 +201,7 @@ class UserController extends Controller
 
         if ($request->role) {
 
-            // assignRole() adalah fungsi dari laravel spattie
+            // assignRole()  laravel spattie
 
             $user->assignRole($request->role);
 

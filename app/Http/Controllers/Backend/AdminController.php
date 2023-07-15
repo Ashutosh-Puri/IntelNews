@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
 use App\Models\Admin;
@@ -14,15 +14,12 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\Backend\AdminFormRequest;
+use App\Http\Requests\Backend\ProfileFormRequest;
+use App\Http\Requests\Backend\PasswordChangeFormRequest;
 
-
-class AdminController extends Controller{
-
-    public function AdminDashboard(){
-
-        return view('admin.index');
-
-    }
+class AdminController extends Controller
+{
+    
 
     public function AdminLogin(){
 
@@ -30,46 +27,37 @@ class AdminController extends Controller{
 
     }
 
+    public function AdminDashboard(){
+
+        return view('admin.index');
+
+    }
+
     public function AdminProfile(){
 
-        $id = Auth::user()->id;
-
-        $adminData = User::find($id);
+        $adminData = User::find(Auth::user()->id);
 
         return view('admin.admin_profile_view',compact('adminData'));
 
     }
 
-    public function AdminProfileStore(Request $request){
+    public function AdminProfileStore(ProfileFormRequest $request){
 
-        $id = Auth::user()->id;
-
-        // Mengambil dari model user.
-
-        $data =  User::find($id);
+        $data =  User::find(Auth::user()->id);
 
         $data->name         = $request->name;
         $data->username     = $request->username;
         $data->email        = $request->email;
         $data->phone        = $request->phone;
 
-
-        // file('photo') = file() mengambil type input file
-
-       
-
-
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $filename = time() . '.' . $photo->getClientOriginalExtension();
                 Image::make($photo)->resize(300, 300)->save(public_path('upload/admin_images/'.$filename));
                 $photoPath = 'upload/admin_images/'.$filename;
-
                 $data->photo= $photoPath;
             }
-
-          
-        $data->save();
+        $data->update();
 
         $notification = array(
 
@@ -89,15 +77,7 @@ class AdminController extends Controller{
 
     }
 
-    public function AdminUpdatePassword(Request $request){
-
-        $request->validate([
-
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required|same:new_password',
-
-        ]);
+    public function AdminUpdatePassword(PasswordChangeFormRequest $request){
 
         $hashedPassword = Auth::user()->password;
 
@@ -113,7 +93,15 @@ class AdminController extends Controller{
 
         ]);
 
-        return redirect()->back()->with('status','Password Changed Succesfully');
+        $notification = array(
+
+            'message' => 'Password Changed Succesfully',
+
+            'alert-type' => 'success'
+
+        );
+
+        return redirect()->back()->with('status','Password Changed Succesfully')->with($notification);
 
     }
 
@@ -175,7 +163,7 @@ class AdminController extends Controller{
 
         if ($request->role) {
 
-            // assignRole() adalah fungsi dari laravel spattie
+            // assignRole()    laravel spattie
 
             $user->assignRole($request->role);
 
@@ -223,7 +211,7 @@ class AdminController extends Controller{
 
         if ($request->role) {
 
-            // assignRole() adalah fungsi dari laravel spattie
+            // assignRole()   laravel spattie
 
             $user->assignRole($request->role);
 
@@ -307,4 +295,32 @@ class AdminController extends Controller{
 
     }
 
+
+    public function AdminDeleteProfilePhoto($id){
+
+        $user = User::findOrFail($id);
+
+
+       
+        if(File::exists($user->photo )) {
+            File::delete($user->photo);
+            $user->photo=null;
+            
+        }
+        
+        $user->update();
+
+     
+
+        $notification = array(
+
+            'message' => 'Admin Profile Photo Deleted Successfuly',
+
+            'alert-type' => 'success'
+
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
 }
