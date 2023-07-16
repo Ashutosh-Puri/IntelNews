@@ -314,7 +314,7 @@ class AdminController extends Controller
 
         $notification = array(
 
-            'message' => 'Admin Profile Photo Deleted Successfuly',
+            'message' => 'User Profile Photo Deleted Successfuly',
 
             'alert-type' => 'success'
 

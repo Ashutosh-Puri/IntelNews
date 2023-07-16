@@ -33,7 +33,7 @@ class IndexController extends Controller{
         
         if (isset($skip_cat_1)) 
         {
-            $skip_news_1 = NewsPost::where('status',1)->where('category_id',$skip_cat_2->id)->orderBy('id','DESC')->limit(6)->get();
+            $skip_news_1 = NewsPost::where('status',1)->where('category_id',$skip_cat_1->id)->orderBy('id','DESC')->limit(6)->get();
         } 
         else 
         {
@@ -86,35 +86,28 @@ class IndexController extends Controller{
 
     public function CatWiseNews($id,$slug){
 
-        $news = NewsPost::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(8)->get();
 
-        $breadcat = Category::where('id',$id)->first();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(8)->get();
+
+        $news = NewsPost::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
 
         $newstwo = NewsPost::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->limit(2)->get();
 
-        return view('frontend.news.category_news',compact('news','breadcat','newstwo'));
+        return view('frontend.news.category_news',compact('news','newstwo','newnewspost','newspopular'));
 
     }
 
     public function SubCatWiseNews($id,$slug){
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(8)->get();
+
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(8)->get();
 
         $news = NewsPost::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->get();
 
-        $breadsubcat = Subcategory::where('id',$id)->first();
-
         $newstwo = NewsPost::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->limit(2)->get();
 
-        return view('frontend.news.subcategory_news',compact('news','breadsubcat','newstwo'));
-
-    }
-
-    public function ChangeLang(Request $request){
-
-        App::setLocale($request->lang);
-
-        session()->put('locale',$request->lang);
-
-        return redirect()->back();
+        return view('frontend.news.subcategory_news',compact('news','newstwo','newnewspost','newspopular'));
 
     }
 

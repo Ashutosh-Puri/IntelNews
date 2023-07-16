@@ -24,7 +24,7 @@ class PhotoGalleryFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'multi_image'=>['required','min:1'],
+            'multi_image'=>['required'],
             'multi_image.*'=>['image','mimes:png,jpg,jpeg,svg,gif','max:2024']
         ];
     }

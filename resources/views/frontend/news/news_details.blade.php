@@ -21,7 +21,7 @@
 
                         <div class="single-cats">
 
-                            <i class="la la-bars"></i> <a href=" " rel="category tag">{{ $news['categoryRelation']['category_name'] }}</a>,
+                            <i class="la la-bars"></i> <a href=" " rel="category tag">{{ $news['categoryRelation']['category_name'] }}</a>
 
                             @if ($news->subcategory_id == NULL)
 
@@ -29,7 +29,7 @@
 
                             @else
 
-                                <a href=" " rel="category tag">{{ $news['subcategoryRelation']['subcategory_name'] }}</a>
+                              ->  <a href=" " rel="category tag">{{ $news['subcategoryRelation']['subcategory_name'] }}</a>
 
                             @endif
 
@@ -43,35 +43,36 @@
 
                     </h1>
 
-                    <div class="row g-2">
+                    <div class="row g-2 bg-dark">
                         <div class="col-lg-1 col-md-2 ">
                             <div class="reportar-image">
-                                <img src="{{ (!empty($news->userRelation->photo)) ? url('upload/admin_images/'.$news->userRelation->photo) : url('upload/no_image.jpg') }}">
+                                <img src="{{ (!empty($news->userRelation->photo)) ? asset($news->userRelation->photo) : asset('upload/no_image.jpg') }}">
                             </div>
                         </div>
-                        <div class="col-lg-11 col-md-10">
+                        <div class="col-lg-11 col-md-10   text-white">
 
                             <div class="reportar-title">
 
-                                Posted By <a href="{{ route('reporter.all.news',$news->user_id) }}"> {{ $news['userRelation']['name'] }} </a>
+                                Posted By <a class="btn btn-sm btn-warning py-0" href="{{ route('reporter.all.news',$news->user_id) }}"> {{ $news['userRelation']['name'] }} </a>
 
                             </div>
 
-                            <div class="viwe-count">
+                            <div class="viwe-count text-white">
 
-                                <ul>
+                                <ul >
 
-                                    <li>
+                                    <li class="text-white">
 
-                                        <i class="la la-clock-o"></i> Created {{ $news->created_at->format('M d Y') }}
+                                        <span class="btn-sm btn btn-success  py-0"> <i class="la la-clock-o "></i> Created {{ $news->created_at->format('M d Y') }}</span>
+                                       
 
                                     </li>
 
-                                    <li> / <i class="la la-eye"></i>
+                                    <li class="text-white"> 
+                                        <span class="btn-sm btn btn-primary  py-0 "> <i class="la la-eye"></i> {{ $news->view_count }} &nbsp; Read</span>
+                                       
 
-                                        {{ $news->view_count }}
-
-                                        Read
+                                        
 
                                     </li>
 
@@ -90,17 +91,10 @@
                         </h2>
                     </div>
 
-                    <div class="single-page-add2">
-                        <div class="themesBazar_widget">
-                            <div class="textwidget">
-                                <p><img loading="lazy" class="aligncenter size-full wp-image-74" src="assets/images/biggapon-1.gif" alt="" width="100%" height="auto"></p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <button id="inc">A+</button>
+                    <button class="btn btn-danger btn-md p-2 m-2" id="inc"><i class="fas fa-font"></i><i class="fas fa-long-arrow-alt-up"></i></button>
 
-                    <button id="dec">A-</button>
+                    <button class="btn btn-danger btn-md p-2 m-2" id="dec"> <i class="fas fa-font"></i><i class="fas fa-long-arrow-alt-down"></i></button>
 
                     <news-font>
 
@@ -123,24 +117,15 @@
                         @endforeach
 
                     </div>
-
-                    <div class="single-add">
-                        <div class="themesBazar_widget">
-                            <div class="textwidget">
-                                <p><img loading="lazy" class="aligncenter size-full wp-image-74" src="assets/images/biggapon-1.gif" alt="" width="100%" height="auto"></p>
-                            </div>
-                        </div>
-                    </div>
-
                     <h3 class="single-social-title">
                         Share News </h3>
                     <div class="single-page-social">
-                        <a href=" " target="_blank" title="Facebook"><i class="lab la-facebook-f"></i></a><a
-                            href=" " target="_blank"><i class="lab la-twitter"></i></a><a href=" "
-                            target="_blank"><i class="lab la-linkedin-in"></i></a><a href=" " target="_blank"><i
-                                class="lab la-digg"></i></a><a href=" " target="_blank"><i
-                                class="lab la-pinterest-p"></i></a><a onclick="printFunction()" target="_blank"><i
-                                class="las la-print"></i>
+                        <a href=" " target="_blank" title="Facebook"><i class="lab la-facebook-f"></i></a>
+                        <a ref=" " target="_blank"><i class="lab la-twitter"></i></a>
+                        <a href=" "target="_blank"><i class="lab la-linkedin-in"></i></a>
+                        <a href=" " target="_blank"><i class="lab la-digg"></i></a>
+                        <a href=" " target="_blank"><i class="lab la-pinterest-p"></i></a>
+                        <a onclick="printFunction()" target="_blank"><i class="las la-print"></i>
                             <script>
                                 function printFunction() {
                                     window.print();
@@ -173,14 +158,15 @@
                                     </h6>
 
                                     <div class="author-image2">
-                                        <img alt="" src="{{ (!empty($item->UserRelation->photo)) ? url('upload/user_images/'.$item->UserRelation->photo) : url('upload/no_image.jpg') }}" class="avatar avatar-96 photo" height="96" width="96" loading="lazy">
+                                        <img alt="" src="{{ (!empty($item->UserRelation->photo)) ? asset($item->UserRelation->photo) : asset('upload/no_image.jpg') }}" class="avatar avatar-96 photo" height="96" width="96" loading="lazy">
                                     </div>
 
                                     <div class="authorContent">
 
                                         <h1 class="author-name2">
 
-                                            <a href=" "> {{ $item->UserRelation->name }} </a>
+                                            <a href="{{ route('reporter.all.news',$news->user_id) }}"> {{ $item->UserRelation->name  }} </a>
+                                           
 
                                         </h1>
 
@@ -204,7 +190,7 @@
 
                         <p>
 
-                            <b> For Add Product Review,You Need To Login First <a href="{{ route('login') }}"></a> </b>
+                            <b>You Need To Login First <a href="{{ route('login') }}"></a> </b>
 
                         </p>
 
@@ -216,7 +202,7 @@
 
                             @if (session('status'))
 
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-success p-2 m-2" role="alert">
 
                                     {{ session('status') }}
 
@@ -224,7 +210,7 @@
 
                             @elseif(session('error'))
 
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-danger p-2 m-2" role="alert">
 
                                     {{ session('error') }}
 
@@ -254,7 +240,7 @@
 
                                                 <textarea name="comment" cols="20" rows="5"
                                                     class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false"
-                                                    placeholder="News Details...."></textarea>
+                                                    placeholder="Write Comment...."></textarea>
                                             </span>
 
                                         </div>
@@ -314,7 +300,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="sitebar-fixd" style="position: sticky; top: 0;">
-                        <div class="siteber-add">
+                        {{-- <div class="siteber-add">
                             <div class="themesBazar_widget">
                                 <div class="textwidget">
                                     <p><img loading="lazy" class="aligncenter size-full wp-image-74"
@@ -322,7 +308,7 @@
                                             height="auto"></p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="singlePopular">
                             <ul class="nav nav-pills" id="singlePopular-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -353,7 +339,7 @@
 
                                             </div>
 
-                                            <a href=" {{ url('news/details/'.$newsitem->id.'/'.$newsitem->news_title_slug) }}" class="archiveTab-icon2"><i class="la la-play"></i></a>
+                                            {{-- <a href=" {{ url('news/details/'.$newsitem->id.'/'.$newsitem->news_title_slug) }}" class="archiveTab-icon2"><i class="la la-play"></i></a> --}}
 
                                             <h4 class="archiveTab_hadding">
 
@@ -389,7 +375,7 @@
 
                                             </div>
 
-                                            <a href=" {{ url('news/details/'.$newsitem->id.'/'.$newsitem->news_title_slug) }}" class="archiveTab-icon2"><i class="la la-play"></i></a>
+                                            {{-- <a href=" {{ url('news/details/'.$newsitem->id.'/'.$newsitem->news_title_slug) }}" class="archiveTab-icon2"><i class="la la-play"></i></a> --}}
 
                                             <h4 class="archiveTab_hadding">
 

@@ -5,124 +5,128 @@ namespace App\Http\Controllers\Backend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\Backend\UserFormRequest;
+use App\Http\Requests\Backend\ProfileFormRequest;
+use App\Http\Requests\Backend\PasswordChangeFormRequest;
 
 class UserController extends Controller
 {
-    // public function AdminProfile(){
 
-    //     $id = Auth::user()->id;
+    public function UserDashboard(){
 
-    //     $adminData = User::find($id);
+        $id = Auth::user()->id;
 
-    //     return view('admin.admin_profile_view',compact('adminData'));
+        $userData = User::find($id);
 
-    // }
+        return view('frontend.user_dashboard',compact('userData'));
 
-    // public function AdminProfileStore(Request $request){
+    }
 
-    //     $id = Auth::user()->id;
+    public function UserProfileStore(ProfileFormRequest $request){
 
-    //     // model user.
+        $id = Auth::user()->id;
 
-    //     $data =  User::find($id);
+        //  model user.
 
-    //     $data->name         = $request->name;
-    //     $data->username     = $request->username;
-    //     $data->email        = $request->email;
-    //     $data->phone        = $request->phone;
+        $data =  User::find($id);
 
-
-    //     // file('photo') = file()  type input file
-
-       
+        $data->name         = $request->name;
+        $data->username     = $request->username;
+        $data->email        = $request->email;
+        $data->phone        = $request->phone;
 
 
-    //         if($request->hasFile('photo')){
-    //             $photo = $request->file('photo');
-    //             $filename = time() . '.' . $photo->getClientOriginalExtension();
-    //             Image::make($photo)->resize(300, 300)->save(public_path('upload/admin_images/'.$filename));
-    //             $photoPath = 'upload/admin_images/'.$filename;
+        // file('photo') = file()  type input file
 
-    //             $data->photo= $photoPath;
-    //         }
+        if ($request->file('photo')) {
 
-          
-    //     $data->save();
+            if($request->hasFile('photo')){
+                $photo = $request->file('photo');
+                $filename = time() . '.' . $photo->getClientOriginalExtension();
+                Image::make($photo)->resize(300, 300)->save(public_path('upload/user_images/'.$filename));
+                $photoPath = 'upload/user_images/'.$filename;
 
-    //     $notification = array(
+                $data->photo= $photoPath;
+            }
 
-    //         'message' => 'Admin Profile Update Successful',
 
-    //         'alert-type' => 'success'
+        }
 
-    //     );
+        $data->update();
 
-    //     return redirect()->route('admin.profile')->with($notification);
+        return back()->with('status','Profile updated successfully');
 
-    // }
+    }
 
-    // public function AdminChangePassword(){
+    public function UserChangePassword(){
 
-    //     return view('admin.admin_change_password');
+        $id = Auth::user()->id;
 
-    // }
+        $userData = User::find($id);
 
-    // public function AdminUpdatePassword(Request $request){
+        return view('frontend.user_change_password',compact('userData'));
 
-    //     $request->validate([
+    }
 
-    //         'old_password' => 'required',
-    //         'new_password' => 'required',
-    //         'confirm_password' => 'required|same:new_password',
+    public function UserChangePasswordStore(PasswordChangeFormRequest $request){
 
-    //     ]);
+            dd("");
+        $hashedPassword = Auth::user()->password;
 
-    //     $hashedPassword = Auth::user()->password;
+        if (!Hash::check($request->old_password, $hashedPassword)) {
+            $notification = array(
 
-    //     if (!Hash::check($request->old_password, $hashedPassword)) {
+                'message' => 'Old Password Doesn"t" Match',
+    
+                'alert-type' => 'error'
+    
+            );
+            return redirect()->back()->with('error','Old Password Doesn"t" Match')->with($notification);
 
-    //         return redirect()->back()->with('error','Old Password Doesn"t" Match');
+        }
 
-    //     }
+        User::whereId(auth()->user()->id)->update([
 
-    //     User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
 
-    //         'password' => Hash::make($request->new_password)
+        ]);
 
-    //     ]);
+        $notification = array(
 
-    //     return redirect()->back()->with('status','Password Changed Succesfully');
+            'message' => 'Password Changed Succesfully',
 
-    // }
+            'alert-type' => 'success'
 
-    // public function AdminLogoutPage(){
+        );
 
-    //     return view('admin.admin_logout');
+        return redirect()->back()->with('status','Password Changed Succesfully')->with($notification);
 
-    // }
 
-    // public function AdminLogout(Request $request){
+    }
 
-    //     Auth::guard('web')->logout();
+    public function UserLogout(Request $request){
 
-    //     $request->session()->invalidate();
+        Auth::guard('web')->logout();
 
-    //     $request->session()->regenerateToken();
+        $request->session()->invalidate();
 
-    //     $notification = array(
+        $request->session()->regenerateToken();
 
-    //         'message' => 'Logout Successfuly',
+        $notification = array(
 
-    //         'alert-type' => 'info'
+            'message' => 'User Logout Successfully',
 
-    //     );
+            'alert-type' => 'success'
 
-    //     return redirect()->route('admin.logout.page')->with($notification);
+        );
 
-    // }
+        return redirect('/login')->with('status','User Logout Successfully')->with($notification);
+
+    }
 
     public function AllUser(){
 
@@ -209,7 +213,7 @@ class UserController extends Controller
 
         $notification = array(
 
-            'message' => 'Admin Update Successful',
+            'message' => 'Admin Updated Successful',
 
             'alert-type' => 'success'
 
@@ -276,6 +280,36 @@ class UserController extends Controller
         $notification = array(
 
             'message' => 'Activated User Successfuly',
+
+            'alert-type' => 'success'
+
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
+
+
+    public function UserDeleteProfilePhoto($id){
+
+    
+        $user = User::findOrFail($id);
+
+
+       
+        if(File::exists($user->photo )) {
+            File::delete($user->photo);
+            $user->photo=null;
+            
+        }
+        
+        $user->update();
+
+     
+
+        $notification = array(
+
+            'message' => 'User Profile Photo Deleted Successfuly',
 
             'alert-type' => 'success'
 

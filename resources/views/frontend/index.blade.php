@@ -73,7 +73,7 @@
                                             </div>
                                         @empty
 
-                                            Sliders Not Available...!
+                                           
                                         @endforelse
 
                                     </div>
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                             @empty
-                                Section Three News Not Avilable..!
+                               
                             @endforelse
 
                         </div>
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                             @empty
-                                Section Nine News Not Avilable..!
+                              
                             @endforelse
 
                         </div>
@@ -200,7 +200,7 @@
 
                         </div>
                     </div>
-                    {{-- <div class="themesBazar_widget">
+                    <div class="themesBazar_widget">
                         <h3 style="margin-top:5px"> OLD NEWS </h3>
                     </div>
 
@@ -208,13 +208,13 @@
 
                         @csrf
 
-                        <input type="date" id="wordpress" placeholder="Select Date" autocomplete="" name="date" class="hasDatepicker">
+                        <input type="date"   name="date" class="form-control">
 
-                        <input type="submit" value="Search">
+                        <input class="form-control-sm" type="submit" value="Search">
 
                     </form>
 
-
+ {{--
                     <div class="recentPopular">
                         <ul class="nav nav-pills" id="recentPopular-tab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -388,7 +388,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    <div class="themesBazar_widget">
+                    {{-- <div class="themesBazar_widget">
                         <h3 style="margin-top:5px"> Our Like Page </h3>
                     </div>
                     <div class="facebook-content">
@@ -408,7 +408,7 @@
                                 style="position: static; visibility: visible; width: 279px; height: 220px; display: block; flex-grow: 1;"
                                 title="Twitter Timeline" src=" "></iframe></div>
                         <script async="" src="assets/js/widgets.js" charset="utf-8"></script>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -93,7 +93,7 @@
 
                                     <td>
 
-                                        <a href="{{ route('approve.review.update',$item->id) }}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-lead-pencil"></i></a>
+                                        <a href="{{ route('approve.review.update',$item->id) }}" class="btn btn-success waves-effect waves-light"><i class="fa-solid fa-thumbs-up"></i></a>
 
                                     </td>
 

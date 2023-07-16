@@ -39,8 +39,8 @@
 
                                 <label for="multi_image" class="form-label">Multiple Photo Gallery</label>
 
-                                <input id="multiImg" type="file" class="form-control @error('multi_image[]') @enderror" name="" id="multi_image" placeholder="1234 Main St" multiple>
-                                @error('multi_image[]')
+                                <input id="multiImg" type="file" class="form-control @error('multi_image') @enderror" name="multi_image[]" id="multi_image" placeholder="1234 Main St" multiple>
+                                @error('multi_image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <div class="row" id="preview_img"></div>

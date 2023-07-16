@@ -32,9 +32,6 @@ return new class extends Migration
             $table->string('post_month');
             $table->integer('status')->default(1)->nullable();
             $table->integer('view_count')->default(0)->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('setnull');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onUpdate('cascade')->onDelete('setnull');
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('setnull');
             $table->timestamps();
 
         });

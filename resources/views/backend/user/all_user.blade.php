@@ -70,7 +70,7 @@
 
                                     <td>
 
-                                        <img id="showImage" src="{{ (!empty($item->photo)) ? url('upload/user_images/'.$item->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                        <img id="showImage" src="{{ (!empty($item->photo)) ? asset($item->photo) : asset('upload/no_image.jpg') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                                     </td>
 

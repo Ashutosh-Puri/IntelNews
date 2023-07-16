@@ -74,6 +74,13 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/logout', 'AdminLogout')->name('admin.logout');
     Route::get('/admin/logout/page', 'AdminLogoutPage')->name('admin.logout.page');
 });
+
+
+
+Route::controller(UserController::class)->group(function () {
+    
+    Route::get('/user/delete/profile/photo/{id}', 'UserDeleteProfilePhoto')->name('user.delete.profile.photo');
+});
 Route::middleware('auth','role:admin')->group(function () {
 
         // Backend Admin User Controller
@@ -111,11 +118,6 @@ Route::middleware('auth','role:admin')->group(function () {
             Route::get('/active/user/{id}', 'ActiveUser')->name('active.user');
             Route::get('/inactive/user/{id}', 'InactiveUser')->name('inactive.user');
 
-            // Route::get('/admin/profile', 'AdminProfile')->name('admin.profile');
-            // Route::get('/admin/change/password', 'AdminChangePassword')->name('admin.change.password');
-            // Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
-            // Route::post('/admin/profile/store', 'AdminProfileStore')->name('admin.store.profile');
-            
         });
     // Category Controller
 

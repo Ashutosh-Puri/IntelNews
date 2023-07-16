@@ -84,7 +84,7 @@
 
                                     <td>
 
-                                        <a id="delete" href="{{ route('approve.review.delete',$item->id) }}" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-lead-pencil"></i></a>
+                                        <a id="delete" href="{{ route('approve.review.delete',$item->id) }}" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-delete"></i></a>
 
                                     </td>
 

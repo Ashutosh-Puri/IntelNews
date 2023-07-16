@@ -25,21 +25,6 @@
                         </div>
 
                     </div>
-
-                    <div class="col-md-6">
-
-                        <select name="" id="" class="form-select changeLang">
-
-                            <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }} >English</option>
-
-                            <option value="hi" {{ session()->get('locale') == 'hi' ? 'selected' : '' }} >Hindi</option>
-
-                            <option value="mr" {{ session()->get('locale') == 'mr' ? 'selected' : '' }} >Marathi</option>
-
-                        </select>
-
-                    </div>
-
                 </div>
 
             </div>
@@ -140,7 +125,7 @@
 
                             <li id="menu-item-291" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-291 has-sub">
 
-                                <a href="{{ url('news/category/'.$category->id.'/'.$category->category_slug) }} ">{{ GoogleTranslate::trans($category->category_name, app()->getLocale()) }}</a>
+                                <a href="{{ url('news/category/'.$category->id.'/'.$category->category_slug) }} ">{{ $category->category_name }}</a>
 
                                 @php
 
@@ -154,7 +139,7 @@
 
                                         <li id="menu-item-294" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-294">
 
-                                            <a href="{{ url('news/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ GoogleTranslate::trans($subcategory->subcategory_name, app()->getLocale())  }}</a>
+                                            <a href="{{ url('news/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name  }}</a>
 
                                         </li>
 
@@ -180,14 +165,4 @@
     </div>
 </div>
 
-<script type="text/javascript">
 
-    var url = "{{ route('changeLang') }}";
-
-    $(".changeLang").change(function(){
-
-        window.location.href = url + "?lang=" + $(this).val();
-
-    });
-
-</script>
