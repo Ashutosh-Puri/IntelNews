@@ -24,7 +24,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> @yield('title') </title>
+    <title> {{  preg_replace('/(?<!\ )[A-Z]/', ' $0', env('APP_NAME'));  }} | @yield('title') </title>
 
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}" type="image/x-icon">
     @if (isset($seo->meta_keyword))

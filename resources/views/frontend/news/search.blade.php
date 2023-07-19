@@ -49,7 +49,7 @@
 
                             <div class="archive1-padding">
                             <div class="archive1-title2">
-                                <a href=" {{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }} ">{{ GoogleTranslate::trans($item->news_title, app()->getLocale()) }}</a>
+                                <a href=" {{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }} ">{{ $item->news_title }}</a>
                             </div>
                             </div>
                         </div>
