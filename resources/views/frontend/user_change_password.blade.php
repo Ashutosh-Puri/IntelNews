@@ -1,7 +1,8 @@
 @extends('frontend.home_dashboard')
-
+@section('title') 
+    User Password Change
+@endsection
 @section('home')
-
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -9,14 +10,7 @@
             <div class="col-lg-12 col-md-12">
               <div class="contact-wrpp">
                 <figure class="authorPage-image">
-                  <img
-                    alt=""
-                    src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}"
-                    class="avatar avatar-96 photo"
-                    height="96"
-                    width="96"
-                    loading="lazy"
-                  />
+                  <img  src="{{ (!empty($userData->photo)) ? asset($userData->photo) : asset('upload/no_image.jpg') }}" class="avatar avatar-96 photo"  height="96"  width="96" loading="lazy" />
                 </figure>
                 <h1 class="authorPage-name">
                   <a href=" "> {{ $userData->name }} </a>

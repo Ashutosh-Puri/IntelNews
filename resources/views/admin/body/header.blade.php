@@ -22,13 +22,21 @@ $adminData =  App\Models\User::find($id);
 
                         <div class="input-group">
 
-                            <input type="search" class="form-control" placeholder="Search..." id="top-search">
+                            {{-- <input type="search" class="form-control" placeholder="Search..." id="top-search">
 
                             <button class="btn input-group-text" type="submit">
 
-                                <i class="fe-search"></i>
+                                <i class="fe-search"></i> 
 
-                            </button>
+                            </button>--}}
+
+                            <a href="{{ route('home.index') }}" class="text-white" >
+    
+                                <i class="mdi mdi-home"></i>
+        
+                                <span>Home </span>
+        
+                            </a>
 
                         </div>
 
@@ -210,6 +218,17 @@ $adminData =  App\Models\User::find($id);
                     </div>
 
                     <!-- item-->
+                  
+
+                        <a href="{{ route('user.dashboard') }}" class="dropdown-item notify-item">
+    
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+    
+                            <span>User Dashboard </span>
+    
+                        </a>
+    
+                  
 
                     <a href="{{ route('admin.profile') }}" class="dropdown-item notify-item">
 

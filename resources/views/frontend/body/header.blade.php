@@ -23,22 +23,50 @@
             <div class="col-lg-4 col-md-4">
                 <div class="header-social">
                     <ul>
-                        <li> 
-                            <a href="https://www.facebook.com/" target="_blank" title="facebook">
-                                <i class="lab la-facebook-f"></i> 
-                            </a> 
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/" target="_blank" title="twitter">
-                                <i class="lab la-twitter"> </i> 
-                            </a>
-                        </li>
+                    
                         @auth
-                            <li>
-                                <a href="{{ route('user.logout') }}">
-                                    <b> Logout </b>
-                                </a> 
-                            </li>
+                        <li class="dropdown topbar-dropdown">
+
+                            <a class="dropdown-toggle nav-user waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            
+                                <img src="{{ (!empty(auth()->user()->photo)) ? asset(auth()->user()->photo) : asset('upload/no_image.jpg') }}" alt="user-image" class="rounded-circle" style="height: 35px;width:35px;">
+            
+                                <span class="pro-user-name ms-1">
+            
+                                    {{ auth()->user()->name }} <i class="mdi mdi-chevron-down"></i>
+            
+                                </span>
+            
+                            </a>
+            
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                @if (auth()->user()->role=='admin')
+                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item notify-item">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span>Admin Dashboard </span>
+                                    </a>
+                                @endif
+                                <a href="{{ route('user.dashboard') }}" class="dropdown-item notify-item">
+                                    <i class="fa fa-user-circle"></i>
+                                    <span>My Profile</span>
+                                </a>
+                                <a href="{{ route('user.change.password') }}" class="dropdown-item notify-item">
+                                    <i class="fa fa-lock"></i>
+                                    <span>Change Password</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+            
+                                <!-- item-->
+            
+                                <a href="{{ route('user.logout') }}" class="dropdown-item notify-item">
+            
+                                    <i class="fa fa-sign-out"></i>
+            
+                                    <span>Logout</span>
+        
+                                </a>
+                            </div>
+                        </li>
                         @else
                             <li>
                                 <a href="{{ route('login') }}">

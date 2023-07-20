@@ -1,5 +1,7 @@
 @extends('frontend.home_dashboard')
-
+@section('title')
+  Login
+@endsection
 @section('home')
 
 <div class="container">

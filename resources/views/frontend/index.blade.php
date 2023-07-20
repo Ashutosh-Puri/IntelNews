@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-4" id="livetv">
                     <div class="live-item">
                         <div class="live_title">
                             <div class="themesBazar"></div>
@@ -650,7 +650,7 @@
             </div>
         </section> 
     @endif
-    <section class="section-ten">
+    <section class="section-ten" id="photogallery">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
@@ -715,7 +715,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4 col-md-4" id="videogallery">
                     <h2 class="themesBazar_cat01">
                         <a href=" "> 
                             <i class="las la-video"></i>  VIDEO GALLERY 

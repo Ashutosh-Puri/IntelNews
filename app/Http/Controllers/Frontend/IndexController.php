@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Banners;
 use App\Models\LiveTvs;
+use App\Models\Reviews;
 use App\Models\Category;
 use App\Models\NewsPost;
 use App\Models\Subcategory;
@@ -128,21 +129,22 @@ class IndexController extends Controller{
             Session::put($newsKey,1);
 
         }
+        $review = Reviews::where('news_id',$news->id)->latest()->limit(5)->get();
         $breakingnews =NewsPost::where('status',1)->where('breaking_news',1)->orderBy('id','DESC')->limit(5)->get();
 
-        $newnewspost = NewsPost::orderBy('id','DESC')->limit(10)->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(5)->get();
 
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(10)->get();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(5)->get();
 
-        return view('frontend.news.news_details',compact('live_tv','breakingnews','news','tags_all','relatedNews','newnewspost','newspopular'));
+        return view('frontend.news.news_details',compact('review','live_tv','breakingnews','news','tags_all','relatedNews','newnewspost','newspopular'));
 
     }
 
     public function CatWiseNews($id,$slug){
         $live_tv =LiveTvs::first();
-        $newnewspost = NewsPost::orderBy('id','DESC')->limit(10)->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(5)->get();
 
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(10)->get();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(5)->get();
 
         $news = NewsPost::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
 
@@ -154,9 +156,9 @@ class IndexController extends Controller{
     }
 
     public function SubCatWiseNews($id,$slug){
-        $newnewspost = NewsPost::orderBy('id','DESC')->limit(10)->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(5)->get();
         $live_tv =LiveTvs::first();
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(10)->get();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(5)->get();
         $breakingnews =NewsPost::where('status',1)->where('breaking_news',1)->orderBy('id','DESC')->limit(5)->get();
 
         $news = NewsPost::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->get();
@@ -175,16 +177,16 @@ class IndexController extends Controller{
 
         ]);
         $live_tv =LiveTvs::first();
-        $newnewspost = NewsPost::orderBy('id','DESC')->limit(10)->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(5)->get();
 
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(10)->get();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(5)->get();
         $breakingnews =NewsPost::where('status',1)->where('breaking_news',1)->orderBy('id','DESC')->limit(5)->get();
 
         $date = new DateTime($request->date);
 
         $formatDate = $date->format('d-m-Y');
 
-        $news = NewsPost::where('post_date',$formatDate)->latest()->get();
+        $news = NewsPost::where('post_date',$formatDate)->latest()->paginate(12);
 
         return view('frontend.news.search_by_date',compact('live_tv','breakingnews','news','formatDate','newnewspost','newspopular'));
 
@@ -199,14 +201,14 @@ class IndexController extends Controller{
         ]);
 
         $live_tv =LiveTvs::first();
-        $newnewspost = NewsPost::orderBy('id','DESC')->limit(10)->get();
+        $newnewspost = NewsPost::orderBy('id','DESC')->limit(5)->get();
 
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(10)->get();
+        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(5)->get();
         $breakingnews =NewsPost::where('status',1)->where('breaking_news',1)->orderBy('id','DESC')->limit(5)->get();
 
         $item = $request->search;
 
-        $news = NewsPost::where('news_title','LIKE',"%$item%")->get();
+        $news = NewsPost::where('news_title','LIKE',"%$item%")->paginate(9);
 
         return view('frontend.news.search',compact('live_tv','breakingnews','newnewspost','newspopular','news','item'));
 
@@ -216,7 +218,7 @@ class IndexController extends Controller{
 
         $reporter = User::findOrFail($id);
 
-        $news = NewsPost::where('user_id',$id)->get();
+        $news = NewsPost::where('user_id',$id)->paginate(4);
 
         return view('frontend.reporter.reporter_news_post',compact('news','reporter'));
 

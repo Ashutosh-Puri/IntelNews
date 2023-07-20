@@ -3,33 +3,27 @@
         <div class="footer-menu">
             <div class="menu-footer-menu-container">
                 <ul id="menu-footer-menu" class="menu">
-                    <li id="menu-item-550"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-550"><a
-                            href=" ">ABOUT ALL</a></li>
-                    <li id="menu-item-551"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-551"><a
-                            href=" ">COMPANY</a></li>
-                    <li id="menu-item-552"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a
-                            href=" ">ABOUT US</a></li>
-                    <li id="menu-item-553"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-553"><a
-                            href=" ">PHOTO GALLERY</a></li>
-                    <li id="menu-item-554"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-554"><a
-                            href=" ">VIDOE GALLERY</a></li>
-                    <li id="menu-item-555"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-555"><a
-                            href=" ">SUPPORT</a></li>
-                    <li id="menu-item-556"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-556"><a
-                            href=" ">CONTACT</a></li>
-                    <li id="menu-item-557"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-557"><a
-                            href=" ">REGISTER</a></li>
-                    <li id="menu-item-558"
-                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-558"><a
-                            href=" ">SEND NEWS </a></li>
+                    <li id="menu-item-553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-553">
+                        <a href="{{ url('/#livetv') }}">LIVE TV</a>
+                    </li>
+                    <li id="menu-item-553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-553">
+                        <a href="{{ url('/#photogallery') }}">PHOTO GALLERY</a>
+                    </li>
+                    <li id="menu-item-554" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-554">
+                        <a href="{{ url('/#videogallery') }}">VIDOE GALLERY</a>
+                    </li>
+                    <li id="menu-item-552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552">
+                        <a href=" ">ABOUT US</a>
+                    </li>
+                    <li id="menu-item-556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-556">
+                        <a href=" ">CONTACT US</a>
+                    </li>
+                    <li id="menu-item-557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-557">
+                        <a href="{{ route('login') }}">LOGIN</a>
+                    </li>
+                    <li id="menu-item-557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-557">
+                        <a href="{{ route('register') }}">REGISTER</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -37,9 +31,9 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <h3 class="footer-title">
-                        OFFICE : </h3>
+                        Our Office : </h3>
                     <div class="footer-content">
-                        {{-- <p style="text-align: left;">Ga-130/A Pragati Sarani, Middle Badda </p> --}}
+                        <p style="text-align: left;">ADDRESS : Sangamner Khurd, Sangamner, MH, IN </p>
                         <p style="text-align: left;">EMAIL : cmdsofts@gmail.com</p>
                         <p style="text-align: left;">MOBILE : +91 9373545745</p>
                     </div>
@@ -48,20 +42,21 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <h3 class="footer-title">
-                                DEMO TEXT </h3>
+                                Quick Links 
+                            </h3>
                             <div class="footer-content">
-                                <p style="text-align: left;">DEMO TEXT : DEMO TEXT</p>
-                                <p style="text-align: left;">DEMO TEXT : DEMO TEXT</p>
-                                <p style="text-align: left;">DEMO TEXT : DEMO TEXT</p>
+                                <a class="text-start text-white" href="{{ url('/') }}"><p>Home</p></a>
+                                <a class="text-start text-white" href="{{ url('/') }}"><p>About Us</p></a>
+                                <a class="text-start text-white "href="{{ url('/') }}"><p>Contact Us</p></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <h3 class="footer-title">
-                                DEMO TEXT </h3>
+                                Quick Links </h3>
                             <div class="footer-content">
-                                <p style="text-align: left;">DEMO TEXT : DEMO TEXT</p>
-                                <p style="text-align: left;">DEMO TEXT :DEMO TEXT</p>
-                                <p style="text-align: left;">DEMO TEXT : DEMO TEXT</p>
+                                <a class="text-start text-white" href="{{ route('login') }}"><p>Login</p></a>
+                                <a class="text-start text-white" href="{{ route('register') }}"><p>Register</p></a>
+                                <a class="text-start text-white" href="{{ route('admin.login') }}"><p>Admin Login</p></a>
                             </div>
                         </div>
                     </div>

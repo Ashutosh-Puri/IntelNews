@@ -1,5 +1,7 @@
 @extends('frontend.home_dashboard')
-
+@section('title')
+Register
+@endsection
 @section('home')
     <div class="container">
         <div class="row">
