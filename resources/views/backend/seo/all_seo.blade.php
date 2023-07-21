@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+    SEO
+@endsection
 @section('admin')
 
 <div class="content">

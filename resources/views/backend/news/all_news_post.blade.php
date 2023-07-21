@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+   News
+@endsection
 @section('admin')
 
 @php

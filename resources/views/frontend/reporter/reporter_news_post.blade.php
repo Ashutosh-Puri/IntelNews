@@ -40,22 +40,22 @@
                     <h1 class="authorPage-name">
                     <a href=" "> {{ $reporter->name }} </a>
                     </h1>
-                    <div class="author-social">
-                    <a href="https://www.facebook.com//" target="_black" title="Facebook">
-                        <i class="lab la-facebook-f"></i>
-                    </a>
-                    <a href="https://www.twitter.com//" target="_black" title="Twitter">
-                        <i class="lab la-twitter"></i>
-                    </a>
-                    <a href="https://www.youtube.com//" target="_black" title="Youtube">
-                        <i class="lab la-youtube"></i>
-                    </a>
-                    <a href="https://www.linkedin.com//" target="_black" title="Linkedin">
-                        <i class="lab la-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.instagram.com//" target="_black" title="Instagram">
-                        <i class="lab la-instagram"></i>
-                    </a>
+                    <div class="author-social text-center fw-bold">
+                        @php
+                            $sitesetting= App\Models\SiteSetting::first();
+                        @endphp
+                        <a href="{{ isset($sitesetting->social_icon_1_url)?$sitesetting->social_icon_1_url:'#'; }}" target="_black" >
+                            {!! isset($sitesetting->social_icon_1)?$sitesetting->social_icon_1:''; !!}
+                        </a>
+                        <a href="{{ isset($sitesetting->social_icon_2_url)?$sitesetting->social_icon_2_url:'#'; }}" target="_black" >
+                            {!! isset($sitesetting->social_icon_2)?$sitesetting->social_icon_2:''; !!}
+                        </a>
+                        <a href="{{ isset($sitesetting->social_icon_3_url)?$sitesetting->social_icon_3_url:'#'; }}" target="_black" >
+                            {!! isset($sitesetting->social_icon_3)?$sitesetting->social_icon_3:''; !!}
+                        </a>
+                        <a href="{{ isset($sitesetting->social_icon_4_url)?$sitesetting->social_icon_4_url:'#'; }}" target="_black" >
+                            {!! isset($sitesetting->social_icon_4)?$sitesetting->social_icon_4:''; !!}
+                        </a>
                     </div>
                     <div class="author-details" style="text-align: justify">
                     

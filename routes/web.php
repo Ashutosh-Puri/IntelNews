@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -14,6 +13,7 @@ use App\Http\Controllers\Backend\NewsPostController;
 use App\Http\Controllers\Frontend\ReviewsController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SeoSettingController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
 use App\Http\Controllers\Backend\VideoGalleriesController;
@@ -41,19 +41,7 @@ Route::controller(ReviewsController::class)->group(function () {
 
 });
 
-Route::middleware('auth')->group(function () {
 
-    Route::controller(UserController::class)->group(function () {
-
-        Route::get('/dashboard', 'UserDashboard')->name('user.dashboard');
-        Route::post('/user/profile/store', 'UserProfileStore')->name('user.store.profile');
-        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
-        Route::post('/user/change/password/store', 'UserChangePasswordStore')->name('user.change.password.store');
-        Route::get('/user/logout', 'UserLogout')->name('user.logout');
-
-    });
-
-});
 
 // ============================================
 // ============================================
@@ -75,12 +63,20 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/logout/page', 'AdminLogoutPage')->name('admin.logout.page');
 });
 
+Route::middleware('auth')->group(function () {
 
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/dashboard', 'UserDashboard')->name('user.dashboard');
+        Route::post('/user/profile/store', 'UserProfileStore')->name('user.store.profile');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::post('/user/change/password/store', 'UserChangePasswordStore')->name('user.change.password.store');
+        Route::get('/user/logout', 'UserLogout')->name('user.logout');
+        Route::get('/user/delete/profile/photo/{id}', 'UserDeleteProfilePhoto')->name('user.delete.profile.photo');
+    });
 
-Route::controller(UserController::class)->group(function () {
-    
-    Route::get('/user/delete/profile/photo/{id}', 'UserDeleteProfilePhoto')->name('user.delete.profile.photo');
 });
+
+
 Route::middleware('auth','role:admin')->group(function () {
 
         // Backend Admin User Controller
@@ -283,6 +279,20 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/delete/roles/permission/{id}', 'DeleteRolesPermission')->name('delete.roles.permission'); 
         Route::post('/store/roles/permission', 'StoreRolesPermission')->name('store.roles.permission');
         Route::post('/update/roles/permission/{id}', 'UpdateRolesPermission')->name('update.roles.permission');
+
+    });
+
+
+     // Site Setting Controller
+
+     Route::controller(SiteSettingController::class)->group(function () {
+
+        Route::get('/all/site/setting', 'AllSiteSetting')->name('all.site.setting');
+        Route::get('/add/site/setting', 'AddSiteSetting')->name('add.site.setting');
+        Route::post('/store/site/setting', 'StoreSiteSetting')->name('store.site.setting');
+        Route::get('/edit/site/setting/{id}', 'EditSiteSetting')->name('edit.site.setting');
+        Route::post('/update/site/setting/{id}', 'UpdateSiteSetting')->name('update.site.setting');
+        Route::get('/delete/site/setting/{id}', 'DeleteSiteSetting')->name('delete.site.setting');
 
     });
 

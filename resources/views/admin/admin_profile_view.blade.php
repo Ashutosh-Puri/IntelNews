@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+    Admin Profile
+@endsection
 @section('admin')
 
 <div class="content">
@@ -27,8 +29,8 @@
                     <div class="card-body">
 
                         <img src="{{ (!empty($adminData->photo)) ? url($adminData->photo) : url('upload/no_image.jpg') }}" class="rounded-circle avatar-xxl img-thumbnail" alt="profile-image">
-                        <br>
-                        <a  id="delete" href="{{ route('admin.delete.profile.photo',$adminData->id) }}" class="align-top btn btn-sm btn-danger">Remove</a>
+                      
+                        <a  id="delete" href="{{ route('admin.delete.profile.photo',$adminData->id) }}" class="align-top btn btn-sm btn-danger"> <i class="fa fa-trash"></i></a>
                         <h4 class="mb-0">{{ $adminData->name }}</h4>
 
                         <div class="text-start mt-3">

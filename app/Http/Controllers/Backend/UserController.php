@@ -58,7 +58,15 @@ class UserController extends Controller
 
         $data->update();
 
-        return back()->with('status','Profile updated successfully');
+        $notification = array(
+
+            'message' => 'Profile updated successfully',
+
+            'alert-type' => 'success'
+
+        );
+
+        return back()->with('status','Profile updated successfully')->with($notification);
 
     }
 
@@ -74,7 +82,7 @@ class UserController extends Controller
 
     public function UserChangePasswordStore(PasswordChangeFormRequest $request){
 
-            dd("");
+       
         $hashedPassword = Auth::user()->password;
 
         if (!Hash::check($request->old_password, $hashedPassword)) {

@@ -140,15 +140,15 @@
                                     <span class="wpcf7-form-control-wrap sub_title"
                                     ><input
                                         type="password"
-                                        name="password_confirmation"
+                                        name="confirm_password"
                                         value=""
                                         size="40"
-                                        class="wpcf7-form-control wpcf7-text @error('password_confirmation') is-invalid @enderror"
+                                        class="wpcf7-form-control wpcf7-text @error('confirm_password') is-invalid @enderror"
                                         aria-invalid="false"
-                                        placeholder="password_confirmation"
+                                        placeholder="confirm_password"
                                     /></span>
 
-                                    @error('password_confirmation')
+                                    @error('confirm_password')
 
                                             <span class="text-danger">
 

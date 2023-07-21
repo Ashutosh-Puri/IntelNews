@@ -53,8 +53,8 @@ class AdminController extends Controller
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $filename = time() . '.' . $photo->getClientOriginalExtension();
-                Image::make($photo)->resize(300, 300)->save(public_path('upload/admin_images/'.$filename));
-                $photoPath = 'upload/admin_images/'.$filename;
+                Image::make($photo)->resize(300, 300)->save(public_path('upload/user_images/'.$filename));
+                $photoPath = 'upload/user_images/'.$filename;
                 $data->photo= $photoPath;
             }
         $data->update();
@@ -192,9 +192,6 @@ class AdminController extends Controller
     }
 
     public function UpdateAdmin(AdminFormRequest $request ,$id){
-
-        dd($request ,$id);
-        
 
         $user = User::findOrFail($id);
 

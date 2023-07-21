@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+   Edit Live TV
+@endsection
 @section('admin')
 
 <div class="content">

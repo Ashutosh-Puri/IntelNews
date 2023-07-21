@@ -32,10 +32,24 @@
                 <div class="col-lg-5 col-md-5">
                     <h3 class="footer-title">
                         Our Office : </h3>
-                    <div class="footer-content">
-                        <p style="text-align: left;">ADDRESS : Sangamner Khurd, Sangamner, MH, IN </p>
-                        <p style="text-align: left;">EMAIL : cmdsofts@gmail.com</p>
-                        <p style="text-align: left;">MOBILE : +91 9373545745</p>
+                    <div class="footer-content">                
+                        <p style="text-align: left;">ADDRESS : {{ isset($sitesetting->address)?$sitesetting->address:''; }} </p>
+                        <p style="text-align: left;">EMAIL : {{ isset($sitesetting->email)?$sitesetting->email:''; }}</p>
+                        <p style="text-align: left;">MOBILE : +91 {{ isset($sitesetting->phone)?$sitesetting->phone:''; }}</p>
+                        <div class="author-social float-start text-center fw-bold">
+                            <a href="{{ isset($sitesetting->social_icon_1_url)?$sitesetting->social_icon_1_url:'#'; }}" target="_black" >
+                                {!! isset($sitesetting->social_icon_1)?$sitesetting->social_icon_1:''; !!}
+                            </a>
+                            <a href="{{ isset($sitesetting->social_icon_2_url)?$sitesetting->social_icon_2_url:'#'; }}" target="_black" >
+                                {!! isset($sitesetting->social_icon_2)?$sitesetting->social_icon_2:''; !!}
+                            </a>
+                            <a href="{{ isset($sitesetting->social_icon_3_url)?$sitesetting->social_icon_3_url:'#'; }}" target="_black" >
+                                {!! isset($sitesetting->social_icon_3)?$sitesetting->social_icon_3:''; !!}
+                            </a>
+                            <a href="{{ isset($sitesetting->social_icon_4_url)?$sitesetting->social_icon_4_url:'#'; }}" target="_black" >
+                                {!! isset($sitesetting->social_icon_4)?$sitesetting->social_icon_4:''; !!}
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
@@ -46,8 +60,8 @@
                             </h3>
                             <div class="footer-content">
                                 <a class="text-start text-white" href="{{ url('/') }}"><p>Home</p></a>
-                                <a class="text-start text-white" href="{{ url('/') }}"><p>About Us</p></a>
-                                <a class="text-start text-white "href="{{ url('/') }}"><p>Contact Us</p></a>
+                                <a class="text-start text-white" href="{{ url('/aboutus') }}"><p>About Us</p></a>
+                                <a class="text-start text-white "href="{{ url('/contactus') }}"><p>Contact Us</p></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -66,11 +80,11 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="copy-right">
-                            © All rights reserved © CMDSofts </div>
+                            © All rights reserved © {{ isset($sitesetting->dev_company)?$sitesetting->dev_company:''; }} </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="design-developed">
-                            Theme Developed BY <a href="http://cmdsofts.rf.gd" target="_blank">CMDSofts</a>
+                            Theme Developed BY <a href="{{ isset($sitesetting->dev_site)?$sitesetting->dev_site:''; }}" target="_blank">{{ isset($sitesetting->dev_company)?$sitesetting->dev_company:''; }}</a>
                         </div>
                     </div>
                 </div>

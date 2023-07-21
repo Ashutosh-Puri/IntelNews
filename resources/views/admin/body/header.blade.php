@@ -275,19 +275,19 @@ $adminData =  App\Models\User::find($id);
 
                 <span class="logo-sm">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
+                    <img src="{{ isset($sitesetting->logo_small)? asset($sitesetting->logo_small):''; }}" alt="" height="50">
 
-                   <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
+                   {{-- <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span> --}}
 
                 </span>
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="" height="50">
+                    <img src="{{ isset($sitesetting->logo_large)? asset($sitesetting->logo_large):''; }}" alt="" height="50">
 
-             <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
+             {{-- <span class="logo-lg-text-light">{{ env('APP_NAME') }}</span>
 
-                </span>
+                </span> --}}
 
             </a>
 
@@ -296,13 +296,13 @@ $adminData =  App\Models\User::find($id);
 
                 <span class="logo-sm">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogot.png') }}" alt="" height="50">
+                    <img src="{{ isset($sitesetting->logo_small)? asset($sitesetting->logo_small):''; }}" alt="" height="50">
 
                 </span>
 
                 <span class="logo-lg">
 
-                    <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="" height="50">
+                    <img src="{{ isset($sitesetting->logo_large)? asset($sitesetting->logo_large):''; }}" alt="" height="50">
 
                 </span>
 

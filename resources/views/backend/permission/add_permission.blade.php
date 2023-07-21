@@ -1,4 +1,7 @@
 @extends('admin.admin_dashboard')
+@section('title')
+    Add Permission
+@endsection
 @section('admin')
     <div class="content">
         <div class="container-fluid">

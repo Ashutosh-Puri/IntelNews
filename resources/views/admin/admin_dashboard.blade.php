@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    @php
+        $sitesetting=App\Models\SiteSetting::first();
+        $seo=App\Models\SeoSetting::all();
+    @endphp
     <head>
 
         <meta charset="utf-8" />
 
-        <title>Dashboard |  {{ env('APP_NAME') }}</title>
+        <title>{{  preg_replace('/(?<!\ )[A-Z]/', ' $0', env('APP_NAME'));  }} | @yield('title')</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="{{ isset($seo->meta_title)?$seo->meta_meta_title:''; }}" name="metatitle" />
 
-        <meta content="Coderthemes" name="author" />
+        <meta content="{{ isset($seo->meta_keyword)?$seo->meta_keyword:''; }}" name="keyword" />
+
+        <meta content="{{ isset($seo->meta_description)?$seo->meta_description:''; }}" name="description" />
+
+        <meta content="{{ isset($seo->meta_author)?$seo->meta_author:''; }}" name="author" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
 
-        <link rel="shortcut icon" href=" {{ asset('backend/') }} assets/images/favicon.ico">
+        <link rel="shortcut icon" href=" {{ isset($sitesetting->favicon)?asset($sitesetting->favicon):''; }} ">
 
         <!-- Plugins css -->
 
@@ -63,9 +70,9 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" type="text/css">
 
-        <!-- TINY TEXT EDITOR JS -->
+        {{-- <!-- TINY TEXT EDITOR JS -->
 
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 
         <!-- App css -->
 
@@ -97,7 +104,7 @@
 
 
             <!-- Topbar Start -->
-
+          
             @include('admin.body.header')
 
             <!-- ========== Left Sidebar Start ========== -->

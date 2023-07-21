@@ -1,4 +1,7 @@
 @extends('admin.admin_dashboard')
+@section('title')
+    Add Role Permission
+@endsection
 @section('admin')
     <style>
         .form-check{

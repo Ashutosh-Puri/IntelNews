@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+    User
+@endsection
 @section('admin')
 
 <div class="content">

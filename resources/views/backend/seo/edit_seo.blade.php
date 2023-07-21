@@ -1,5 +1,5 @@
 @extends('admin.admin_dashboard')
-
+ Edit SEO
 @section('admin')
 
 <div class="content">

@@ -7,6 +7,7 @@
     @php
 
         $seo = App\Models\SeoSetting::find(1);
+        $sitesetting=App\Models\SiteSetting::first();
 
     @endphp
 
@@ -26,7 +27,9 @@
 
     <title> {{  preg_replace('/(?<!\ )[A-Z]/', ' $0', env('APP_NAME'));  }} | @yield('title') </title>
 
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ isset($sitesetting->favicon)?asset($sitesetting->favicon):''; }}" type="image/x-icon">
+
+
     @if (isset($seo->meta_keyword))
           <meta name="keywords" content="{{ $seo->meta_keyword }}">
      @endif
@@ -84,7 +87,7 @@
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <script charset="utf-8" src="{{ asset('frontend/assets/js/horizon_timeline.08c300ab95020b1109a05214ccb84dea.js') }}">
     </script>
 
@@ -123,6 +126,34 @@
     <script src="{{ asset('frontend/assets/js/main.js') }}" id="newsflash-main-js"></script>
 
     <script src="https://kit.fontawesome.com/97ff43f8ef.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        @if(Session::has('message'))
+
+        var type = "{{ Session::get('alert-type','info') }}"
+
+        switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+        }
+
+        @endif
+
+    </script>
 
 </body>
 

@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+   Add Admin
+@endsection
 @section('admin')
 
 

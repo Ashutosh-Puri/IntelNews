@@ -137,7 +137,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="contact-btn">
-                      <input type="submit" value="Save Changes" class="wpcf7-form-control has-spinner wpcf7-submit" /><span class="wpcf7-spinner"></span>
+                      <input type="submit" value="Update Profile" class="wpcf7-form-control has-spinner wpcf7-submit" /><span class="wpcf7-spinner"></span>
                     </div>
                   </div>
                 </div>

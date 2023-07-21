@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
-
+@section('title')
+    Admin Password Change
+@endsection
 @section('admin')
 
 <div class="content">

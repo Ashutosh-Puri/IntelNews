@@ -90,7 +90,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="logo">
                         <a href="{{ url('/') }}" title="{{ env('APP_NAME') }}">
-                            <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
+                            <img src="{{ isset($sitesetting->logo_large) ?asset($sitesetting->logo_large):''; }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
                         </a>
                     </div>      
                 </div>
@@ -109,7 +109,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="mobileLogo">
                     <a href="{{ url('/') }}" title="{{ env('APP_NAME') }}">
-                        <img src="{{ asset('backend/assets/images/intelnewslogowidet.png') }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
+                        <img src="{{ isset($sitesetting->logo_large) ?asset($sitesetting->logo_large):''; }}" alt="{{ env('APP_NAME') }}" title="{{ env('APP_NAME') }}">
                     </a>
                 </div>
                 <div class="stellarnav dark desktop">
