@@ -50,6 +50,11 @@
                                         <option value="admin">Admin Setting</option>
                                         <option value="user">User Setting</option>
                                         <option value="role">Role & Permission</option>
+                                        <option value="contact">Contacts</option>
+                                        <option value="subscriber">Subscribers</option>
+                                        <option value="ad">Ads</option>
+                                        <option value="audio">Audio</option>
+
                                     </select>
                                     @error('group_name')
                                         <div class="invalid-feedback">

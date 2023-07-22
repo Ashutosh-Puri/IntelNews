@@ -50,6 +50,10 @@
                                         <option value="admin"{{ $permission->group_name == 'admin' ? 'selected' : '' }}>Admin Setting</option>
                                         <option value="user"{{ $permission->group_name == 'user' ? 'selected' : '' }}>User Setting</option>
                                         <option value="role" {{ $permission->group_name == 'role' ? 'selected' : '' }}>Role & Permission</option>
+                                        <option value="contact" {{ $permission->group_name == 'contact' ? 'selected' : '' }}>Contacts</option>
+                                        <option value="subscriber" {{ $permission->group_name == 'subscriber' ? 'selected' : '' }}>Subscribers</option>
+                                        <option value="ad" {{ $permission->group_name == 'ad' ? 'selected' : '' }}>Ads</option>
+                                        <option value="audio" {{ $permission->group_name == 'audio' ? 'selected' : '' }}>Audio</option>
                                     </select>
                                     @error('group_name')
                                         <div class="invalid-feedback">

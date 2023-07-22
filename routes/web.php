@@ -7,12 +7,14 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\LiveTvsController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\NewsPostController;
 use App\Http\Controllers\Frontend\ReviewsController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SeoSettingController;
+use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
@@ -58,7 +60,7 @@ Route::controller(ReviewsController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/login', 'AdminLogin')->middleware(RedirectIfAuthenticated::class)->name('admin.login');
-    Route::get('/admin/dashboard', 'AdminDashboard')->name('admin.dashboard');
+   
     Route::get('/admin/logout', 'AdminLogout')->name('admin.logout');
     Route::get('/admin/logout/page', 'AdminLogoutPage')->name('admin.logout.page');
 });
@@ -82,7 +84,7 @@ Route::middleware('auth','role:admin')->group(function () {
         // Backend Admin User Controller
 
         Route::controller(AdminController::class)->group(function () {
-            
+            Route::get('/admin/dashboard', 'AdminDashboard')->name('admin.dashboard');
             Route::get('/admin/profile', 'AdminProfile')->name('admin.profile');
             Route::get('/admin/change/password', 'AdminChangePassword')->name('admin.change.password');
             Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
@@ -295,6 +297,31 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/delete/site/setting/{id}', 'DeleteSiteSetting')->name('delete.site.setting');
 
     });
+
+
+    // Contact Controller
+
+    Route::controller(ContactController::class)->group(function () {
+
+        Route::get('/all/contact', 'AllContact')->name('all.contact');
+        Route::get('/add/contact', 'AddContact')->name('add.contact');
+        Route::post('/store/contact', 'StoreContact')->name('store.contact');
+        Route::get('/edit/contact/{id}', 'EditContact')->name('edit.contact');
+        Route::post('/update/contact/{id}', 'UpdateContact')->name('update.contact');
+        Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
+    });
+
+        // Subscriber Controller
+
+        Route::controller(SubscriberController::class)->group(function () {
+
+            Route::get('/all/subscriber', 'AllSubscriber')->name('all.subscriber');
+            Route::get('/add/subscriber', 'AddSubscriber')->name('add.subscriber');
+            Route::post('/store/subscriber', 'StoreSubscriber')->name('store.subscriber');
+            Route::get('/edit/subscriber/{id}', 'EditSubscriber')->name('edit.subscriber');
+            Route::post('/update/subscriber/{id}', 'UpdateSubscriber')->name('update.subscriber');
+            Route::get('/delete/subscriber/{id}', 'DeleteSubscriber')->name('delete.subscriber');
+        });
 
 
 });

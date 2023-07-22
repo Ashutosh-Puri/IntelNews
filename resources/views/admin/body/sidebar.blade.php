@@ -181,6 +181,44 @@
                             </div>
                         </li>
                     @endif
+                    @if (Auth::user()->can('ContactAccess'))
+                        <li>
+                            <a href="#contact" data-bs-toggle="collapse">
+                                <i class="fas fa-phone"></i>
+                                <span> Contacts </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="contact">
+                                <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('all.contact') }}">All Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('add.contact') }}">Add Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+                    @if (Auth::user()->can('SubscriberAccess'))
+                        <li>
+                            <a href="#subscriber" data-bs-toggle="collapse">
+                                <i class="fas fa-users"></i>
+                                <span> Subscribers</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="subscriber">
+                                <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('all.subscriber') }}">All Subscriber</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('add.subscriber') }}">Add Subscriber</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                     @if (Auth::user()->can('SiteAccess'))
                         <li>
                             <a href="#sitesetting" data-bs-toggle="collapse">
