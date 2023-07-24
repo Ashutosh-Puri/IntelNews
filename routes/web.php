@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\SeoSettingController;
 use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SubcategoryController;
+use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\PhotoGalleryController;
 use App\Http\Controllers\Backend\VideoGalleriesController;
 use App\Http\Controllers\Backend\RoleInPermissionController;
@@ -313,15 +314,27 @@ Route::middleware('auth','role:admin')->group(function () {
 
         // Subscriber Controller
 
-        Route::controller(SubscriberController::class)->group(function () {
+    Route::controller(SubscriberController::class)->group(function () {
 
-            Route::get('/all/subscriber', 'AllSubscriber')->name('all.subscriber');
-            Route::get('/add/subscriber', 'AddSubscriber')->name('add.subscriber');
-            Route::post('/store/subscriber', 'StoreSubscriber')->name('store.subscriber');
-            Route::get('/edit/subscriber/{id}', 'EditSubscriber')->name('edit.subscriber');
-            Route::post('/update/subscriber/{id}', 'UpdateSubscriber')->name('update.subscriber');
-            Route::get('/delete/subscriber/{id}', 'DeleteSubscriber')->name('delete.subscriber');
-        });
+        Route::get('/all/subscriber', 'AllSubscriber')->name('all.subscriber');
+        Route::get('/add/subscriber', 'AddSubscriber')->name('add.subscriber');
+        Route::post('/store/subscriber', 'StoreSubscriber')->name('store.subscriber');
+        Route::get('/edit/subscriber/{id}', 'EditSubscriber')->name('edit.subscriber');
+        Route::post('/update/subscriber/{id}', 'UpdateSubscriber')->name('update.subscriber');
+        Route::get('/delete/subscriber/{id}', 'DeleteSubscriber')->name('delete.subscriber');
+    });
+
+    // Notification Controller
+
+    Route::controller( NotificationController::class)->group(function () {
+
+        Route::get('/all/notification', 'AllNotification')->name('all.notification');
+        Route::get('/read/notification/{id}', 'ReadNotification')->name('read.notification');
+        Route::get('/delete/notification/{id}', 'DeleteNotification')->name('delete.notification');
+        Route::get('/read/all/notification', 'ReadAllNotification')->name('read.all.notification');
+        Route::get('/delete/all/notification', 'DeleteAllNotification')->name('delete.all.notification');
+        
+    });
 
 
 });

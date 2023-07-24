@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <a href="{{ route('approve.review') }}" class="btn btn-success waves-effect waves-light">
+                        <a href="{{ route('approve.review') }}"class="btn btn-success waves-effect waves-light">
                             Approve Review<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
                         </a>
                     </div>
@@ -95,7 +95,7 @@
 
                                     <td>
 
-                                        <a href="{{ route('approve.review.update',$item->id) }}" class="btn btn-success waves-effect waves-light"><i class="fa-solid fa-thumbs-up"></i></a>
+                                        <a href="{{ route('approve.review.update',$item->id) }}"  data-toggle="tooltip" data-placement="top" title="Approve"  class="btn btn-success waves-effect waves-light"><i class="fa-solid fa-thumbs-up"></i></a>
 
                                     </td>
 

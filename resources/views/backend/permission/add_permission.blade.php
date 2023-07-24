@@ -54,6 +54,7 @@
                                         <option value="subscriber">Subscribers</option>
                                         <option value="ad">Ads</option>
                                         <option value="audio">Audio</option>
+                                        <option value="notification">Notification</option>
 
                                     </select>
                                     @error('group_name')

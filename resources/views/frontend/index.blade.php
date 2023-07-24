@@ -336,7 +336,7 @@
             @endif
         </div>
     </div>
-    @if(isset($skip_news_0[0]))
+    @if(isset($skip_news_0[0]) || isset($skip_news_1[0]))
         <section class="section-three">
             <div class="container">
                 <div class="row">
@@ -387,21 +387,23 @@
                         @endif
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <h2 class="themesBazar_cat08"> 
-                            <a href="{{ url('news/category/'.$skip_cat_1->id.'/'.$skip_cat_1->category_slug) }}"> 
-                                <i class="las la-align-justify"></i>  {{ $skip_cat_1->category_name }} 
-                            </a> 
-                        </h2>
-                        <div class="map-area" style="width:100%; background: #eff3f4;">
-                            <div style="padding: 48px 35px ;" class="shadow">
-                                @foreach ($skip_news_1 as $item)
-                                    <a href=" {{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }}">
-                                        <img class="lazyload" src="{{ asset($item->image) }}">
-                                    </a>     
-                                @break           
-                                @endforeach
+                        @if (isset($skip_cat_1))
+                            <h2 class="themesBazar_cat08"> 
+                                <a href="{{ url('news/category/'.$skip_cat_1->id.'/'.$skip_cat_1->category_slug) }}"> 
+                                    <i class="las la-align-justify"></i>  {{ $skip_cat_1->category_name }} 
+                                </a> 
+                            </h2>
+                            <div class="map-area" style="width:100%; background: #eff3f4;">
+                                <div style="padding: 48px 35px ;" class="shadow">
+                                    @foreach ($skip_news_1 as $item)
+                                        <a href=" {{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }}">
+                                            <img class="lazyload" src="{{ asset($item->image) }}">
+                                        </a>     
+                                    @break           
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
         </section>

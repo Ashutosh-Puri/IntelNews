@@ -170,7 +170,7 @@
 
                                     <td>
 
-                                        <img id="showImage" src="{{ asset($item->image) }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                        <img id="showImage" src="{{ isset($item->image)? asset($item->image):asset('upload/no_image.jpg'); }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                                     </td>
 

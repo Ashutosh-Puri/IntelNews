@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SubscriberNotification;
 use App\Http\Requests\Backend\SubscriberFormRequest;
 
 class SubscriberController extends Controller
@@ -26,6 +29,9 @@ class SubscriberController extends Controller
             'message' => 'Subscriber Added Successfuly',
             'alert-type' => 'success'
         );
+
+        $user = User::where('role','admin')->get();
+        Notification::send($user, new SubscriberNotification($request));
         return redirect()->route('all.subscriber')->with($notification);
     }
 

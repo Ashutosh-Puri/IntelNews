@@ -75,6 +75,26 @@ class PermissionSeeder extends Seeder
             'group_name'=>'Role And Permission Setting',
             'guard_name'=>'web', 
         ],
+        [
+            'name' => 'ContactAccess',
+            'group_name'=>'Contacts',
+            'guard_name'=>'web', 
+        ],
+        [
+            'name' => 'SubscriberAccess',
+            'group_name'=>'Subscribers',
+            'guard_name'=>'web', 
+        ],
+        [
+            'name' => 'NotificationAccess',
+            'group_name'=>'Notifications',
+            'guard_name'=>'web', 
+        ],
+        [
+            'name' => 'ReviewAccess',
+            'group_name'=>'Review',
+            'guard_name'=>'web', 
+        ],
         ]);
     }
 }

@@ -36,15 +36,22 @@ class NewsPostController extends Controller{
 
     public function StoreNewsPost(NewsPostFormRequest $request){
 
-        $image      = $request->file('image');
 
-        $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        if($request->hasFile('image'))
+        {
+            $image      = $request->file('image');
 
-          
+            $name_gen   = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-        Image::make($image)->resize(784,436)->save('upload/news/'.$name_gen);
+            Image::make($image)->resize(784,436)->save('upload/news/'.$name_gen);
 
-        $save_url = 'upload/news/'.$name_gen;
+            $save_url = 'upload/news/'.$name_gen;
+        }
+        else
+        {
+            $save_url =null;
+        }
+        
 
         NewsPost::insert([
 

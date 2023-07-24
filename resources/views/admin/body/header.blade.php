@@ -12,96 +12,17 @@ $adminData =  App\Models\User::find($id);
 <div class="navbar-custom">
 
     <div class="container-fluid">
-
+        
         <ul class="list-unstyled topnav-menu float-end mb-0">
-
-            <li class="d-none d-lg-block">
-                 <form class="app-search">
-
-                    <div class="app-search-box dropdown">
-
-                        <div class="input-group">
-
-                            {{-- <input type="search" class="form-control" placeholder="Search..." id="top-search">
-
-                            <button class="btn input-group-text" type="submit">
-
-                                <i class="fe-search"></i> 
-
-                            </button>--}}
-
-                            <a href="{{ route('home.index') }}" class="text-white" >
+            <li>
+                <a href="{{ route('home.index') }}" class="text-white nav-link dropdown-toggle arrow-none waves-effect waves-light" >
     
-                                <i class="mdi mdi-home"></i>
-        
-                                <span>Home </span>
-        
-                            </a>
-
-                        </div>
-
-                        <div class="dropdown-menu dropdown-lg" id="search-dropdown">
-
-                            <!-- item-->
-
-                            <div class="dropdown-header noti-title">
-
-                                <h5 class="text-overflow mb-2">Found 22 results</h5>
-
-                            </div>
-
-
-                            <!-- item-->
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-
-                                <i class="fe-home me-1"></i>
-
-                                <span>Analytics Report</span>
-
-                            </a>
-
-
-                            <!-- item-->
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-
-                                <i class="fe-aperture me-1"></i>
-
-                                <span>How can I help you?</span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </form> 
-
-            </li>
-
-            <li class="dropdown d-inline-block d-lg-none">
-
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-
-                    <i class="fe-search noti-icon"></i>
-
+                    <i class="fe-home noti-icon"></i>
                 </a>
-
-                <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
-
-                    <form class="p-3">
-
-                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-
-                    </form>
-
-                </div>
-
             </li>
-
             <li class="dropdown d-none d-lg-inline-block">
 
+               
                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#">
 
                     <i class="fe-maximize noti-icon"></i>
@@ -134,9 +55,9 @@ $adminData =  App\Models\User::find($id);
 
                             <span class="float-end">
 
-                                <a href="" class="text-dark">
+                                <a href="{{ route('read.all.notification') }}" class="text-dark">
 
-                                    <small>Clear All</small>
+                                    <small> <i class="mdi mdi-check-all"></i> &nbsp; Mark Read All</small>
 
                                 </a>
 
@@ -150,17 +71,17 @@ $adminData =  App\Models\User::find($id);
 
                     @php
 
-                        $user = Auth::user();
+                        $user =  Auth::user()->unreadNotifications()->get();
 
                     @endphp
 
-                    @forelse ($user->notifications as $notification)
+                    @forelse ($user as $notification)
 
                         <div class="noti-scroll" data-simplebar>
 
                             <!-- item-->
 
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="{{ route('all.notification') }}" class="dropdown-item notify-item">
 
                                 <div class="notify-icon bg-secondary">
 
@@ -170,7 +91,7 @@ $adminData =  App\Models\User::find($id);
 
                                 <p class="notify-details">{{ $notification->data['message'] }}
 
-                                    <b>Admin</b>
+                                   
 
                                     <small class="text-muted">{{ Carbon\Carbon::parse($notification->created_at->diffForHumans()) }}</small>
 
@@ -185,7 +106,7 @@ $adminData =  App\Models\User::find($id);
                     @endforelse
 
                     <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                    <a href="{{ route('all.notification') }}" class="dropdown-item text-center text-primary notify-item notify-all">
                         View all
                         <i class="fe-arrow-right"></i>
                     </a>

@@ -14,15 +14,12 @@ class ReviewNotification extends Notification
     public function __construct($request){
 
         $this->request = $request;
-
     }
 
 
     public function via($notifiable){
 
-        // return ['mail'];
-
-        return ['database'];
+        return ['database','mail',];
 
     }
 
@@ -30,8 +27,8 @@ class ReviewNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('new Review Added In News.')
+                    ->action('View Review', url('/pending/review'))
                     ->line('Thank you for using our application!');
     }
 

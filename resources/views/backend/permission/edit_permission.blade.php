@@ -54,6 +54,7 @@
                                         <option value="subscriber" {{ $permission->group_name == 'subscriber' ? 'selected' : '' }}>Subscribers</option>
                                         <option value="ad" {{ $permission->group_name == 'ad' ? 'selected' : '' }}>Ads</option>
                                         <option value="audio" {{ $permission->group_name == 'audio' ? 'selected' : '' }}>Audio</option>
+                                        <option value="notification" {{ $permission->group_name == 'notification' ? 'selected' : '' }}>Notification</option>
                                     </select>
                                     @error('group_name')
                                         <div class="invalid-feedback">

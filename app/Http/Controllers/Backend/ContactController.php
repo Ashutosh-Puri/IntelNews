@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\ContactNotification;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\Backend\ContactFormRequest;
 
 class ContactController extends Controller
@@ -31,6 +34,8 @@ class ContactController extends Controller
             'message' => 'Contact Added Successfuly',
             'alert-type' => 'success'
         );
+        $user = User::where('role','admin')->get();
+        Notification::send($user, new ContactNotification($request));
         return redirect()->route('all.contact')->with($notification);
     }
 

@@ -21,9 +21,9 @@ class ReviewsController extends Controller{
 
     public function StoreReview(Request $request){
 
+       
         $user = User::where('role','admin')->get();
 
-        $news = $request->news_id;
 
         $request->validate([
 
@@ -33,14 +33,14 @@ class ReviewsController extends Controller{
 
         Reviews::insert([
 
-            'news_id'       => $news,
+            'news_id'       => $request->news_id,
             'user_id'       => Auth::id(),
             'comment'       => $request->comment,
             'created_at'    => Carbon::now(),
 
         ]);
 
-        Notification::send($user, new ReviewNotification($request));
+         Notification::send($user, new ReviewNotification($request));
 
         return back()->with('status','Review Will Approve By Admin');
 

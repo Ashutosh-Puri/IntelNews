@@ -39,7 +39,7 @@
                                     <input class="form-check-input" type="checkbox" id="selectall">
                                     <label class="form-check-label" for="selectall">Select All</label>
                                 </div>
-                                <table  id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                <table  id="datatable-buttons" data-page-length='25' class="table abc table-striped dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -97,6 +97,8 @@
             }
 
         });
+        
+  
 
     </script>
 @endsection

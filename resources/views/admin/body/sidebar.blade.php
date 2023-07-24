@@ -219,6 +219,22 @@
                             </div>
                         </li>
                     @endif
+                    @if (Auth::user()->can('NotificationAccess'))
+                    <li>
+                        <a href="#notification" data-bs-toggle="collapse">
+                            <i class="fas fa-bell"></i>
+                            <span> Notifications</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="notification">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('all.notification') }}">All Notification</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                     @if (Auth::user()->can('SiteAccess'))
                         <li>
                             <a href="#sitesetting" data-bs-toggle="collapse">
