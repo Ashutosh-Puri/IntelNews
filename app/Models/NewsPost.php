@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reviews;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NewsPost extends Model{
 
@@ -11,7 +12,7 @@ class NewsPost extends Model{
 
     protected $guarded = [];
 
-    // Inner Join Ke Tabel Category
+
 
     public function categoryRelation(){
 
@@ -19,7 +20,6 @@ class NewsPost extends Model{
 
     }
 
-    // Inner Join Ke Tabel Sub Category
 
     public function subcategoryRelation(){
 
@@ -27,12 +27,15 @@ class NewsPost extends Model{
 
     }
 
-    // Inner Join Ke Tabel User
 
     public function userRelation(){
 
         return $this->belongsTo(User::class,'user_id','id');
 
+    }
+
+    public function reviews() {
+        return $this->hasMany(Reviews::class);
     }
 
 }

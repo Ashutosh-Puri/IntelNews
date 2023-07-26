@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('news_posts', function (Blueprint $table) {
 
             $table->id();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->unsignedBigInteger('subcategory_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('subcategory_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('news_title');
             $table->string('news_title_slug')->nullable();
             $table->string('image')->nullable();
@@ -33,6 +33,9 @@ return new class extends Migration
             $table->integer('status')->default(1)->nullable();
             $table->integer('view_count')->default(0)->nullable();
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

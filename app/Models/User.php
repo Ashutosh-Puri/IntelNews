@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Reviews;
+use App\Models\NewsPost;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
@@ -63,4 +65,11 @@ class User extends Authenticatable
 
     }
 
+    public function newsPosts() {
+        return $this->hasMany(NewsPost::class);
+    }
+
+    public function reviews() {
+        return $this->hasMany(Reviews::class);
+    }
 }
