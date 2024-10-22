@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([[
             'name' => 'Admin',
             'username'=>'Ashutosh Puri',
-            'email' => 'cmdsofts@gmail.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('123456789'),
             'role'=>'admin',
             'status'=>'active',
